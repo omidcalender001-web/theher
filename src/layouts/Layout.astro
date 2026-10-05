@@ -1,0 +1,59 @@
+---
+// THE HER × OMID — Master Layout (prototype, Phase 07)
+import '@fontsource/cormorant-garamond/300.css';
+import '@fontsource/cormorant-garamond/300-italic.css';
+import '@fontsource/jost/300.css';
+import '@fontsource/jost/400.css';
+import '@fontsource/vazirmatn/300.css';
+import '@fontsource/vazirmatn/400.css';
+import '../styles/global.css';
+import '../styles/proto.css';
+import en from '../i18n/en.json';
+import fa from '../i18n/fa.json';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = 'THE HER × OMID — A partnership built around possibilities',
+  description = 'The Her understands the woman behind the business. Omid focuses on the system behind the business.'
+} = Astro.props;
+const i18nStore = JSON.stringify({ en, fa }).replace(/</g, '\\u003c');
+---
+
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#171411" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" as="image" href="/images/posters/scene-01-vision-poster.jpg" />
+
+    <!-- Set language/direction BEFORE paint (no FOUC) -->
+    <script is:inline>
+      (function () {
+        var q = new URLSearchParams(location.search).get('lang');
+        var l = q === 'fa' || q === 'en' ? q : (localStorage.getItem('lang') || 'en');
+        document.documentElement.lang = l;
+        document.documentElement.dir = l === 'fa' ? 'rtl' : 'ltr';
+      })();
+    </script>
+  </head>
+  <body>
+    <script type="application/json" id="i18n-store" set:html={i18nStore} />
+    <div class="progress" aria-hidden="true"><i id="progress-line"></i></div>
+    <div class="film-dip" id="film-dip" aria-hidden="true"></div>
+    <div class="chapter" id="chapter" aria-hidden="true"></div>
+    <div id="cursor" aria-hidden="true"></div>
+    <slot />
+
+    <script src="../scripts/main.js"></script>
+  </body>
+</html>

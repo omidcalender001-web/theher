@@ -1,0 +1,30 @@
+---
+// S05 — ACT V · THE PARTNERSHIP — split panels over scene 04
+import en from '../i18n/en.json';
+const t = en;
+---
+<section class="section split" id="s05" data-section aria-label="The partnership">
+  <video class="split__bg" data-lazy muted loop playsinline preload="metadata" poster="/images/posters/scene-04-system-poster.jpg" aria-hidden="true">
+    <source src="/video/scene-04-system.mp4" type="video/mp4" />
+  </video>
+  <div class="container">
+    <div class="section-head" data-reveal-group>
+      <p class="kicker" data-reveal data-i18n="s5.kicker">{t.s5.kicker}</p>
+      <h2 class="display" data-reveal data-i18n="s5.headline">{t.s5.headline}</h2>
+      <p data-reveal style="color:var(--color-text-muted)" data-i18n="s5.subheadline">{t.s5.subheadline}</p>
+    </div>
+    <div class="split__grid" data-reveal-solo>
+      <div class="panel panel--her">
+        <span class="panel__label">THE HER</span>
+        <span class="panel__name" data-i18n="s5.theHer.label">{t.s5.theHer.label}</span>
+        <span class="panel__tags" data-i18n="s5.theHer.tags">{t.s5.theHer.tags}</span>
+      </div>
+      <div class="panel panel--omid">
+        <span class="panel__label">OMID</span>
+        <span class="panel__name" data-i18n="s5.omid.label">{t.s5.omid.label}</span>
+        <span class="panel__tags" data-i18n="s5.omid.tags">{t.s5.omid.tags}</span>
+      </div>
+    </div>
+    <p style="margin-block-start:2rem;color:var(--color-text-muted);max-inline-size:38rem" data-reveal-solo data-i18n="s5.body">{t.s5.body}</p>
+  </div>
+</section>

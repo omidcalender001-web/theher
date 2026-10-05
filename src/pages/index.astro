@@ -1,0 +1,39 @@
+---
+// THE HER × OMID — Phase 07 interactive prototype
+// Section order locked by docs/proposal-architecture.md (S00–S11)
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import EntryOverlay from '../components/EntryOverlay.astro';
+import Hero from '../components/Hero.astro';
+import Business from '../components/Business.astro';
+import Problems from '../components/Problems.astro';
+import Question from '../components/Question.astro';
+import Partnership from '../components/Partnership.astro';
+import Engine from '../components/Engine.astro';
+import Stepper from '../components/Stepper.astro';
+import Cases from '../components/Cases.astro';
+import Numbers from '../components/Numbers.astro';
+import Models from '../components/Models.astro';
+import Cta from '../components/Cta.astro';
+import Footer from '../components/Footer.astro';
+import en from '../i18n/en.json';
+---
+
+<Layout title={en.meta.title} description={en.meta.description}>
+  <EntryOverlay />
+  <Nav />
+  <main>
+    <Hero />
+    <Business />
+    <Problems />
+    <Question />
+    <Partnership />
+    <Engine />
+    <Stepper />
+    <Cases />
+    <Numbers />
+    <Models />
+    <Cta />
+  </main>
+  <Footer />
+</Layout>

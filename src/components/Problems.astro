@@ -1,0 +1,31 @@
+---
+// S03 — ACT III · THE PROBLEM — pinned accumulation scene (storyboard scene 3):
+// the 7 problems appear one by one as scroll scrubs, the composition freezes,
+// then dissolves into the darkness of S04 (the question).
+import en from '../i18n/en.json';
+const t = en;
+---
+<section class="problems" id="s03" data-section aria-label="Different businesses. Different problems.">
+  <div class="problems__pin">
+    <video class="problems__bg" data-lazy muted loop playsinline preload="metadata" poster="/images/posters/scene-03-complexity-poster.jpg" aria-hidden="true">
+      <source src="/video/scene-03-complexity.mp4" type="video/mp4" />
+    </video>
+    <div class="problems__scrim" aria-hidden="true"></div>
+    <div class="problems__stage container">
+      <div class="section-head problems__head">
+        <p class="kicker" data-i18n="s3.kicker">{t.s3.kicker}</p>
+        <h2 class="display" data-i18n="s3.headline">{t.s3.headline}</h2>
+        <p class="problems__sub" data-i18n="s3.subheadline">{t.s3.subheadline}</p>
+      </div>
+      <div class="problems__list">
+        {t.s3.problems.map((p, i) => (
+          <div class="problem">
+            <span class="mosaic__num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="problem__title" data-i18n={`s3.problems.${i}.title`}>{p.title}</span>
+            <span class="problem__line" data-i18n={`s3.problems.${i}.line`}>{p.line}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

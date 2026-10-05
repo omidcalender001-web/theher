@@ -1,0 +1,28 @@
+---
+// S01 — ACT I · THE WOMAN — hero: pinned, video scrubbed by scroll (cinematic pass)
+import en from '../i18n/en.json';
+const t = en;
+---
+<section class="hero" id="s01" data-section aria-label="A world of business women">
+  <div class="hero__media">
+    <video
+      data-scrub
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="/images/posters/scene-01-vision-poster.jpg"
+      aria-hidden="true">
+      <source src="/video/scene-01-vision.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="hero__scrim" aria-hidden="true"></div>
+  <div class="hero__dusk" aria-hidden="true"></div>
+  <div class="hero__inner container">
+    <p class="kicker" data-i18n="s1.kicker">{t.s1.kicker}</p>
+    <h1 class="display display--xl" data-i18n="s1.headline">{t.s1.headline}</h1>
+    <p class="hero__sub" data-i18n="s1.subheadline">{t.s1.subheadline}</p>
+    <p class="hero__sub" data-i18n="s1.body" style="max-inline-size:44rem">{t.s1.body}</p>
+    <div><a class="btn btn--primary" href="#s02" data-i18n="s1.button">{t.s1.button}</a></div>
+  </div>
+</section>

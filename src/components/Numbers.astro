@@ -1,0 +1,22 @@
+---
+// S09 — PROOF, IN NUMBERS — evidence, not a CV
+import en from '../i18n/en.json';
+const t = en;
+---
+<section class="section" id="s09" data-section aria-label="Proof in numbers">
+  <div class="container">
+    <div class="section-head" data-reveal-group>
+      <p class="kicker" data-reveal data-i18n="s9.kicker">{t.s9.kicker}</p>
+      <h2 class="display" data-reveal data-i18n="s9.headline">{t.s9.headline}</h2>
+      <p data-reveal style="color:var(--color-text-muted)" data-i18n="s9.subheadline">{t.s9.subheadline}</p>
+    </div>
+    <div class="numbers" data-reveal-group>
+      {t.s9.numbers.map((n, i) => (
+        <div class="number" data-reveal>
+          <div class="number__value" data-i18n={`s9.numbers.${i}.value`}>{n.value}</div>
+          <div class="number__label" data-i18n={`s9.numbers.${i}.label`}>{n.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

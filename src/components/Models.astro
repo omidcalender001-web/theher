@@ -1,0 +1,29 @@
+---
+// S10 — THE PARTNERSHIP — value + 3 collaboration models
+import en from '../i18n/en.json';
+const t = en;
+---
+<section class="section" id="s10" data-section aria-label="Partnership models">
+  <div class="models__bg-wrap" aria-hidden="true">
+    <video class="models__bg" data-lazy muted loop playsinline preload="metadata" poster="/images/posters/scene-06-collaboration-poster.jpg">
+      <source src="/video/scene-06-collaboration.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="container">
+    <div class="section-head" data-reveal-group>
+      <p class="kicker" data-reveal data-i18n="s10.kicker">{t.s10.kicker}</p>
+      <h2 class="display" data-reveal data-i18n="s10.headline">{t.s10.headline}</h2>
+      <p data-reveal style="color:var(--color-text-muted)" data-i18n="s10.subheadline">{t.s10.subheadline}</p>
+      <p data-reveal style="color:var(--color-text-muted);max-inline-size:38rem" data-i18n="s10.body">{t.s10.body}</p>
+    </div>
+    <div class="models" data-reveal-group>
+      {t.s10.models.map((m, i) => (
+        <div class="card model" data-reveal>
+          <span class="model__title" data-i18n={`s10.models.${i}.title`}>{m.title}</span>
+          <span class="model__formula bidi-ltr" data-i18n={`s10.models.${i}.formula`}>{m.formula}</span>
+          <span class="model__line" data-i18n={`s10.models.${i}.line`}>{m.line}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

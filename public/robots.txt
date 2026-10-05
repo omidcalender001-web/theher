@@ -1,0 +1,3 @@
+# THE HER × OMID
+User-agent: *
+Allow: /

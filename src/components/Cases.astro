@@ -1,0 +1,35 @@
+---
+// S08 — HYPOTHETICAL CASES 01–03 (always labeled)
+import en from '../i18n/en.json';
+const t = en;
+---
+<section class="section" id="s08" data-section aria-label="Hypothetical cases">
+  <div class="container">
+    <div class="section-head" data-reveal-group>
+      <p class="kicker" data-reveal data-i18n="s8.kicker">{t.s8.kicker ?? 'HYPOTHESES'}</p>
+    </div>
+    <div class="cases">
+      {t.s8.cases.map((c, i) => (
+        <article class="card case" data-reveal-solo>
+          <span class="case__chip" data-i18n={`s8.cases.${i}.kicker`}>{c.kicker}</span>
+          <h3 class="case__quote" style="margin-block:1.1rem 0.4rem" data-i18n={`s8.cases.${i}.headline`}>{c.headline}</h3>
+          <p class="case__sub" data-i18n={`s8.cases.${i}.subheadline`}>{c.subheadline}</p>
+          <details>
+            <summary data-i18n={`s8.cases.${i}.button`}>{c.button}</summary>
+            <div class="case__detail">
+              <div>
+                <h4 data-i18n="s8.labels.diagnosis">{t.s8.labels.diagnosis}</h4>
+                <p data-i18n={`s8.cases.${i}.diagnosis`}>{c.diagnosis}</p>
+              </div>
+              <div>
+                <h4 data-i18n="s8.labels.response">{t.s8.labels.response}</h4>
+                <p data-i18n={`s8.cases.${i}.response`}>{c.response}</p>
+              </div>
+            </div>
+          </details>
+          <p class="case__keyline" style="margin-block-start:1.4rem" data-i18n={`s8.cases.${i}.keyLine`}>{c.keyLine}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
