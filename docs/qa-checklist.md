@@ -38,13 +38,9 @@
 - [ ] Minimal blocking JS
 - [ ] Lighthouse mobile ≥ 90 (perf) / ≥ 95 (a11y)
 
-## Analytics (events firing)
-- [ ] `page_view`
-- [ ] `language_switch` (with direction: en→fa / fa→en)
-- [ ] `cta_click` (which CTA)
-- [ ] `case_interaction` (case 01/02/03, step reached)
-- [ ] `scroll_depth` (25/50/75/100)
-- [ ] `contact_initiation`
+## Analytics
+
+- **DROPPED (D5, 2026-10-04):** no analytics on this site — skip this section.
 
 ## Content (final verification)
 - [ ] All hypothetical cases labeled **"Hypothetical client scenario"**

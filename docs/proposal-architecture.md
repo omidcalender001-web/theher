@@ -146,9 +146,10 @@ Audible audio requires a **user gesture**; a wheel/scroll event does NOT count. 
 | iOS Safari | scrub after `canplaythrough`; fallback = gentle play/pause sync if scrub stutters |
 | License | verify AI Studio output terms permit this use — document in `assets/audio/README.md` before launch |
 
-## 5. ANALYTICS EVENTS (full list)
+## 5. ANALYTICS — DROPPED (decision D5, 2026-10-04)
 
-`page_view` · `begin_with_sound / begin_silent` · `language_switch {from,to}` · `scroll_depth {25,50,75,100}` · `case_interaction {case,step}` · `layer_tap {data|marketing|experience|ai}` · `cta_click {preview|new_tab}` · `contact_initiation`
+**Client decision: no analytics on this site.** GA4 / event tracking removed from the build
+(was: page_view, language_switch, scroll_depth, case_interaction, layer_tap, cta_click).
 
 ## 6. KEY DECISIONS LOG
 
@@ -160,6 +161,8 @@ Audible audio requires a **user gesture**; a wheel/scroll event does NOT count. 
 | 2026-10-04 | Scroll-synced instrumental score (D3) | Client decision — deepens "the scroll is the narrative"; page = timeline |
 | 2026-10-04 | S00 entry moment added | Browser autoplay policy requires a click before audible audio; also sets cinematic tone |
 | 2026-10-04 | Preview dual-mode (iframe / video mockup) | omidadli.site not verifiable today; iframe framing permission unknown — Mode B guarantees the moment |
+
+| 2026-10-04 | **D5 — Analytics dropped** (GA4 removed entirely) | Client decision — the proposal is a cinematic experience, not a measured funnel |
 
 ## 7. EXIT CRITERIA (Gate 02)
 

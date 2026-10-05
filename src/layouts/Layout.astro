@@ -48,6 +48,8 @@ const i18nStore = JSON.stringify({ en, fa }).replace(/</g, '\\u003c');
   </head>
   <body>
     <script type="application/json" id="i18n-store" set:html={i18nStore} />
+    <div class="progress" aria-hidden="true"><i id="progress-line"></i></div>
+    <div id="cursor" aria-hidden="true"></div>
     <slot />
 
     <script src="../scripts/main.js"></script>

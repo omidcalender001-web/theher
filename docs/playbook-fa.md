@@ -341,20 +341,14 @@ src/i18n/، دارایی‌های نهایی در assets/، ویدیوها lazy-
 
 ## ۱۲) قدم ۹ — آنالیتیکس + QA (فاز ۰۹)
 
-### ۹الف — ساخت GA4 (۵ دقیقه، خودت):
-1. برو به `analytics.google.com` → **Admin** (چرخ‌دنده) → **Create → Property**
-2. نام: `The Her x Omid` → منطقه → بساز
-3. **Web** را انتخاب → URL سایت + نام `the-her-omid` → بساز
-4. **Measurement ID** را کپی کن (شبیه `G-XXXXXXX`)
+### ۹الف — آنالیتیکس: ❌ حذف شد (تصمیم D5) — این مرحله را رد کن
 
 ### ۹ب — QA با Arena — این پیام را بفرست:
 
 ```text
 فاز ۰۹ را اجرا کن: QA کامل طبق docs/qa-checklist.md — بصری، تعاملی،
 ریسپانسیو، دسترس‌پذیری، پرفورمنس — و qa/qa-report.md را پر کن.
-آنالیتیکس GA4 را هم با این Measurement ID وایر کن: G-XXXXXXX
-ایونت‌های لازم: page_view, language_switch, cta_click, case_interaction,
-scroll_depth, contact_initiation
+(آنالیتیکس حذف شده — بررسی نکن.)
 ```
 
 **✅ چک:** هیچ 🔴 FAIL در `qa/qa-report.md` باز نیست؟ → آماده لانچ
@@ -379,7 +373,7 @@ URL نهایی را در astro.config.mjs و robots.txt ست کن و آیکون 
 og-image هم بساز.
 ```
 
-**✅ چک (Gate 06):** سایت را در موبایل + دسکتاپ باز کن، حالت فارسی را چک کن، روی CTA کلیک کن، در GA4 ببین ایونت‌ها ثبت می‌شوند؟ → Gate 06 را ✅
+**✅ چک (Gate 06):** سایت را در موبایل + دسکتاپ باز کن، حالت فارسی را چک کن، روی CTA کلیک کن و پیش‌نمایش زنده را چک کن؟ → Gate 06 را ✅
 
 ---
 
@@ -409,7 +403,7 @@ docs/presentation-script.md: باز کردن صفحه، دیدن صحنه‌ها
 | ۶ | ۰۶ | Google Flow | ۷ ویدیو + پوستر | `assets/video/` + `assets/images/posters/` |
 | ۷ | ۰۷ | Arena | پروتوتایپ | `src/` |
 | ۸ | ۰۸ | Arena | سایت نهایی | `src/` |
-| ۹ | ۰۹ | تو (GA4) + Arena | QA + آنالیتیکس | `qa/qa-report.md` |
+| ۹ | ۰۹ | Arena | QA (بدون آنالیتیکس — حذف شد D5) | `qa/qa-report.md` |
 | ۱۰ | ۱۰ | Netlify | سایت لایو | — |
 | ۱۱ | ۱۱ | Arena | سناریو ارائه | `docs/presentation-script.md` |
 

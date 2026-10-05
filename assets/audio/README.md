@@ -56,3 +56,8 @@ Before launch, verify that AI Studio / Lyria output terms permit use on a commer
 proposal site, and record the conclusion here:
 
 - [ ] Terms checked (date / conclusion): …
+
+## STATUS (2026-10-04)
+
+- ✅ **Score delivered (client, via Lyria):** master `source/score-master.m4a` (3:00) → web `public/audio/score.mp3` (112kbps, 2.5 MB)
+- Wired as the scroll-synced score in `src/scripts/main.js`
