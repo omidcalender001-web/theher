@@ -1,7 +1,16 @@
 ---
-// S08 — HYPOTHETICAL CASES 01–03 (always labeled)
+// S08 — HYPOTHETICAL CASES 01–03 (always labeled) + editorial imagery
 import en from '../i18n/en.json';
+import imgCase1 from '../assets/images/case_conversion_funnel_1791208166042.jpg';
+import imgCase2 from '../assets/images/case_digital_presence_1791208176965.jpg';
+import imgCase3 from '../assets/images/case_ai_automation_1791208189762.jpg';
+
 const t = en;
+const caseImages = [
+  typeof imgCase1 === 'string' ? imgCase1 : imgCase1.src,
+  typeof imgCase2 === 'string' ? imgCase2 : imgCase2.src,
+  typeof imgCase3 === 'string' ? imgCase3 : imgCase3.src
+];
 ---
 <section class="section" id="s08" data-section aria-label="Hypothetical cases">
   <div class="container">
@@ -10,24 +19,39 @@ const t = en;
     </div>
     <div class="cases">
       {t.s8.cases.map((c, i) => (
-        <article class="card case" data-reveal-solo>
-          <span class="case__chip" data-i18n={`s8.cases.${i}.kicker`}>{c.kicker}</span>
-          <h3 class="case__quote" style="margin-block:1.1rem 0.4rem" data-i18n={`s8.cases.${i}.headline`}>{c.headline}</h3>
-          <p class="case__sub" data-i18n={`s8.cases.${i}.subheadline`}>{c.subheadline}</p>
-          <details>
-            <summary data-i18n={`s8.cases.${i}.button`}>{c.button}</summary>
-            <div class="case__detail">
-              <div>
-                <h4 data-i18n="s8.labels.diagnosis">{t.s8.labels.diagnosis}</h4>
-                <p data-i18n={`s8.cases.${i}.diagnosis`}>{c.diagnosis}</p>
-              </div>
-              <div>
-                <h4 data-i18n="s8.labels.response">{t.s8.labels.response}</h4>
-                <p data-i18n={`s8.cases.${i}.response`}>{c.response}</p>
-              </div>
+        <article class="card case" data-reveal-solo data-tilt>
+          <div class="case__layout">
+            <div class="case__media" data-cursor="explore">
+              <img src={caseImages[i]} alt="" loading="lazy" referrerpolicy="no-referrer" />
+              <span class="case__index" data-i18n={`nums.${i}`}>{String(i + 1).padStart(2, '0')}</span>
             </div>
-          </details>
-          <p class="case__keyline" style="margin-block-start:1.4rem" data-i18n={`s8.cases.${i}.keyLine`}>{c.keyLine}</p>
+            <div class="case__body">
+              <div class="case__meta">
+                <span class="case__num" data-i18n={`nums.${i}`}>{String(i + 1).padStart(2, '0')}</span>
+                <span aria-hidden="true">·</span>
+                <span class="case__chip" data-i18n={`s8.cases.${i}.kicker`}>{c.kicker}</span>
+              </div>
+              <h3 class="case__quote" style="margin-block:0.9rem 0.4rem" data-i18n={`s8.cases.${i}.headline`}>{c.headline}</h3>
+              <p class="case__sub" data-i18n={`s8.cases.${i}.subheadline`}>{c.subheadline}</p>
+              <details data-cursor="open">
+                <summary>
+                  <span data-i18n={`s8.cases.${i}.button`}>{c.button}</span>
+                  <i class="case__plus" aria-hidden="true"></i>
+                </summary>
+                <div class="case__detail">
+                  <div>
+                    <h4 data-i18n="s8.labels.diagnosis">{t.s8.labels.diagnosis}</h4>
+                    <p data-i18n={`s8.cases.${i}.diagnosis`}>{c.diagnosis}</p>
+                  </div>
+                  <div>
+                    <h4 data-i18n="s8.labels.response">{t.s8.labels.response}</h4>
+                    <p data-i18n={`s8.cases.${i}.response`}>{c.response}</p>
+                  </div>
+                </div>
+              </details>
+              <p class="case__keyline" style="margin-block-start:1.4rem" data-i18n={`s8.cases.${i}.keyLine`}>{c.keyLine}</p>
+            </div>
+          </div>
         </article>
       ))}
     </div>

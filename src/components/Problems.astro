@@ -19,8 +19,8 @@ const t = en;
       </div>
       <div class="problems__list">
         {t.s3.problems.map((p, i) => (
-          <div class="problem">
-            <span class="mosaic__num">{String(i + 1).padStart(2, '0')}</span>
+          <div class="problem" data-cursor="diagnose">
+            <span class="mosaic__num" data-i18n={`nums.${i}`}>{String(i + 1).padStart(2, '0')}</span>
             <span class="problem__title" data-i18n={`s3.problems.${i}.title`}>{p.title}</span>
             <span class="problem__line" data-i18n={`s3.problems.${i}.line`}>{p.line}</span>
           </div>

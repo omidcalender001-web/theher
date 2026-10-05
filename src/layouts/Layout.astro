@@ -48,10 +48,12 @@ const i18nStore = JSON.stringify({ en, fa }).replace(/</g, '\\u003c');
   </head>
   <body>
     <script type="application/json" id="i18n-store" set:html={i18nStore} />
+    <canvas id="webgl-canvas" class="webgl-canvas" aria-hidden="true"></canvas>
     <div class="progress" aria-hidden="true"><i id="progress-line"></i></div>
     <div class="film-dip" id="film-dip" aria-hidden="true"></div>
     <div class="chapter" id="chapter" aria-hidden="true"></div>
-    <div id="cursor" aria-hidden="true"></div>
+    <div id="cursor-dot" aria-hidden="true"></div>
+    <div id="cursor" aria-hidden="true"><span id="cursor-label"></span></div>
     <slot />
 
     <script src="../scripts/main.js"></script>

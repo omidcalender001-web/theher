@@ -3,10 +3,11 @@
 import en from '../i18n/en.json';
 const t = en;
 ---
-<section class="hero" id="s01" data-section aria-label="A world of business women">
+<section class="hero" id="s01" data-section data-dark-scene aria-label="A world of business women">
   <div class="hero__media">
     <video
-      data-scrub
+      autoplay
+      data-lazy
       muted
       loop
       playsinline
@@ -18,11 +19,19 @@ const t = en;
   </div>
   <div class="hero__scrim" aria-hidden="true"></div>
   <div class="hero__dusk" aria-hidden="true"></div>
+  <div class="hero__frame" aria-hidden="true">
+    <i class="hero__frame-line hero__frame-line--v"></i>
+    <i class="hero__frame-line hero__frame-line--h"></i>
+    <span class="hero__coords bidi-ltr" id="hero-coords">01 // VISION</span>
+  </div>
   <div class="hero__inner container">
     <p class="kicker" data-i18n="s1.kicker">{t.s1.kicker}</p>
     <h1 class="display display--xl" data-i18n="s1.headline">{t.s1.headline}</h1>
     <p class="hero__sub" data-i18n="s1.subheadline">{t.s1.subheadline}</p>
     <p class="hero__sub" data-i18n="s1.body" style="max-inline-size:44rem">{t.s1.body}</p>
-    <div><a class="btn btn--primary" href="#s02" data-i18n="s1.button">{t.s1.button}</a></div>
+    <div class="hero__cta-row">
+      <a class="btn btn--primary" href="#s02" data-magnetic data-cursor="explore" data-i18n="s1.button">{t.s1.button}</a>
+      <span class="hero__scroll-indicator" aria-hidden="true"><i></i></span>
+    </div>
   </div>
 </section>

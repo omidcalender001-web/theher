@@ -3,8 +3,9 @@
 import en from '../i18n/en.json';
 const t = en;
 ---
-<section class="question scene--dark" id="s04" data-section aria-label="The question">
-  <div class="container" style="display:grid;gap:1.6rem;justify-items:center">
+<section class="question scene--dark" id="s04" data-section data-dark-scene aria-label="The question">
+  <div class="question__halo" aria-hidden="true"></div>
+  <div class="container" style="display:grid;gap:1.6rem;justify-items:center;position:relative;z-index:1">
     <p class="kicker" data-i18n="s4.kicker">{t.s4.kicker}</p>
     <h2 class="display question-line" data-i18n="s4.headline">{t.s4.headline}</h2>
     <p style="color:var(--color-on-dark-muted);max-inline-size:32rem" data-i18n="s4.subheadline">{t.s4.subheadline}</p>

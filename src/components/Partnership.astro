@@ -1,7 +1,9 @@
 ---
 // S05 — ACT V · THE PARTNERSHIP — split panels over scene 04
 import en from '../i18n/en.json';
+import imgSystem from '../assets/images/mosaic_digital_system_1791208154167.jpg';
 const t = en;
+const sysSrc = typeof imgSystem === 'string' ? imgSystem : imgSystem.src;
 ---
 <section class="section split" id="s05" data-section aria-label="The partnership">
   <video class="split__bg" data-lazy muted loop playsinline preload="metadata" poster="/images/posters/scene-04-system-poster.jpg" aria-hidden="true">
@@ -14,13 +16,20 @@ const t = en;
       <p data-reveal style="color:var(--color-text-muted)" data-i18n="s5.subheadline">{t.s5.subheadline}</p>
     </div>
     <div class="split__grid" data-reveal-solo>
-      <div class="panel panel--her">
-        <span class="panel__label">THE HER</span>
+      <div class="panel panel--her" data-tilt data-cursor="explore">
+        <div class="panel__media" aria-hidden="true">
+          <img src="/images/posters/scene-01-vision-poster.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+        <span class="panel__label bidi-ltr">THE HER</span>
         <span class="panel__name" data-i18n="s5.theHer.label">{t.s5.theHer.label}</span>
         <span class="panel__tags" data-i18n="s5.theHer.tags">{t.s5.theHer.tags}</span>
       </div>
-      <div class="panel panel--omid">
-        <span class="panel__label">OMID</span>
+      <div class="split__nexus" aria-hidden="true"><span>×</span></div>
+      <div class="panel panel--omid" data-tilt data-cursor="explore">
+        <div class="panel__media" aria-hidden="true">
+          <img src={sysSrc} alt="" loading="lazy" referrerpolicy="no-referrer" />
+        </div>
+        <span class="panel__label bidi-ltr">OMID</span>
         <span class="panel__name" data-i18n="s5.omid.label">{t.s5.omid.label}</span>
         <span class="panel__tags" data-i18n="s5.omid.tags">{t.s5.omid.tags}</span>
       </div>

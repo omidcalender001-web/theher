@@ -3,7 +3,7 @@
 import en from '../i18n/en.json';
 const t = en;
 ---
-<section class="section engine scene--dark" id="s06" data-section aria-label="One growth engine">
+<section class="section engine scene--dark" id="s06" data-section data-dark-scene aria-label="One growth engine">
   <video class="engine__bg" data-lazy muted loop playsinline preload="metadata" poster="/images/posters/scene-05-engine-poster.jpg" aria-hidden="true">
     <source src="/video/scene-05-engine.mp4" type="video/mp4" />
   </video>
@@ -13,13 +13,31 @@ const t = en;
       <h2 class="display" data-reveal data-i18n="s6.headline">{t.s6.headline}</h2>
       <p data-reveal style="color:var(--color-on-dark-muted)" data-i18n="s6.subheadline">{t.s6.subheadline}</p>
     </div>
-    <div class="engine__layers">
-      {t.s6.layers.map((l, i) => (
-        <button class="engine-layer" type="button">
-          <span class="engine-layer__title" data-i18n={`s6.layers.${i}.title`}>{l.title}</span>
-          <span class="engine-layer__line" data-i18n={`s6.layers.${i}.line`}>{l.line}</span>
-        </button>
-      ))}
+    <div class="engine__architecture">
+      <svg class="engine__vectors" viewBox="0 0 800 360" fill="none" aria-hidden="true" preserveAspectRatio="none">
+        <path class="engine__vec" data-vec="0" d="M 160 80 C 280 80, 340 180, 400 180" stroke="currentColor" stroke-width="1" />
+        <path class="engine__vec" data-vec="1" d="M 640 80 C 520 80, 460 180, 400 180" stroke="currentColor" stroke-width="1" />
+        <path class="engine__vec" data-vec="2" d="M 160 280 C 280 280, 340 180, 400 180" stroke="currentColor" stroke-width="1" />
+        <path class="engine__vec" data-vec="3" d="M 640 280 C 520 280, 460 180, 400 180" stroke="currentColor" stroke-width="1" />
+        <circle class="engine__core-ring" cx="400" cy="180" r="28" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" />
+        <circle class="engine__core-dot" cx="400" cy="180" r="5" fill="currentColor" />
+      </svg>
+      <div class="engine__layers">
+        {t.s6.layers.map((l, i) => (
+          <button
+            class={`engine-layer ${i === 0 ? 'is-selected' : ''}`}
+            type="button"
+            data-engine-idx={i}
+            data-tilt
+            data-cursor="diagnose"
+            aria-pressed={i === 0 ? 'true' : 'false'}>
+            <span class="engine-layer__num" data-i18n={`nums.${i}`}>{String(i + 1).padStart(2, '0')}</span>
+            <span class="engine-layer__title" data-i18n={`s6.layers.${i}.title`}>{l.title}</span>
+            <span class="engine-layer__line" data-i18n={`s6.layers.${i}.line`}>{l.line}</span>
+            <span class="engine-layer__detail" data-i18n={`s6.details.${i}`}>{t.s6.details[i]}</span>
+          </button>
+        ))}
+      </div>
     </div>
     <div class="engine__converge" aria-hidden="true"></div>
     <p class="engine__lockup" data-i18n="s6.convergence">{t.s6.convergence}</p>

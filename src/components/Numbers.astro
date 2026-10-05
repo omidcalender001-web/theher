@@ -10,11 +10,13 @@ const t = en;
       <h2 class="display" data-reveal data-i18n="s9.headline">{t.s9.headline}</h2>
       <p data-reveal style="color:var(--color-text-muted)" data-i18n="s9.subheadline">{t.s9.subheadline}</p>
     </div>
-    <div class="numbers" data-reveal-group>
+    <div class="numbers">
       {t.s9.numbers.map((n, i) => (
-        <div class="number" data-reveal>
-          <div class="number__value" data-i18n={`s9.numbers.${i}.value`}>{n.value}</div>
+        <div class="number" data-tilt data-cursor="explore">
+          <span class="number__idx" data-i18n={`nums.${i}`}>{String(i + 1).padStart(2, '0')}</span>
+          <div class="number__value" data-number-idx={i} data-i18n={`s9.numbers.${i}.value`}>{n.value}</div>
           <div class="number__label" data-i18n={`s9.numbers.${i}.label`}>{n.label}</div>
+          <i class="number__bar" aria-hidden="true"></i>
         </div>
       ))}
     </div>

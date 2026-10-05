@@ -34,6 +34,16 @@
     "on": "Sound on",
     "off": "Sound off"
   },
+  "cursor": {
+    "explore": "EXPLORE",
+    "play": "START",
+    "sound": "SOUND",
+    "lang": "FA / EN",
+    "diagnose": "INSPECT",
+    "open": "EXPAND",
+    "visit": "OPEN"
+  },
+  "nums": ["01", "02", "03", "04", "05", "06", "07"],
   "s1": {
     "kicker": "THE HER × OMID",
     "headline": "A WORLD OF BUSINESS WOMEN.",
@@ -152,6 +162,12 @@
         "line": "AI multiplies leverage."
       }
     ],
+    "details": [
+      "Signal architecture · Attribution clarity · Cohort behavior · Decision intelligence",
+      "Qualified demand · Positioning & narrative · High-intent acquisition · Organic authority",
+      "Editorial UX/UI · Conversion architecture · High-speed web systems · Brand trust",
+      "Workflow automation · Intelligent agents · CRM orchestration · Operational leverage"
+    ],
     "convergence": "One growth engine.",
     "button": "BUILD THE ENGINE"
   },
@@ -163,31 +179,38 @@
     "diagnostic": [
       {
         "title": "Traffic",
-        "question": "Are the right people arriving?"
+        "question": "Are the right people arriving?",
+        "answer": "Volume without intent is just noise. Before scaling ad spend, we audit channel quality, search intent, and audience segmentation to see whether visitors actually match the buyer profile—or if acquisition is bringing curiosity instead of demand."
       },
       {
         "title": "Offer",
-        "question": "Is the value clear and relevant?"
+        "question": "Is the value clear and relevant?",
+        "answer": "Even qualified traffic leaves when positioning feels generic. We examine how the offer is framed—whether the core transformation, differentiation, and next step are immediately unmistakable within the first few seconds on the page."
       },
       {
         "title": "Trust",
-        "question": "Is there enough confidence to act?"
+        "question": "Is there enough confidence to act?",
+        "answer": "High-value decisions require proportional reassurance. We look for the signals that remove hesitation: visual authority, proof adjacency, transparent expectations, and a digital brand experience that matches the price point."
       },
       {
         "title": "Experience",
-        "question": "Is the journey simple and persuasive?"
+        "question": "Is the journey simple and persuasive?",
+        "answer": "Friction silently kills momentum. We trace the real user journey across mobile and desktop—removing cognitive overload, slow transitions, and disjointed navigation so attention flows naturally toward action."
       },
       {
         "title": "Conversion",
-        "question": "Where do people stop?"
+        "question": "Where do people stop?",
+        "answer": "Instead of guessing why visitors hesitate, we isolate the exact drop-off point in the funnel—landing page, form, checkout, or consultation booking—and run targeted CRO and UX improvements where leverage is highest."
       },
       {
         "title": "Follow-up",
-        "question": "What happens after interest?"
+        "question": "What happens after interest?",
+        "answer": "Most revenue is lost between initial interest and final decision. We redesign the post-visit system—connecting CRM, automated nurturing, smart retargeting, and AI workflows so no warm lead slips through the cracks."
       },
       {
         "title": "Data",
-        "question": "Can we see what is actually working?"
+        "question": "Can we see what is actually working?",
+        "answer": "Without clean attribution and event tracking, every growth decision is a gamble. We instrument GTM, conversion events, UTM architecture, and clear KPI dashboards so the business scales on real signals, not assumptions."
       }
     ],
     "keyLine": "THE PROBLEM DEFINES THE SOLUTION.",
@@ -298,6 +321,20 @@
     "closing": {
       "lockup": "THE HER × OMID",
       "line": "A partnership built around possibilities."
+    },
+    "drawer": {
+      "kicker": "INITIATE DIALOGUE",
+      "title": "Shape the partnership around the problem.",
+      "subtitle": "Select a collaboration pathway to preview how The Her × Omid operates in practice, or continue directly to Omid's portfolio.",
+      "modelLabel": "COLLABORATION PATHWAY",
+      "focusLabel": "PRIMARY BOTTLENECK",
+      "noteLabel": "CONTEXT OR NOTE (OPTIONAL)",
+      "notePlaceholder": "Briefly describe the business, client scenario, or ambition...",
+      "submit": "PREPARE BRIEF & CONTINUE",
+      "visitSite": "VISIT OMIDADLI.SITE DIRECTLY",
+      "close": "CLOSE",
+      "sentTitle": "Brief prepared.",
+      "sentBody": "Your partnership context is ready. You can now open omidadli.site or copy the summary below."
     }
   },
   "footer": {
