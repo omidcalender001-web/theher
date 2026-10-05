@@ -39,6 +39,8 @@
 
 📄 **Complete file manifest & requirements (فارسی):** [`docs/setup-guide-fa.md`](docs/setup-guide-fa.md)
 
+📘 **Step-by-step execution playbook — which tool, which prompt, which file (فارسی):** [`docs/playbook-fa.md`](docs/playbook-fa.md)
+
 ## Status
 
 **Phase 00 — Project Setup** ✅ (this scaffold)
