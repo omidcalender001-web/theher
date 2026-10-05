@@ -1,3 +1,6 @@
+> **STATUS: LOCKED 2026-10-04 (Gate 03 passed)** — applied verbatim to `src/i18n/en.json`.
+> Note: numbers normalized to Latin digits (5+, +50%, −30%, 3.5%, 15) in the applied JSON.
+
 ENGLISH
 1. Opening — A world of business women
 

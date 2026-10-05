@@ -43,9 +43,10 @@
 
 ## Status
 
-**Phase 02 — Proposal Architecture** ✅ finalized ([`docs/proposal-architecture.md`](docs/proposal-architecture.md)) — ⬜ awaiting **Gate 02 approval**, then Phase 03 (Copy & Transcreation).
-**Locked decisions:** CTA = live preview of omidadli.site (+ new tab) · bilingual from day one · scroll-synced score (AI Studio → Lyria).
-Gate 01 ✅ passed 2026-10-04. See [`docs/decision-gates.md`](docs/decision-gates.md) · Playbook: [`docs/playbook-fa.md`](docs/playbook-fa.md).
+**Phase 03 — Copy & Transcreation** ✅ locked (client-authored, applied to `src/i18n/{en,fa}.json`, schema s1–s11) — **Gates 01–03 passed.**
+Next: Phase 04 (Storyboard) → Phase 05 (Art Direction) → Phase 06 (Flow videos + Lyria score).
+**Locked decisions:** CTA = live preview of omidadli.site (site live ✓ 2026-10-04) · bilingual from day one · scroll-synced score (AI Studio → Lyria).
+See [`docs/decision-gates.md`](docs/decision-gates.md) · Playbook: [`docs/playbook-fa.md`](docs/playbook-fa.md).
 
 ## Golden content rules (from handoff §15)
 

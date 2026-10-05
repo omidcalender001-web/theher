@@ -1,24 +1,26 @@
 ---
-// THE HER × OMID — Page skeleton (Phase 08 will implement the real experience)
-// Section order is locked by docs/proposal-architecture.md — do not reorder.
+// THE HER × OMID — Page skeleton (Phase 08 implements the real experience)
+// Section map locked by docs/proposal-architecture.md (S00–S11).
+// Copy source of truth: content/en/copy.md + content/fa/copy.md → applied in src/i18n/{en,fa}.json
 import Layout from '../layouts/Layout.astro';
 import en from '../i18n/en.json';
 import fa from '../i18n/fa.json';
 
-const lang = 'en'; // Phase 08: make dynamic (?lang=fa → RTL)
+const lang = 'en'; // Phase 08: dynamic (?lang=fa → RTL), scroll position preserved
 const t = lang === 'fa' ? fa : en;
 ---
 
 <Layout lang={lang}>
-  <!-- 01 · ACT I — THE WOMAN · Scene: A world of business women (The Her's world first) -->
-  <!-- 02 · ACT II — THE BUSINESS · Behind every ambitious woman, a different business -->
-  <!-- 03 · ACT III — THE PROBLEM · Different businesses. Different problems. -->
-  <!-- 04 · ACT IV — THE QUESTION · So why should they all receive the same solution? -->
-  <!-- 05 · ACT V — THE PARTNERSHIP · The Her / Omid split-screen moment -->
-  <!-- 06 · ACT VI — THE GROWTH ENGINE · DATA + MARKETING + EXPERIENCE + AI → one engine -->
-  <!-- 07 · PROOF OF THINKING · "We need more sales." diagnostic interaction -->
-  <!-- 08 · HYPOTHETICAL CASES 01–03 (labeled!) -->
-  <!-- 09 · PROOF OF WORK · evidence, not a CV dump -->
-  <!-- 10 · PARTNERSHIP VALUE + COLLABORATION MODELS 01–03 -->
-  <!-- 11 · CTA · Let's explore what we could build together. -->
+  <!-- S00 · ENTRY — Scroll to begin / Begin with sound / silence (unlocks scroll-synced score) — t.entry -->
+  <!-- S01 · THE WOMAN — A WORLD OF BUSINESS WOMEN. — t.s1 · video scene-01 -->
+  <!-- S02 · THE BUSINESS — Behind every ambitious woman, a different business — t.s2 · video scene-02 -->
+  <!-- S03 · THE PROBLEM — 7 problems w/ lines — t.s3.problems · video scene-03 -->
+  <!-- S04 · THE QUESTION — tension peak on dark — t.s4 -->
+  <!-- S05 · THE PARTNERSHIP — split: THE WOMAN / THE SYSTEM — t.s5 · video scene-04 -->
+  <!-- S06 · GROWTH ENGINE — 4 layers converge → one engine — t.s6.layers · video scene-05 -->
+  <!-- S07 · PROOF OF THINKING — "We need more sales." 7-step diagnostic — t.s7.diagnostic ⭐ -->
+  <!-- S08 · HYPOTHETICAL CASES 01–03 (labeled: t.s8.cases[].kicker) -->
+  <!-- S09 · PROOF, IN NUMBERS — t.s9.numbers -->
+  <!-- S10 · THE PARTNERSHIP — value + 3 models (DIRECT / CLIENT / WHITE LABEL) — t.s10.models -->
+  <!-- S11 · CTA + LIVE PREVIEW of omidadli.site (iframe Mode A / video Mode B) — t.s11.preview + closing -->
 </Layout>

@@ -2,7 +2,7 @@
   "_meta": {
     "lang": "en",
     "dir": "ltr",
-    "note": "Source of truth copy (Phase 03 locks final). Keep keys in sync with fa.json."
+    "note": "FINAL — locked 2026-10-04. Mirrors content/en/copy.md (source of truth), section keys s1–s11. Key parity with fa.json verified. Note: numbers normalized to Latin digits for EN."
   },
   "meta": {
     "title": "THE HER × OMID — A partnership built around possibilities",
@@ -22,105 +22,158 @@
     "on": "Sound on",
     "off": "Sound off"
   },
-  "act1": {
-    "kicker": "ACT I — THE WOMAN",
-    "headline": "A world of business women."
+  "s1": {
+    "kicker": "THE HER × OMID",
+    "headline": "A WORLD OF BUSINESS WOMEN.",
+    "subheadline": "Every woman builds a business in her own way.",
+    "body": "The Her understands the woman behind the business. This partnership is about understanding what sits behind it — the systems, decisions, experiences and opportunities that can move it forward.",
+    "button": "ENTER THE WORLD"
   },
-  "act2": {
-    "kicker": "ACT II — THE BUSINESS",
-    "headline": "Behind every ambitious woman, there is a different business."
+  "s2": {
+    "kicker": "BEHIND THE BUSINESS",
+    "headline": "Behind every ambitious woman, there is a different business.",
+    "subheadline": "Different ambitions create different businesses.",
+    "body": "A founder may be building a brand, scaling sales, launching a product, or creating a business that gives her more freedom. The ambition may be shared. The system never is.",
+    "button": "SEE THE DIFFERENCE"
   },
-  "act3": {
-    "kicker": "ACT III — THE PROBLEM",
+  "s3": {
+    "kicker": "THE REAL QUESTION",
     "headline": "Different businesses. Different problems.",
-    "items": [
-      "More sales",
-      "More leads",
-      "Better conversion",
-      "A better website",
-      "Better data",
-      "AI & automation",
-      "A digital product"
-    ]
-  },
-  "act4": {
-    "kicker": "ACT IV — THE QUESTION",
-    "headline": "So why should they all receive the same solution?"
-  },
-  "act5": {
-    "kicker": "ACT V — THE PARTNERSHIP",
-    "theHer": "The Her understands the woman behind the business.",
-    "omid": "I focus on the system behind the business."
-  },
-  "act6": {
-    "kicker": "ACT VI — THE GROWTH ENGINE",
-    "layers": {
-      "data": { "title": "DATA", "line": "Understand what is happening." },
-      "marketing": { "title": "MARKETING", "line": "Create demand and acquire customers." },
-      "experience": { "title": "EXPERIENCE", "line": "Turn attention into action." },
-      "ai": { "title": "AI", "line": "Make the system smarter and more scalable." }
-    },
-    "convergence": "One growth engine."
-  },
-  "proofOfThinking": {
-    "kicker": "PROOF OF THINKING",
-    "clientSays": "We need more sales.",
-    "diagnostic": [
-      "Is it traffic?",
-      "Is it the offer?",
-      "Is it trust?",
-      "Is it the experience?",
-      "Is it conversion?",
-      "Is it follow-up?",
-      "What does the data say?"
+    "subheadline": "Growth rarely starts with the same question twice.",
+    "body": "One business needs demand. Another needs conversion. Another needs a stronger digital experience. The right response begins by understanding the problem before choosing the solution.",
+    "problems": [
+      { "title": "More sales", "line": "Turning existing demand into revenue." },
+      { "title": "More leads", "line": "Reaching the right people at the right moment." },
+      { "title": "Better conversion", "line": "Helping more visitors take the next step." },
+      { "title": "A better website", "line": "Turning digital presence into business infrastructure." },
+      { "title": "Better data", "line": "Making decisions from signals, not assumptions." },
+      { "title": "AI & automation", "line": "Removing repetitive work and creating leverage." },
+      { "title": "A digital product", "line": "Turning expertise into a scalable experience." }
     ],
-    "punchline": "The problem defines the solution."
+    "button": "EXPLORE THE POSSIBILITIES"
   },
-  "cases": {
-    "label": "Hypothetical client scenario",
-    "case1": {
-      "quote": "We have traffic. But not enough sales.",
-      "response": ["Funnel analysis", "Tracking & attribution", "Landing page optimization", "CRO", "Messaging", "Testing"],
-      "keyLine": "Growth doesn't always need more traffic. Sometimes it needs a better system."
-    },
-    "case2": {
-      "quote": "Our business is growing. But our digital presence isn't.",
-      "response": ["Strategy", "UX", "UI", "Development", "Measurement"],
-      "keyLine": "A website shouldn't just represent the business. It should move the business forward."
-    },
-    "case3": {
-      "quote": "We're growing. But everything still depends on people.",
-      "response": ["AI workflows", "Automation", "CRM / data connections", "Intelligent reporting", "Workflow redesign"],
-      "keyLine": "AI shouldn't replace the business. It should make the business more capable."
-    }
+  "s4": {
+    "kicker": "NO FIXED FORMULA",
+    "headline": "So why should they all receive the same solution?",
+    "subheadline": "The problem should define the solution.",
+    "body": "There is no universal growth playbook. Sometimes the answer is marketing. Sometimes it is experience, data, technology, or a new digital product. The work starts with finding what actually matters.",
+    "button": "FIND THE RIGHT PATH"
   },
-  "proof": {
-    "kicker": "PROOF OF WORK",
-    "numbers": [
-      { "value": "5+", "label": "years in growth teams" },
-      { "value": "+50%", "label": "organic traffic" },
-      { "value": "-30%", "label": "retargeting CPA" },
-      { "value": "3.5%", "label": "average campaign CTR" },
-      { "value": "15", "label": "competitive keywords → first page" }
+  "s5": {
+    "kicker": "TWO PERSPECTIVES",
+    "headline": "The Her understands the woman. Omid focuses on the system.",
+    "subheadline": "One partnership. Two complementary perspectives.",
+    "body": "The Her brings the human understanding: ambition, identity, business and vision. Omid brings the systems perspective: growth, data, marketing, digital experience and AI.",
+    "theHer": { "label": "THE WOMAN", "tags": "Vision · Identity · Ambition · Business" },
+    "omid": { "label": "THE SYSTEM", "tags": "Growth · Data · Marketing · Experience · AI" },
+    "button": "SEE HOW IT CONNECTS"
+  },
+  "s6": {
+    "kicker": "ONE GROWTH ENGINE",
+    "headline": "DATA + MARKETING + EXPERIENCE + AI",
+    "subheadline": "Connected disciplines create a stronger growth system.",
+    "body": "Data reveals what is happening. Marketing creates demand. Experience turns attention into action. AI creates leverage. Connected together, they become one engine built around the business problem.",
+    "layers": [
+      { "title": "DATA", "line": "Data reveals what is happening." },
+      { "title": "MARKETING", "line": "Marketing creates demand." },
+      { "title": "EXPERIENCE", "line": "Experience turns attention into action." },
+      { "title": "AI", "line": "AI creates leverage." }
+    ],
+    "convergence": "One growth engine.",
+    "button": "BUILD THE ENGINE"
+  },
+  "s7": {
+    "kicker": "PROOF OF THINKING",
+    "headline": "“We need more sales.”",
+    "subheadline": "Before adding traffic, understand where the system breaks.",
+    "body": "A request is rarely the diagnosis. We trace the journey from attention to revenue, identify the constraint, then design the response around it.",
+    "diagnostic": [
+      { "title": "Traffic", "question": "Are the right people arriving?" },
+      { "title": "Offer", "question": "Is the value clear and relevant?" },
+      { "title": "Trust", "question": "Is there enough confidence to act?" },
+      { "title": "Experience", "question": "Is the journey simple and persuasive?" },
+      { "title": "Conversion", "question": "Where do people stop?" },
+      { "title": "Follow-up", "question": "What happens after interest?" },
+      { "title": "Data", "question": "Can we see what is actually working?" }
+    ],
+    "keyLine": "THE PROBLEM DEFINES THE SOLUTION.",
+    "button": "SEE THE THINKING"
+  },
+  "s8": {
+    "cases": [
+      {
+        "kicker": "HYPOTHETICAL CLIENT SCENARIO",
+        "headline": "“We have traffic. But not enough sales.”",
+        "subheadline": "More traffic may not be the answer.",
+        "diagnosis": "The opportunity may sit between the visit and the purchase: offer clarity, trust, landing-page experience, conversion and follow-up.",
+        "response": "Audit the funnel, strengthen the experience, clarify the offer, improve conversion points and establish the measurement needed to learn what works.",
+        "keyLine": "Growth does not always need more traffic. Sometimes it needs a better system.",
+        "button": "EXPLORE THE APPROACH"
+      },
+      {
+        "kicker": "HYPOTHETICAL CLIENT SCENARIO",
+        "headline": "“Our business is growing. But our digital presence isn't.”",
+        "subheadline": "A growing business needs a digital experience that keeps pace.",
+        "diagnosis": "The opportunity may be bigger than a redesign: positioning, UX, UI, content structure, development and measurement need to work as one.",
+        "response": "Define the digital strategy, shape the user journey, design the interface, build the experience and connect it to measurable business outcomes.",
+        "keyLine": "A website should not only represent the business. It should move it forward.",
+        "button": "EXPLORE THE APPROACH"
+      },
+      {
+        "kicker": "HYPOTHETICAL CLIENT SCENARIO",
+        "headline": "“We're growing. But everything still depends on people.”",
+        "subheadline": "Growth becomes fragile when every process stays manual.",
+        "diagnosis": "The opportunity may lie in workflows, reporting, CRM, data flows and repetitive operations that can be redesigned or automated.",
+        "response": "Map the workflow, identify high-value automation opportunities, connect the data and introduce AI where it creates practical leverage.",
+        "keyLine": "AI should not replace the business. It should make the business more capable.",
+        "button": "EXPLORE THE APPROACH"
+      }
     ]
   },
-  "partnership": {
-    "kicker": "PARTNERSHIP VALUE",
-    "headline": "What if The Her could offer more — without becoming more?",
-    "theHer": "Understands the woman, business, brand and strategic context.",
-    "omid": "Supports digital, growth, data, AI and product execution.",
-    "together": "Create a broader capability for clients.",
-    "supportLine": "A trusted growth partner behind the scenes.",
-    "models": {
-      "kicker": "COLLABORATION MODELS",
-      "model1": { "title": "Direct", "line": "The Her ↔ Omid — for The Her's own growth initiatives." },
-      "model2": { "title": "Client Project", "line": "The Her + Omid + Client — Omid owns a digital/growth workstream." },
-      "model3": { "title": "White Label", "line": "The Her owns the relationship. Omid stays behind the scenes." }
-    }
+  "s9": {
+    "kicker": "PROOF, IN NUMBERS",
+    "headline": "Built through years of growth work.",
+    "subheadline": "Experience across performance, acquisition, conversion, data and digital.",
+    "body": "A track record built across different growth environments — from acquisition and SEO to conversion, analytics and campaign optimization.",
+    "numbers": [
+      { "value": "5+ years", "label": "Growth & Performance" },
+      { "value": "+50%", "label": "Organic Traffic" },
+      { "value": "−30%", "label": "Retargeting CPA" },
+      { "value": "3.5%", "label": "Average Campaign CTR" },
+      { "value": "15", "label": "Competitive Keywords to First Page" }
+    ],
+    "button": "SEE THE EXPERIENCE"
   },
-  "cta": {
-    "headline": "Let's explore what we could build together.",
-    "button": "Start a conversation",
+  "s10": {
+    "kicker": "THE PARTNERSHIP",
+    "headline": "What if The Her could offer more — without becoming more?",
+    "subheadline": "An extended digital capability, available when the business needs it.",
+    "body": "Omid can work alongside The Her as a growth and digital partner — directly, within client projects, or quietly behind the scenes. The Her keeps the relationship. The capability expands.",
+    "models": [
+      {
+        "title": "DIRECT",
+        "formula": "The Her ↔ Omid",
+        "line": "A direct partnership for The Her's own digital, growth, data or AI needs."
+      },
+      {
+        "title": "CLIENT",
+        "formula": "The Her + Omid + Client",
+        "line": "Bring Omid into selected client engagements where deeper digital capability is needed."
+      },
+      {
+        "title": "WHITE LABEL",
+        "formula": "The Her → Client / Omid → Behind the scenes",
+        "line": "The Her owns the relationship. Omid delivers the specialist layer quietly, under the hood."
+      }
+    ],
+    "button": "EXPLORE THE PARTNERSHIP"
+  },
+  "s11": {
+    "kicker": "THE NEXT CHAPTER",
+    "headline": "Let’s explore what we could build together.",
+    "subheadline": "Not a fixed service. A partnership built around possibilities.",
+    "body": "When the right people, perspective and capabilities come together, the solution can be shaped around the business — not forced into a template.",
+    "button": "START A CONVERSATION",
     "preview": {
       "kicker": "A LIVE EXAMPLE",
       "url": "omidadli.site",

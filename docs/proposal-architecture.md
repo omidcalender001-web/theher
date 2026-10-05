@@ -102,7 +102,7 @@ Curiosity → Recognition → Tension → Understanding → Possibility → Trus
 - **The preview box (destination):** an elegant browser-chrome frame containing a **live preview of `omidadli.site`**, with a quiet button **"Open in a new tab"** (target=_blank, rel=noopener). The frame itself is also clickable.
 - Caption: *A live example — a digital experience built end-to-end: strategy, design, content, code.*
 - **Dual-mode implementation (engineering):**
-  - **Mode A — live iframe:** if `omidadli.site` sends no `X-Frame-Options`/`frame-ancestors` restriction → lazy-loaded iframe in the frame. ⚠️ **Not yet verified: the domain currently serves no response (TLS handshake fails — site down or not launched). Must re-check before Phase 08.**
+  - **Mode A — live iframe:** if `omidadli.site` sends no `X-Frame-Options`/`frame-ancestors` restriction → lazy-loaded iframe in the frame. **Status 2026-10-04: site confirmed LIVE by client** (sandbox verification blocked by network — final iframe test happens empirically in the Phase 07/08 prototype).
   - **Mode B — cinematic mockup (fallback, also mobile default):** looping muted screen-capture video of the site inside the same browser frame + poster + open-in-new-tab button. Works 100%, loads faster, looks more premium on mobile.
   - Mode chosen automatically at build time; Mode B also used for weak connections.
 - **Emotion:** Action. **Analytics:** `cta_click {target: preview|new_tab}`, `contact_initiation`.
