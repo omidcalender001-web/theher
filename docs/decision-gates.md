@@ -5,7 +5,7 @@
 
 | Gate | Name | Must pass before | Status | Approved by | Date |
 |---|---|---|---|---|---|
-| 01 | Brand & Opportunity Fit | Phase 02 (Architecture) | ⬜ | The Her + Omid | |
+| 01 | Brand & Opportunity Fit | Phase 02 (Architecture) | ✅ 2026-10-04 | Product decision (client) | 2026-10-04 |
 | 02 | Narrative Approval | Phase 04 (Storyboard) | ⬜ | | |
 | 03 | Copy Approval | Phase 06 (Asset production) | ⬜ | | |
 | 04 | Visual Approval | Phase 07/08 (Prototype / Build) | ⬜ | | |

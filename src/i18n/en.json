@@ -12,6 +12,16 @@
     "languageSwitch": "فارسی",
     "cta": "Start a conversation"
   },
+  "entry": {
+    "kicker": "THE HER × OMID",
+    "line": "Scroll to begin",
+    "withSound": "Begin with sound",
+    "withoutSound": "Continue in silence"
+  },
+  "sound": {
+    "on": "Sound on",
+    "off": "Sound off"
+  },
   "act1": {
     "kicker": "ACT I — THE WOMAN",
     "headline": "A world of business women."
@@ -111,6 +121,13 @@
   "cta": {
     "headline": "Let's explore what we could build together.",
     "button": "Start a conversation",
+    "preview": {
+      "kicker": "A LIVE EXAMPLE",
+      "url": "omidadli.site",
+      "subtitle": "A digital experience built end-to-end: strategy, design, content, code.",
+      "openNewTab": "Open in a new tab",
+      "note": "Live preview"
+    },
     "closing": {
       "lockup": "THE HER × OMID",
       "line": "A partnership built around possibilities."

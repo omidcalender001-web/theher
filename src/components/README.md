@@ -4,8 +4,12 @@ Planned Astro components — build after Gates 04/05 pass.
 
 | Component | Section | Notes |
 |---|---|---|
+| `EntryOverlay.astro` | S00 | "Scroll to begin" — Begin with sound / silence; unlocks scroll-synced score (D3) |
+| `Score.astro` (or `audio.ts`) | global | scroll-synced score: `currentTime = progress × duration`, rAF + lerp, iOS fallback |
+| `SoundToggle.astro` | nav | quiet sound on/off; enables score at current position if entered silently |
 | `Nav.astro` | global | minimal, transparent → solid on scroll |
 | `LanguageSwitch.astro` | nav | EN⇄FA, preserves scroll position, sets `dir` |
+| `SitePreview.astro` | S11 CTA | browser-chrome frame with live iframe of omidadli.site (Mode A) or looping screen-capture video (Mode B / mobile) + open-in-new-tab (D1) |
 | `SceneHero.astro` | Act I | full-viewport video + headline overlay + poster |
 | `BusinessMosaic.astro` | Act II | different business artifacts |
 | `ProblemList.astro` | Act III | the 7 problems |

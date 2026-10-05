@@ -115,20 +115,18 @@ prompts/ai-studio/PH01-intelligence.md ذخیره کن.
 
 ## ۵) قدم ۲ — معماری پروپوزال (فاز ۰۲)
 
-**🎯 چی می‌سازی:** نقشه نهایی صفحه — ۱۱ سکشن، تیترها، ترتیب، رفتار دوزبانه.
+**🎯 چی می‌سازی:** نقشه نهایی صفحه — سکشن‌ها، تیترها، ترتیب، رفتار دوزبانه.
 **🔧 ابزار:** Arena Agent (چون هندآف و خروجی قدم ۱ اینجاست)
 
-**قبل از فرستادن پیام، این ۲ تصمیم را بگیر:**
-- مقصد دکمه CTA چیست؟ (ایمیل؟ واتساپ؟ فرم تماس؟ لینک اینستاگرام؟)
-- اولین نسخه فقط انگلیسی برود یا از روز اول دوزبانه؟
+**تصمیم‌های قفل‌شده (دیگر لازم نیست فکر کنی):** مقصد CTA = باکس پیش‌نمایش زندهٔ `omidadli.site` + دکمه تب جدید · دوزبانه از روز اول · موسیقی همگام با اسکرول.
 
 این پیام را بفرست:
 
 ```text
 فاز ۰۲ را اجرا کن: بر اساس هندآف و docs/intelligence-report.md،
 فایل docs/proposal-architecture.md را کامل و نهایی کن.
-تصمیم‌های من: مقصد CTA = [اینجال بنویس]، دوزبانه از روز اول = [بله/خیر].
-برای هر ۱۱ سکشن: تیتر EN، هدف احساسی، ترنزیشن ورودی، و نوع تعامل را مشخص کن.
+تصمیم‌های من: مقصد CTA = [اینجا بنویس]، دوزبانه از روز اول = [بله/خیر].
+برای هر سکشن: تیتر EN، هدف احساسی، ترنزیشن ورودی، و نوع تعامل را مشخص کن.
 ```
 
 **✅ چک (Gate 02):** کل تجربه را فقط با خواندن این فایل می‌توانی جلوت تصور کنی؟ سکشن «اثبات تفکر» قبل از «مدارک» می‌آید؟ → Gate 02 را ✅
@@ -255,12 +253,12 @@ a mobile fallback for every scene. Output Markdown: one detail block per scene.
 
 ---
 
-## ۹) قدم ۶ — تولید ۷ ویدیو با Google Flow (فاز ۰۶) ⭐
+## ۹) قدم ۶ — ویدیوها با Flow + موسیقی با AI Studio (فاز ۰۶) ⭐
 
-**🎯 چی می‌سازی:** ۷ ویدیوی سینمایی ۶–۱۰ ثانیه‌ای + پوستر هرکدام.
-**🔧 ابزار:** Google Flow + یک ابزار فشرده‌سازی
+**🎯 چی می‌سازی:** ۷ ویدیوی سینمایی ۶–۱۰ ثانیه‌ای + پوستر هرکدام + موسیقی متن بی‌کلامِ همگام با اسکرول.
+**🔧 ابزار:** Google Flow (ویدیو) + Google AI Studio → Lyria (موسیقی — نه Flow!)
 
-### برای هر صحنه (۱ تا ۷):
+### ۶-الف — ویدیوها: برای هر صحنه (۱ تا ۷):
 1. برو به `flow.google.com` → **New Project** → نامش: `The Her x Omid`
 2. حالت **Text to Video** → نسبت تصویر **16:9**
 3. پرامپت صحنه را از فایل `prompts/flow/scene-prompts.md` در ریپو کپی کن (پرامپت‌ها از قبل نوشته و آماده‌اند — شامل DNA بصری مشترک)
@@ -280,7 +278,29 @@ a mobile fallback for every scene. Output Markdown: one detail block per scene.
 | `scene-01-vision-mobile.mp4` (نسخه 720p، اختیاری) | `assets/video/` |
 | پوستر هر ویدیو: ویدیو را اجرا کن، روی بهترین فریم توقف کن، اسکرین‌شات بگیر → `scene-01-vision-poster.jpg` | `assets/images/posters/` |
 
-**✅ چک:** هر ۷ ویدیو زیر ۸MB است؟ همه پوستر دارند؟ پالت همه گرم و یکدست است؟
+### ۶-ب — موسیقی متن (با AI Studio → Lyria، نه Flow) 🎵
+
+**⚠️ نکته:** Flow فقط ویدیو می‌سازد. موسیقی را در همان **Google AI Studio** با مدل **Lyria** بساز:
+
+1. برو به `aistudio.google.com` → انتخاب مدل **Lyria** (موسیقی)
+2. این پرامپت را پیست کن (کپی از `assets/audio/README.md` هم می‌شود):
+
+```text
+A slow, elegant, cinematic ambient instrumental for a luxury brand film.
+Instrumentation: soft felt piano, warm string swells, deep gentle bass, airy pads.
+Tempo & rhythm: very slow, 60–70 BPM, free-flowing, no drums, no percussion.
+Soundscape: warm spacious reverb, intimate and quiet, like sunrise in an ivory room.
+Emotional arc: calm curiosity → quiet confidence → warm optimism. Seamless loop.
+Instrumental only, no vocals.
+```
+
+3. ۳–۵ نسخه بگیر → آرام‌ترین و گرم‌ترین را انتخاب کن (معیار: توجه را نکشد)
+4. دانلود کن → نام: `score.mp3` (هدف: ۲–۳ دقیقه، لوپ بی‌درز، زیر ~۳MB)
+5. آپلود در گیت‌هاب: `assets/audio/score.mp3`
+
+**نحوهٔ پخش (خودکار در فاز ۰۸ پیاده می‌شود):** موقعیت موسیقی = موقعیت اسکرول؛ اولین اسکرول شروع می‌کند و اسکرول به عقب، موسیقی را به همان نسبت برمی‌گرداند.
+
+**✅ چک:** هر ۷ ویدیو زیر ۸MB است؟ همه پوستر دارند؟ پالت همه گرم و یکدست است؟ موسیقی بی‌کلام، آرام و لوپ‌پذیر است؟
 
 ---
 
