@@ -43,9 +43,8 @@
 
 ## Status
 
-**Phase 00 — Project Setup** ✅ (this scaffold)
-Next: Phase 01 — The Her Intelligence. Do **not** start coding before Gates 01–03 pass.
-See [`docs/decision-gates.md`](docs/decision-gates.md).
+**Phase 01 — The Her Intelligence** ✅ finalized ([`docs/intelligence-report.md`](docs/intelligence-report.md)) — ⬜ awaiting **Gate 01 approval**, then Phase 02 (Proposal Architecture).
+See [`docs/decision-gates.md`](docs/decision-gates.md) · Playbook: [`docs/playbook-fa.md`](docs/playbook-fa.md).
 
 ## Golden content rules (from handoff §15)
 
