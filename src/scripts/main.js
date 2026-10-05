@@ -1,8 +1,9 @@
 /* ============================================================
-   THE HER × OMID — client runtime (Phase 07 prototype, cinematic pass)
-   Lenis smooth scroll · GSAP SplitText reveals · scrubbed hero ·
-   scroll-synced score (D3) · i18n switch · custom cursor · grain
-   Analytics (GA4): DROPPED per client decision D5 (2026-10-04)
+   THE HER × OMID — client runtime (cinematic continuity pass)
+   ONE FILM: pinned scrub scenes · act chapters · dip-to-black
+   cuts · Lenis inertia · SplitText · scroll-synced score with
+   synthesized time-rewind SFX (D3 v2).
+   No analytics (decision D5).
    ============================================================ */
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -22,19 +23,44 @@ const resolve = (dict, path) =>
 
 let lang = document.documentElement.lang === 'fa' ? 'fa' : 'en';
 
+/* chapter indicator state (updated by scroll, re-rendered on lang switch) */
+const chapterEl = document.getElementById('chapter');
+let currentChapterKey = null;
+function renderChapter(instant) {
+  if (!chapterEl || !currentChapterKey) return;
+  const text = resolve(store[lang], currentChapterKey);
+  if (instant || prefersReduced) {
+    chapterEl.textContent = text;
+    gsap.set(chapterEl, { autoAlpha: 1 });
+    return;
+  }
+  gsap.to(chapterEl, {
+    autoAlpha: 0, y: 6, duration: 0.22, ease: 'power2.in',
+    onComplete() {
+      chapterEl.textContent = text;
+      gsap.to(chapterEl, { autoAlpha: 1, y: 0, duration: 0.35, ease: 'power2.out' });
+    }
+  });
+}
+function setChapter(key) {
+  if (key === currentChapterKey) return;
+  currentChapterKey = key;
+  renderChapter(false);
+}
+
 function applyLang(l) {
   lang = l;
-  const dict = store[l];
   document.documentElement.lang = l;
   document.documentElement.dir = l === 'fa' ? 'rtl' : 'ltr';
   document.querySelectorAll('[data-i18n]').forEach((el) => {
-    const v = resolve(dict, el.dataset.i18n);
+    const v = resolve(store[l], el.dataset.i18n);
     if (typeof v === 'string') el.textContent = v;
   });
   localStorage.setItem('lang', l);
+  renderChapter(true);
 }
 
-/* Language switch — preserve narrative position (section under viewport center) */
+/* Language switch — preserve narrative position */
 function capturePosition() {
   const sections = [...document.querySelectorAll('[data-section]')];
   const center = window.innerHeight / 2;
@@ -70,7 +96,7 @@ if (langBtn) {
   });
 }
 
-/* ---------------- Lenis smooth scroll (cinematic inertia) ---------------- */
+/* ---------------- Lenis smooth scroll ---------------- */
 let lenis = null;
 if (!prefersReduced) {
   lenis = new Lenis({ duration: 1.15, smoothWheel: true, wheelMultiplier: 0.9 });
@@ -86,7 +112,6 @@ function scrollToTarget(el) {
   if (lenis) lenis.scrollTo(el, { duration: 1.4 });
   else el.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth' });
 }
-/* intercept in-page anchors */
 document.addEventListener('click', (e) => {
   const a = e.target.closest('a[href^="#"]');
   if (!a) return;
@@ -97,29 +122,193 @@ document.addEventListener('click', (e) => {
   }
 });
 
+/* ============================================================
+   SCORE ENGINE (D3 v2) — continuous, seamless, scroll-synced
+   - plays as ONE uninterrupted piece (no seek-stutter)
+   - forward drift → gentle playbackRate catch-up
+   - back-scroll → time-rewind SFX (synthesized) + duck + seek
+   - idle → the score keeps breathing like a film soundtrack
+   ============================================================ */
+const score = {
+  el: null,
+  sfxCtx: null,
+  on: false,
+  rewinding: false,
+  jumping: false,
+  lastRewindAt: 0,
+  lastJumpAt: 0,
+  baseVol: 0.85
+};
+
+function ensureScore() {
+  if (!score.el) {
+    score.el = new Audio('/audio/score.mp3');
+    score.el.preload = 'auto';
+    score.el.volume = score.baseVol;
+  }
+}
+
+/* Synthesized "time rewind" cue — tape-style pitch descent + air */
+function rewindSfx() {
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!AC) return;
+  if (!score.sfxCtx) score.sfxCtx = new AC();
+  const ctx = score.sfxCtx;
+  if (ctx.state === 'suspended') ctx.resume();
+  const t = ctx.currentTime;
+
+  const out = ctx.createGain();
+  out.gain.value = 0.9;
+  out.connect(ctx.destination);
+
+  /* descending warbling tone (tape rewind) */
+  const o = ctx.createOscillator();
+  o.type = 'sawtooth';
+  o.frequency.setValueAtTime(690, t);
+  o.frequency.exponentialRampToValueAtTime(120, t + 0.75);
+  const vib = ctx.createOscillator();
+  vib.frequency.value = 7.5;
+  const vibG = ctx.createGain();
+  vibG.gain.value = 40;
+  vib.connect(vibG); vibG.connect(o.frequency);
+  const f = ctx.createBiquadFilter();
+  f.type = 'lowpass';
+  f.frequency.setValueAtTime(1500, t);
+  f.frequency.exponentialRampToValueAtTime(260, t + 0.75);
+  const g = ctx.createGain();
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(0.13, t + 0.11);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + 0.8);
+  o.connect(f); f.connect(g); g.connect(out);
+  o.start(t); vib.start(t); o.stop(t + 0.85); vib.stop(t + 0.85);
+
+  /* airy filtered noise sweep */
+  const len = Math.floor(ctx.sampleRate * 0.72);
+  const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+  const d = buf.getChannelData(0);
+  for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len);
+  const n = ctx.createBufferSource();
+  n.buffer = buf;
+  const nf = ctx.createBiquadFilter();
+  nf.type = 'bandpass';
+  nf.Q.value = 0.8;
+  nf.frequency.setValueAtTime(2300, t);
+  nf.frequency.exponentialRampToValueAtTime(300, t + 0.7);
+  const ng = ctx.createGain();
+  ng.gain.setValueAtTime(0.0001, t);
+  ng.gain.exponentialRampToValueAtTime(0.05, t + 0.09);
+  ng.gain.exponentialRampToValueAtTime(0.0001, t + 0.72);
+  n.connect(nf); nf.connect(ng); ng.connect(out);
+  n.start(t);
+}
+
+function scrollProgress() {
+  const doc = document.documentElement;
+  const max = doc.scrollHeight - window.innerHeight;
+  return max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+}
+
+/* Backward re-sync: duck the score, play the rewind cue, seek, breathe back in */
+function rewindScoreTo(target) {
+  const el = score.el;
+  score.rewinding = true;
+  score.lastRewindAt = performance.now();
+  rewindSfx();
+  gsap.to(el, {
+    volume: 0.04, duration: 0.22, ease: 'power2.in',
+    onComplete() {
+      el.currentTime = Math.max(0, Math.min(target, el.duration - 0.05));
+      el.playbackRate = 1;
+      if (score.on) el.play().catch(() => {});
+      gsap.to(el, {
+        volume: score.baseVol, duration: 0.85, ease: 'power2.out',
+        onComplete() { score.rewinding = false; }
+      });
+    }
+  });
+}
+
+/* Forward jump re-sync (big skips only): quick duck + seek */
+function jumpScoreTo(target) {
+  const el = score.el;
+  score.jumping = true;
+  score.lastJumpAt = performance.now();
+  gsap.to(el, {
+    volume: 0.08, duration: 0.18, ease: 'power2.in',
+    onComplete() {
+      el.currentTime = Math.max(0, Math.min(target, el.duration - 0.05));
+      el.playbackRate = 1;
+      gsap.to(el, {
+        volume: score.baseVol, duration: 0.7, ease: 'power2.out',
+        onComplete() { score.jumping = false; }
+      });
+    }
+  });
+}
+
+/* Master frame loop: progress line + score sync */
+const progressEl = document.getElementById('progress-line');
+let lastScrollY = window.scrollY;
+function frameTick() {
+  const y = window.scrollY;
+  const velocity = y - lastScrollY;
+  lastScrollY = y;
+
+  const p = scrollProgress();
+  if (progressEl) progressEl.style.transform = `scaleX(${p})`;
+
+  const el = score.el;
+  if (el && el.duration && isFinite(el.duration)) {
+    const target = p * el.duration;
+    if (!score.on) {
+      /* silent playhead tracking */
+      if (!score.rewinding) el.currentTime = target;
+    } else if (!score.rewinding && !score.jumping) {
+      const drift = target - el.currentTime;
+      const now = performance.now();
+      const goingUp = velocity < -1;
+      const goingDown = velocity > 1;
+
+      if (goingUp && drift < -0.8 && now - score.lastRewindAt > 1300) {
+        /* user scrolled back in time */
+        rewindScoreTo(target);
+      } else if (drift > 8 && now - score.lastJumpAt > 1500) {
+        /* big forward skip */
+        jumpScoreTo(target);
+      } else if (drift > 1.2 && goingDown) {
+        el.playbackRate = Math.min(1.45, 1 + drift * 0.09);
+      } else if (drift > 0.5) {
+        el.playbackRate = 1.05;
+      } else {
+        el.playbackRate = 1;
+      }
+    }
+  }
+  requestAnimationFrame(frameTick);
+}
+requestAnimationFrame(frameTick);
+
 /* ---------------- entry overlay (S00) ---------------- */
 const overlay = document.getElementById('entry');
-let soundOn = false;
-let audio = null;
 const soundToggle = document.getElementById('sound-toggle');
 
-const ensureAudio = () => {
-  if (!audio) {
-    audio = new Audio('/audio/score.mp3'); // Lyria score — 3:00, scroll-synced
-    audio.preload = 'auto';
-    audio.volume = 0.85;
-  }
-};
-const setSoundUI = () => {
+function enableSound() {
+  ensureScore();
+  score.el.volume = score.baseVol;
+  score.el.currentTime = scrollProgress() * (score.el.duration || 0);
+  score.el.play().catch(() => {});
+  score.on = true;
+  setSoundUI();
+}
+function setSoundUI() {
   if (soundToggle) {
-    soundToggle.classList.toggle('is-off', !soundOn);
-    soundToggle.setAttribute('aria-pressed', String(soundOn));
+    soundToggle.classList.toggle('is-off', !score.on);
+    soundToggle.setAttribute('aria-pressed', String(score.on));
   }
-};
-const enableSound = () => { ensureAudio(); audio.play().catch(() => {}); soundOn = true; setSoundUI(); };
+}
 if (soundToggle) {
   soundToggle.addEventListener('click', () => {
-    if (soundOn) { audio.pause(); soundOn = false; setSoundUI(); }
+    if (score.on) { score.el.pause(); score.on = false; setSoundUI(); }
     else enableSound();
   });
 }
@@ -142,42 +331,22 @@ if (overlay) {
   overlay.querySelector('[data-entry-silent]')?.addEventListener('click', () => dismissEntry(false));
 }
 
-/* ---------------- scroll-synced score (D3) + progress line ----------------
-   Music position = scroll position (scrolling back rewinds proportionally). */
-const progressEl = document.getElementById('progress-line');
-function frameTick() {
-  const doc = document.documentElement;
-  const max = doc.scrollHeight - window.innerHeight;
-  const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
-  if (audio && audio.duration && isFinite(audio.duration)) {
-    const target = p * audio.duration;
-    if (soundOn) {
-      if (Math.abs(audio.currentTime - target) > 0.35) audio.currentTime = target;
-    } else {
-      audio.currentTime = target;
-    }
-  }
-  if (progressEl) progressEl.style.transform = `scaleX(${p})`;
-  requestAnimationFrame(frameTick);
-}
-requestAnimationFrame(frameTick);
-
-/* ---------------- nav: solid on scroll + auto-hide on scroll down ---------------- */
+/* ---------------- nav: solid + auto-hide ---------------- */
 const nav = document.getElementById('nav');
-let lastY = window.scrollY;
+let lastNavY = window.scrollY;
 function navTick() {
   const y = window.scrollY;
   if (nav) {
     nav.classList.toggle('nav--solid', y > window.innerHeight * 0.85);
-    if (y > 140 && y > lastY + 4) nav.classList.add('nav--hidden');
-    else if (y < lastY - 4 || y < 140) nav.classList.remove('nav--hidden');
+    if (y > 140 && y > lastNavY + 4) nav.classList.add('nav--hidden');
+    else if (y < lastNavY - 4 || y < 140) nav.classList.remove('nav--hidden');
   }
-  lastY = y;
+  lastNavY = y;
   requestAnimationFrame(navTick);
 }
 requestAnimationFrame(navTick);
 
-/* ---------------- lazy videos (looping ambience) ---------------- */
+/* ---------------- lazy ambient videos ---------------- */
 const videoIO = new IntersectionObserver(
   (entries) => entries.forEach((e) => {
     const v = e.target;
@@ -210,7 +379,7 @@ stepBtns.forEach((b, i) => {
   });
 });
 
-/* ---------------- custom cursor (fine pointers only) ---------------- */
+/* ---------------- custom cursor ---------------- */
 if (finePointer && !prefersReduced) {
   const cursor = document.getElementById('cursor');
   if (cursor) {
@@ -226,12 +395,29 @@ if (finePointer && !prefersReduced) {
   }
 }
 
-/* ---------------- GSAP narrative (skipped entirely for reduced motion) ---------------- */
+/* ---------------- film chapters ---------------- */
+const CHAPTERS = [
+  ['s01', 'chapters.s01'], ['s02', 'chapters.s02'], ['s03', 'chapters.s03'],
+  ['s04', 'chapters.s04'], ['s05', 'chapters.s05'], ['s06', 'chapters.s06'],
+  ['s07', 'chapters.s07'], ['s08', 'chapters.s08'], ['s09', 'chapters.s09'],
+  ['s10', 'chapters.s10'], ['s11', 'chapters.s11']
+];
+
+/* ---------------- dip-to-black (film cuts) ---------------- */
+const dipEl = document.getElementById('film-dip');
+function dip(strength) {
+  if (!dipEl || prefersReduced) return;
+  gsap.killTweensOf(dipEl);
+  gsap.timeline()
+    .to(dipEl, { opacity: strength, duration: 0.4, ease: 'power2.in' })
+    .to(dipEl, { opacity: 0, duration: 0.55, ease: 'power2.out' }, '+=0.08');
+}
+
+/* ---------------- GSAP narrative ---------------- */
 if (!prefersReduced) {
-  /* apply persisted language BEFORE splitting text */
   applyLang(lang);
 
-  /* editorial headline reveals — chars for LTR, words for RTL (keeps Persian joining) */
+  /* headline reveals — chars for LTR, words for RTL */
   const splitMode = isRTL() ? 'words,lines' : 'chars,lines';
   gsap.utils.toArray('.display').forEach((el) => {
     if (el.closest('.entry')) return;
@@ -258,27 +444,51 @@ if (!prefersReduced) {
     });
   });
 
-  /* S01 hero: pinned, video SCRUBBED by scroll, headline drifts away */
+  /* ---- S01 hero: pinned, video scrubbed by scroll ---- */
   const heroVideo = document.querySelector('#s01 video');
-  if (heroVideo && heroVideo.readyState < 2) {
-    heroVideo.addEventListener('loadeddata', () => heroVideo.pause(), { once: true });
-  }
   if (heroVideo) heroVideo.pause();
-  const heroTl = gsap.timeline({
+  gsap.timeline({
     scrollTrigger: {
-      trigger: '#s01', start: 'top top', end: '+=130%', pin: true, scrub: true,
-      onUpdate: (self) => {
+      trigger: '#s01', start: 'top top', end: '+=160%', pin: true, scrub: true,
+      anticipatePin: 1,
+      onUpdate(self) {
         if (heroVideo && heroVideo.duration && isFinite(heroVideo.duration)) {
           heroVideo.currentTime = self.progress * heroVideo.duration;
         }
       }
     }
-  });
-  heroTl.to('#s01 .hero__inner', { yPercent: -16, autoAlpha: 0.15, ease: 'none' }, 0)
-        .to('#s01 .hero__dusk', { opacity: 1, ease: 'none' }, 0); // deepening dusk
+  })
+    .to('#s01 .hero__inner', { yPercent: -16, autoAlpha: 0.15, ease: 'none' }, 0)
+        .to('#s01 .hero__dusk', { opacity: 1, ease: 'none' }, 0);
 
-  /* S02/S03/S05/S06 background videos: slow parallax drift */
-  gsap.utils.toArray('.problems__bg, .split__bg, .engine__bg, .band video').forEach((v) => {
+  /* ---- S03: pinned accumulation — the 7 problems build, freeze, dissolve ---- */
+  const s03items = gsap.utils.toArray('#s03 .problem');
+  const s03head = document.querySelector('#s03 .problems__head');
+  const s03stage = document.querySelector('#s03 .problems__stage');
+  const s03scrim = document.querySelector('#s03 .problems__scrim');
+  if (s03items.length) {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#s03', start: 'top top', end: '+=340%',
+        pin: '#s03 .problems__pin', scrub: true, anticipatePin: 1
+      }
+    });
+    /* headline drifts away as complexity accumulates */
+    tl.to(s03head, { autoAlpha: 0, y: -36, ease: 'none', duration: 0.16 }, 0.08);
+    /* problems surface one by one — the growing composition */
+    s03items.forEach((it, i) => {
+      tl.fromTo(it,
+        { autoAlpha: 0, y: 46 },
+        { autoAlpha: 1, y: 0, ease: 'power2.out', duration: 0.085 },
+        0.14 + i * 0.082);
+    });
+    /* freeze, then dissolve into the dark of S04 */
+    tl.to(s03stage, { autoAlpha: 0, scale: 0.965, ease: 'none', duration: 0.14 }, 0.85);
+    tl.to(s03scrim, { opacity: 1, ease: 'power2.in', duration: 0.18 }, 0.8);
+  }
+
+  /* background videos: slow parallax drift */
+  gsap.utils.toArray('.split__bg, .engine__bg, .models__bg, .band video').forEach((v) => {
     gsap.fromTo(v, { yPercent: -6 }, {
       yPercent: 6, ease: 'none',
       scrollTrigger: { trigger: v.parentElement, start: 'top bottom', end: 'bottom top', scrub: true }
@@ -301,7 +511,7 @@ if (!prefersReduced) {
     scrollTrigger: { trigger: '#s05', start: 'top 75%', end: 'center 40%', scrub: true }
   });
 
-  /* S06 engine layers converge from four corners + lockup */
+  /* S06 engine layers converge from four corners */
   const spreads = [
     { x: -180, y: -120 }, { x: 180, y: -120 },
     { x: -180, y: 120 }, { x: 180, y: 120 }
@@ -322,17 +532,42 @@ if (!prefersReduced) {
   if (s07 && stepBtns.length) {
     ScrollTrigger.create({
       trigger: s07, start: 'top top', end: 'bottom bottom',
-      onUpdate: (self) => setStep(Math.min(6, Math.round(self.progress * 6)))
+      onUpdate(self) { setStep(Math.min(6, Math.round(self.progress * 6))); }
     });
     setStep(0);
   }
 
-  /* S09 numbers: slow counter-like rise */
+  /* S09 numbers rise */
   gsap.from('#s09 .number', {
     autoAlpha: 0, y: 40, duration: 1.2, ease: 'power3.out', stagger: 0.12,
     scrollTrigger: { trigger: '#s09', start: 'top 78%' }
   });
+
+  /* film chapters — update when each act holds the middle of the screen */
+  CHAPTERS.forEach(([id, key]) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    ScrollTrigger.create({
+      trigger: el, start: 'top 55%', end: 'bottom 55%',
+      onToggle(self) { if (self.isActive) setChapter(key); }
+    });
+  });
+  setChapter('chapters.s01');
+
+  /* film cuts — dip to black entering/leaving the dark acts */
+  ['s04', 's06'].forEach((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    ScrollTrigger.create({
+      trigger: el, start: 'top 62%',
+      onEnter: () => dip(0.5),
+      onEnterBack: () => dip(0.35)
+    });
+  });
 } else {
+  /* reduced motion: everything static & readable */
   applyLang(lang);
   setStep(0);
+  setChapter('chapters.s01');
+  if (chapterEl) chapterEl.style.display = 'none';
 }

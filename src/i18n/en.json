@@ -4,6 +4,19 @@
     "dir": "ltr",
     "note": "FINAL — locked 2026-10-04. Mirrors content/en/copy.md (source of truth), section keys s1–s11. Key parity with fa.json verified. Note: numbers normalized to Latin digits for EN."
   },
+  "chapters": {
+    "s01": "ACT I — THE WOMAN",
+    "s02": "ACT II — THE BUSINESS",
+    "s03": "ACT III — THE PROBLEM",
+    "s04": "ACT IV — THE QUESTION",
+    "s05": "ACT V — THE PARTNERSHIP",
+    "s06": "ACT VI — THE GROWTH ENGINE",
+    "s07": "PROOF OF THINKING",
+    "s08": "THREE HYPOTHESES",
+    "s09": "EVIDENCE",
+    "s10": "THE PARTNERSHIP",
+    "s11": "THE NEXT CHAPTER"
+  },
   "meta": {
     "title": "THE HER × OMID — A partnership built around possibilities",
     "description": "The Her understands the woman behind the business. Omid focuses on the system behind the business."

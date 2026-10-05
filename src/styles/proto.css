@@ -162,18 +162,32 @@ html[dir="rtl"] .entry__btn { letter-spacing: 0; text-transform: none; }
 html[dir="rtl"] .mosaic__title { font-family: var(--font-fa); }
 .mosaic__line { color: var(--color-text-muted); font-size: 0.95rem; }
 
-/* ---------- S03 Problems ---------- */
+/* ---------- S03 Problems — pinned accumulation scene ---------- */
 .problems { position: relative; }
+.problems__pin {
+  position: relative;
+  min-block-size: 100svh;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+}
 .problems__bg {
   position: absolute;
   inset: 0;
-  opacity: 0.16;
-  object-fit: cover;
   inline-size: 100%;
   block-size: 100%;
-  z-index: 0;
+  object-fit: cover;
+  opacity: 0.16;
 }
-.problems__list { position: relative; z-index: 1; display: grid; }
+.problems__scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--color-soft-black);
+  opacity: 0;
+}
+.problems__stage { position: relative; padding-block: clamp(4rem, 10vh, 7rem); }
+.problems__sub { color: var(--color-text-muted); }
+.problems__list { display: grid; }
 .problem {
   display: grid;
   grid-template-columns: minmax(2.5rem, auto) 1fr;
@@ -513,3 +527,49 @@ body.has-cursor #cursor.is-active { inline-size: 44px; block-size: 44px; }
 @media (pointer: fine) {
   body.has-cursor, body.has-cursor a, body.has-cursor button { cursor: none; }
 }
+
+
+/* ============ Film continuity elements ============ */
+
+/* Chapter indicator — like film chapter titles */
+.chapter {
+  position: fixed;
+  inset-block-end: 1.15rem;
+  inset-inline-start: var(--space-gutter);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.7rem;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: #F7F4ED;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  opacity: 0;
+}
+.chapter::before {
+  content: "";
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+html[dir="rtl"] .chapter { letter-spacing: 0; text-transform: none; font-size: 0.78rem; }
+@media (max-width: 767px) { .chapter { display: none; } }
+
+/* Dip-to-black between acts (film cut) */
+.film-dip {
+  position: fixed;
+  inset: 0;
+  background: var(--color-soft-black);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 85;
+}
+
+/* S10 partnership scene background (scene 06) */
+#s10 { position: relative; overflow: hidden; }
+.models__bg-wrap { position: absolute; inset: 0; }
+.models__bg { inline-size: 100%; block-size: 100%; object-fit: cover; opacity: 0.14; }
+#s10 .container { position: relative; }
