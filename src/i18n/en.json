@@ -2,33 +2,33 @@
   "_meta": {
     "lang": "en",
     "dir": "ltr",
-    "note": "FINAL — locked 2026-10-04. Mirrors content/en/copy.md (source of truth), section keys s1–s11. Key parity with fa.json verified. Note: numbers normalized to Latin digits for EN."
+    "note": "English is the default language. Copy revised for clarity and a natural, professional tone."
   },
   "chapters": {
-    "s01": "ACT I — THE WOMAN",
-    "s02": "ACT II — THE BUSINESS",
-    "s03": "ACT III — THE COMPLEXITY",
-    "s04": "ACT IV — THE QUESTION",
-    "s05": "ACT V — THE PARTNERSHIP",
-    "s06": "ACT VI — THE GROWTH ENGINE",
-    "s07": "THE DIAGNOSIS",
-    "s08": "CASE 01 — 03",
-    "s09": "EVIDENCE",
-    "s10": "COLLABORATION MODELS",
-    "s11": "FINALE"
+    "s01": "01 — THE OPPORTUNITY",
+    "s02": "02 — THE BUSINESSES",
+    "s03": "03 — THE CHALLENGES",
+    "s04": "04 — THE APPROACH",
+    "s05": "05 — THE PARTNERSHIP",
+    "s06": "06 — THE GROWTH SYSTEM",
+    "s07": "07 — THE DIAGNOSIS",
+    "s08": "08 — PRACTICAL SCENARIOS",
+    "s09": "09 — RESULTS",
+    "s10": "10 — WAYS TO WORK TOGETHER",
+    "s11": "11 — WHAT COMES NEXT"
   },
   "meta": {
-    "title": "THE HER × OMID — A partnership built around possibilities",
-    "description": "The Her understands the woman behind the business. Omid focuses on the system behind the business."
+    "title": "THE HER × OMID — A Digital Growth Partnership",
+    "description": "A practical proposal to extend The Her’s client work with digital strategy, performance marketing, conversion, data and automation."
   },
   "nav": {
     "languageSwitch": "فارسی",
-    "cta": "Start a conversation"
+    "cta": "Ways to work together"
   },
   "entry": {
     "kicker": "THE HER × OMID",
-    "line": "A partnership story, told like a film.",
-    "start": "START THE STORY"
+    "line": "A practical growth partnership for The Her.",
+    "start": "VIEW THE PROPOSAL"
   },
   "sound": {
     "on": "Sound on",
@@ -43,208 +43,216 @@
     "open": "EXPAND",
     "visit": "OPEN"
   },
-  "nums": ["01", "02", "03", "04", "05", "06", "07"],
+  "nums": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07"
+  ],
   "s1": {
     "kicker": "THE HER × OMID",
-    "headline": "A WORLD OF BUSINESS WOMEN.",
-    "subheadline": "Every woman builds a business in her own way.",
-    "body": "The Her understands the woman behind the business. This partnership is about what sits behind it — the systems, decisions, experiences and opportunities that can move it forward.",
-    "button": "ENTER THE WORLD"
+    "headline": "HELPING MORE WOMEN BUILD STRONGER BUSINESSES.",
+    "subheadline": "The Her already supports the woman behind the business. Together, we can strengthen the digital system around her.",
+    "body": "This proposal brings The Her’s coaching and business insight together with hands-on expertise in digital growth, conversion, analytics and automation — giving each client the support her business actually needs.",
+    "button": "EXPLORE THE OPPORTUNITY"
   },
   "s2": {
-    "kicker": "WHAT SHE IS BUILDING",
-    "headline": "Behind every ambitious woman, there is a different business.",
-    "subheadline": "Different ambitions create different businesses.",
-    "body": "A founder may be building a brand, scaling sales, launching a product, or creating a business that gives her more freedom. The ambition may be shared. The system never is.",
-    "button": "SEE THE DIFFERENCE",
+    "kicker": "EVERY CLIENT IS DIFFERENT",
+    "headline": "One ambition can lead to many kinds of business.",
+    "subheadline": "A useful solution starts with the reality of each client.",
+    "body": "Some clients are turning an Instagram page into a brand. Others need a better shop, a clearer offer, or a more reliable way to grow sales. Their goals may overlap, but their priorities, customers and constraints are different.",
+    "button": "SEE THE CLIENT LANDSCAPE",
     "mosaic": [
       {
         "num": "01",
-        "title": "Journal Planning",
-        "line": "Year design · business goals · lifestyle goals"
+        "title": "Planning & Direction",
+        "line": "Business goals · priorities · practical roadmap"
       },
       {
         "num": "02",
-        "title": "Brand & Product",
-        "line": "From page to brand · follower growth"
+        "title": "Brand & Offer",
+        "line": "Positioning · content · products people understand"
       },
       {
         "num": "03",
-        "title": "Website & Shop",
-        "line": "The first impression — always on"
+        "title": "Website & Store",
+        "line": "A credible, conversion-focused digital home"
       },
       {
         "num": "04",
-        "title": "Data & Dashboards",
-        "line": "The numbers behind every decision"
+        "title": "Measurement & Growth",
+        "line": "Clear data · better decisions · steady improvement"
       }
     ]
   },
   "s3": {
-    "kicker": "THE PROBLEMS",
-    "headline": "Different businesses. Different problems.",
-    "subheadline": "Growth rarely starts with the same question twice.",
-    "body": "One business needs demand. Another needs conversion. Another needs a stronger digital experience. The right response begins by understanding the problem before choosing the solution.",
+    "kicker": "WHERE I CAN HELP",
+    "headline": "Different businesses need different kinds of support.",
+    "subheadline": "The first task is to find the real constraint.",
+    "body": "A sales problem is not always a traffic problem. The gap may be in the offer, the website, follow-up, measurement or day-to-day operations. I identify that gap first, then recommend only the work that can make a meaningful difference.",
     "problems": [
       {
         "title": "More sales",
-        "line": "Turning existing demand into revenue."
+        "line": "Improve the path from interest to purchase."
       },
       {
-        "title": "More leads",
-        "line": "Reaching the right people at the right moment."
+        "title": "Qualified leads",
+        "line": "Reach people who are more likely to buy."
       },
       {
         "title": "Better conversion",
-        "line": "Helping more visitors take the next step."
+        "line": "Remove friction from pages, forms and checkout."
       },
       {
-        "title": "A better website",
-        "line": "Turning digital presence into business infrastructure."
+        "title": "A stronger website",
+        "line": "Build a fast, credible platform that supports growth."
       },
       {
-        "title": "Better data",
-        "line": "Making decisions from signals, not assumptions."
+        "title": "Reliable data",
+        "line": "Know what is working before spending more."
       },
       {
         "title": "AI & automation",
-        "line": "Removing repetitive work and creating leverage."
+        "line": "Reduce repetitive work without adding complexity."
       },
       {
-        "title": "A digital product",
-        "line": "Turning expertise into a scalable experience."
+        "title": "Digital products",
+        "line": "Turn expertise into a useful, scalable offer."
       }
     ],
-    "button": "EXPLORE THE POSSIBILITIES"
+    "button": "EXPLORE THE CAPABILITIES"
   },
   "s4": {
-    "kicker": "NO FIXED FORMULA",
-    "headline": "So why should they all receive the same solution?",
-    "subheadline": "No two businesses get stuck in the same place.",
-    "body": "There is no universal growth playbook. Sometimes the answer is marketing. Sometimes it is experience, data, technology, or a new digital product. The work starts with finding what actually matters.",
-    "button": "FIND THE RIGHT PATH"
+    "kicker": "A DIAGNOSIS BEFORE A DELIVERABLE",
+    "headline": "The solution should fit the business — not the other way around.",
+    "subheadline": "No default package, and no list of services for its own sake.",
+    "body": "We begin with the goal, the customer journey and the available evidence. Only then do we decide whether the right next step is marketing, a stronger experience, better measurement, automation, or a combination of them.",
+    "button": "SEE THE APPROACH"
   },
   "s5": {
-    "kicker": "TWO PERSPECTIVES",
-    "headline": "The Her understands the woman. Omid focuses on the system.",
-    "subheadline": "One partnership. Two complementary perspectives.",
-    "body": "The Her brings the human understanding: ambition, identity, business and vision. Omid brings the systems perspective: growth, data, marketing, digital experience and AI.",
+    "kicker": "COMPLEMENTARY EXPERTISE",
+    "headline": "The Her knows the founder. I strengthen the system around her business.",
+    "subheadline": "Business coaching and digital execution, working in the same direction.",
+    "body": "The Her brings context, trust and a deep understanding of each woman’s goals. I add strategy and execution across acquisition, conversion, analytics, websites and automation. The result is more joined-up support, without The Her having to build a full digital team.",
     "theHer": {
-      "label": "THE WOMAN",
-      "tags": "Vision · Identity · Ambition · Business"
+      "label": "THE FOUNDER",
+      "tags": "Goals · Context · Confidence · Business direction"
     },
     "omid": {
-      "label": "THE SYSTEM",
-      "tags": "Growth · Data · Marketing · Experience · AI"
+      "label": "THE GROWTH SYSTEM",
+      "tags": "Acquisition · Conversion · Data · Digital delivery"
     },
-    "button": "SEE HOW IT CONNECTS"
+    "button": "SEE HOW THE ROLES CONNECT"
   },
   "s6": {
-    "kicker": "THE FOUR LAYERS",
+    "kicker": "FOUR CONNECTED CAPABILITIES",
     "headline": "DATA + MARKETING + EXPERIENCE + AI",
-    "subheadline": "Connected disciplines create a stronger growth system.",
-    "body": "Alone, each discipline helps. Connected, they compound into one engine — built around the problem this business actually has.",
+    "subheadline": "Better results come from making the parts work together.",
+    "body": "Each capability is useful on its own. The greater value comes from connecting them around one commercial goal, with clear priorities and measurable outcomes.",
     "layers": [
       {
         "title": "DATA",
-        "line": "Data reveals what is happening."
+        "line": "See what customers do and what drives results."
       },
       {
         "title": "MARKETING",
-        "line": "Marketing creates demand."
+        "line": "Create qualified demand and use budget responsibly."
       },
       {
         "title": "EXPERIENCE",
-        "line": "Experience turns attention into action."
+        "line": "Make it easier for interested people to act."
       },
       {
         "title": "AI",
-        "line": "AI multiplies leverage."
+        "line": "Automate useful work and free up the team."
       }
     ],
     "details": [
-      "Signal architecture · Attribution clarity · Cohort behavior · Decision intelligence",
-      "Qualified demand · Positioning & narrative · High-intent acquisition · Organic authority",
-      "Editorial UX/UI · Conversion architecture · High-speed web systems · Brand trust",
-      "Workflow automation · Intelligent agents · CRM orchestration · Operational leverage"
+      "Analytics setup · Event tracking · Attribution · Decision-ready dashboards",
+      "Performance campaigns · SEO · Positioning · Audience and channel strategy",
+      "UX/UI · Conversion optimisation · Fast websites · Trust and clarity",
+      "Workflow automation · Practical AI assistants · CRM flows · Reporting automation"
     ],
-    "convergence": "One growth engine.",
-    "button": "BUILD THE ENGINE"
+    "convergence": "One practical growth system.",
+    "button": "SEE THE SYSTEM"
   },
   "s7": {
-    "kicker": "PROOF OF THINKING",
+    "kicker": "HOW I APPROACH A PROBLEM",
     "headline": "“We need more sales.”",
-    "subheadline": "Before adding traffic, understand where the system breaks.",
-    "body": "A request is rarely the diagnosis. We trace the journey from attention to revenue, identify the constraint, then design the response around it.",
+    "subheadline": "Before buying more traffic, we find out where potential sales are being lost.",
+    "body": "The initial request tells us the goal, not necessarily the cause. I review the full journey from first visit to purchase and follow-up, then focus effort on the point with the greatest impact.",
     "diagnostic": [
       {
         "title": "Traffic",
         "question": "Are the right people arriving?",
-        "answer": "Volume without intent is just noise. Before scaling ad spend, we audit channel quality, search intent, and audience segmentation to see whether visitors actually match the buyer profile—or if acquisition is bringing curiosity instead of demand."
+        "answer": "We compare channel quality, audience fit and intent. More visitors only help when they include the people the offer is designed for."
       },
       {
         "title": "Offer",
         "question": "Is the value clear and relevant?",
-        "answer": "Even qualified traffic leaves when positioning feels generic. We examine how the offer is framed—whether the core transformation, differentiation, and next step are immediately unmistakable within the first few seconds on the page."
+        "answer": "We test whether the value, difference and next step are clear within the first moments of seeing the offer."
       },
       {
         "title": "Trust",
         "question": "Is there enough confidence to act?",
-        "answer": "High-value decisions require proportional reassurance. We look for the signals that remove hesitation: visual authority, proof adjacency, transparent expectations, and a digital brand experience that matches the price point."
+        "answer": "We review proof, transparency and the visual experience to understand what may be making a potential buyer hesitate."
       },
       {
         "title": "Experience",
         "question": "Is the journey simple and persuasive?",
-        "answer": "Friction silently kills momentum. We trace the real user journey across mobile and desktop—removing cognitive overload, slow transitions, and disjointed navigation so attention flows naturally toward action."
+        "answer": "We follow the real mobile and desktop journey, looking for confusing choices, slow pages and unnecessary steps."
       },
       {
         "title": "Conversion",
         "question": "Where do people stop?",
-        "answer": "Instead of guessing why visitors hesitate, we isolate the exact drop-off point in the funnel—landing page, form, checkout, or consultation booking—and run targeted CRO and UX improvements where leverage is highest."
+        "answer": "We use funnel data to locate the main drop-off, then improve that specific page, form, checkout or booking step."
       },
       {
         "title": "Follow-up",
         "question": "What happens after interest?",
-        "answer": "Most revenue is lost between initial interest and final decision. We redesign the post-visit system—connecting CRM, automated nurturing, smart retargeting, and AI workflows so no warm lead slips through the cracks."
+        "answer": "We map what happens after someone shows interest and improve CRM, nurturing and retargeting so valuable leads are not forgotten."
       },
       {
         "title": "Data",
         "question": "Can we see what is actually working?",
-        "answer": "Without clean attribution and event tracking, every growth decision is a gamble. We instrument GTM, conversion events, UTM architecture, and clear KPI dashboards so the business scales on real signals, not assumptions."
+        "answer": "We set up the events, campaign naming and dashboards needed to tell which activity is contributing to sales."
       }
     ],
-    "keyLine": "THE PROBLEM DEFINES THE SOLUTION.",
-    "button": "SEE THE THINKING"
+    "keyLine": "DIAGNOSE FIRST. BUILD WHAT THE BUSINESS NEEDS.",
+    "button": "SEE THE DIAGNOSIS"
   },
   "s8": {
     "kicker": "THREE SCENARIOS",
     "cases": [
       {
-        "kicker": "HYPOTHETICAL CLIENT SCENARIO",
-        "headline": "“We have traffic. But not enough sales.”",
-        "subheadline": "More traffic may not be the answer.",
-        "diagnosis": "The opportunity may sit between the visit and the purchase: offer clarity, trust, landing-page experience, conversion and follow-up.",
-        "response": "Audit the funnel, strengthen the experience, clarify the offer, improve conversion points and establish the measurement needed to learn what works.",
-        "keyLine": "Growth does not always need more traffic. Sometimes it needs a better system.",
-        "button": "EXPLORE THE APPROACH"
+        "kicker": "ILLUSTRATIVE CLIENT SCENARIO",
+        "headline": "“People visit our store, but too few buy.”",
+        "subheadline": "More traffic is useful only after the current journey works.",
+        "diagnosis": "The main opportunity may be in offer clarity, trust, product pages, checkout or follow-up — rather than acquisition.",
+        "response": "Review the funnel, identify the largest drop-off, improve the relevant experience and put reliable conversion tracking in place.",
+        "keyLine": "Before paying for more visits, get more value from the visits you already have.",
+        "button": "SEE THE RESPONSE"
       },
       {
-        "kicker": "HYPOTHETICAL CLIENT SCENARIO",
-        "headline": "“Our business is growing. But our digital presence isn't.”",
-        "subheadline": "A growing business needs a digital experience that keeps pace.",
-        "diagnosis": "The opportunity may be bigger than a redesign: positioning, UX, UI, content structure, development and measurement need to work as one.",
-        "response": "Define the digital strategy, shape the user journey, design the interface, build the experience and connect it to measurable business outcomes.",
-        "keyLine": "A website should not only represent the business. It should move it forward.",
-        "button": "EXPLORE THE APPROACH"
+        "kicker": "ILLUSTRATIVE CLIENT SCENARIO",
+        "headline": "“Our business has outgrown our website.”",
+        "subheadline": "The digital experience should match the quality of the business.",
+        "diagnosis": "The gap may involve positioning, content structure, mobile UX, performance and measurement — not simply visual design.",
+        "response": "Define the website’s role, simplify the customer journey, redesign and build the experience, then connect it to measurable goals.",
+        "keyLine": "A good website should support the business, not just describe it.",
+        "button": "SEE THE RESPONSE"
       },
       {
-        "kicker": "HYPOTHETICAL CLIENT SCENARIO",
-        "headline": "“We're growing. But everything still depends on people.”",
-        "subheadline": "Growth becomes fragile when every process stays manual.",
-        "diagnosis": "The opportunity may lie in workflows, reporting, CRM, data flows and repetitive operations that can be redesigned or automated.",
-        "response": "Map the workflow, identify high-value automation opportunities, connect the data and introduce AI where it creates practical leverage.",
-        "keyLine": "AI should not replace the business. It should make the business more capable.",
-        "button": "EXPLORE THE APPROACH"
+        "kicker": "ILLUSTRATIVE CLIENT SCENARIO",
+        "headline": "“Growth is creating too much manual work.”",
+        "subheadline": "Repeated admin should not consume the team’s best time.",
+        "diagnosis": "Lead handling, reporting, CRM updates and routine communication may be creating avoidable delays and errors.",
+        "response": "Map the workflow, prioritise the highest-value automation, connect the necessary tools and use AI only where it is dependable and useful.",
+        "keyLine": "Automation should make the team more capable, not make the business harder to run.",
+        "button": "SEE THE RESPONSE"
       }
     ],
     "labels": {
@@ -253,91 +261,73 @@
     }
   },
   "s9": {
-    "kicker": "PROOF, IN NUMBERS",
-    "headline": "Built through years of growth work.",
-    "subheadline": "Experience across performance, acquisition, conversion, data and digital.",
-    "body": "A track record across different growth environments — from acquisition and SEO to conversion, analytics and campaign optimization.",
+    "kicker": "SELECTED RESULTS",
+    "headline": "Results measured in business terms.",
+    "subheadline": "Examples from performance marketing and conversion work.",
+    "body": "These figures are taken from Omid’s published portfolio. Outcomes vary by business, so any engagement begins with its own baseline and targets.",
     "numbers": [
       {
-        "value": "5+ years",
-        "label": "Growth & Performance"
+        "value": "2.9×",
+        "label": "Increase in ad click-through rate (1.2% to 3.5%)"
       },
       {
-        "value": "+50%",
-        "label": "Organic Traffic"
+        "value": "Up to 25%",
+        "label": "Increase in visitor-to-customer conversion"
       },
       {
-        "value": "−30%",
-        "label": "Retargeting CPA"
+        "value": "Up to 30%",
+        "label": "Reduction in customer acquisition cost"
       },
       {
-        "value": "3.5%",
-        "label": "Average Campaign CTR"
-      },
-      {
-        "value": "15",
-        "label": "Competitive Keywords to First Page"
+        "value": "Up to 2×",
+        "label": "Return on ad spend in optimised campaigns"
       }
     ],
-    "button": "SEE THE EXPERIENCE"
+    "button": "VIEW THE WORK"
   },
   "s10": {
-    "kicker": "THE PARTNERSHIP",
-    "headline": "What if The Her could offer more — without becoming more?",
-    "subheadline": "An extended digital capability, available when the business needs it.",
-    "body": "Omid can work alongside The Her as a growth and digital partner — directly, within client projects, or quietly behind the scenes. The Her keeps the relationship. The capability expands.",
+    "kicker": "WAYS TO WORK TOGETHER",
+    "headline": "Add digital capability when The Her or its clients need it.",
+    "subheadline": "Flexible support, without the cost of building a full in-house team.",
+    "body": "I can work on The Her’s own growth, join selected client engagements, or deliver quietly behind the scenes. In every model, responsibilities stay clear and The Her remains in control of the client relationship.",
     "models": [
       {
-        "title": "DIRECT",
+        "title": "FOR THE HER",
         "formula": "The Her ↔ Omid",
-        "line": "A direct partnership for The Her's own digital, growth, data or AI needs."
+        "line": "Strategy and execution for The Her’s own website, acquisition, measurement or automation."
       },
       {
-        "title": "CLIENT",
+        "title": "CLIENT PROJECT",
         "formula": "The Her + Omid + Client",
-        "line": "Bring Omid into selected client engagements where deeper digital capability is needed."
+        "line": "A shared engagement when a client needs specialist digital strategy or delivery."
       },
       {
         "title": "WHITE LABEL",
-        "formula": "The Her → Client / Omid → Behind the scenes",
-        "line": "The Her owns the relationship. Omid delivers the specialist layer quietly, under the hood."
+        "formula": "The Her → Client · Omid → Delivery",
+        "line": "Specialist work delivered behind the scenes, with The Her leading the relationship."
       }
     ],
-    "button": "EXPLORE THE PARTNERSHIP"
+    "button": "COMPARE THE OPTIONS"
   },
   "s11": {
-    "kicker": "THE NEXT CHAPTER",
-    "headline": "Let’s explore what we could build together.",
-    "subheadline": "Not a fixed service. A partnership built around possibilities.",
-    "body": "When the right people, perspective and capabilities come together, the solution can be shaped around the business — not forced into a template.",
-    "button": "START A CONVERSATION",
+    "kicker": "A PRACTICAL NEXT STEP",
+    "headline": "Start with one clear opportunity.",
+    "subheadline": "A focused first project is the best way to test how we work together.",
+    "body": "We can begin with a specific need inside The Her or a suitable client project, define the outcome and scope, and use what we learn to decide where the partnership can create value next.",
+    "button": "VIEW OMID’S WORK",
     "preview": {
-      "kicker": "A LIVE EXAMPLE",
+      "kicker": "SELECTED WORK & EXPERIENCE",
       "url": "omidadli.site",
-      "subtitle": "A digital experience built end-to-end: strategy, design, content, code.",
-      "openNewTab": "Open in a new tab",
-      "note": "Live preview"
+      "subtitle": "Explore Omid’s work across performance marketing, conversion, analytics and digital growth.",
+      "openNewTab": "Open full portfolio",
+      "note": "Live portfolio preview"
     },
     "closing": {
       "lockup": "THE HER × OMID",
-      "line": "A partnership built around possibilities."
-    },
-    "drawer": {
-      "kicker": "INITIATE DIALOGUE",
-      "title": "Shape the partnership around the problem.",
-      "subtitle": "Select a collaboration pathway to preview how The Her × Omid operates in practice, or continue directly to Omid's portfolio.",
-      "modelLabel": "COLLABORATION PATHWAY",
-      "focusLabel": "PRIMARY BOTTLENECK",
-      "noteLabel": "CONTEXT OR NOTE (OPTIONAL)",
-      "notePlaceholder": "Briefly describe the business, client scenario, or ambition...",
-      "submit": "PREPARE BRIEF & CONTINUE",
-      "visitSite": "VISIT OMIDADLI.SITE DIRECTLY",
-      "close": "CLOSE",
-      "sentTitle": "Brief prepared.",
-      "sentBody": "Your partnership context is ready. You can now open omidadli.site or copy the summary below."
+      "line": "Coaching insight, supported by practical digital execution."
     }
   },
   "footer": {
-    "tagline": "Different businesses. Different problems. One partner. Many possibilities."
+    "tagline": "A practical digital growth partnership for The Her and its clients."
   }
 }

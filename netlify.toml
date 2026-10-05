@@ -6,7 +6,19 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "22"
+  NPM_FLAGS = "--no-audit --no-fund"
+
+[functions]
+  node_bundler = "esbuild"
+
+# The Astro Netlify adapter emits the SSR entrypoint and API routes as
+# Netlify Functions. /api/preview must remain frameable by this same site.
+[[headers]]
+  for = "/api/preview"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    Content-Security-Policy = "frame-ancestors 'self'"
 
 # Long-cache optimized assets (fingerprinted filenames)
 [[headers]]
@@ -33,6 +45,6 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Frame-Options = "DENY"
+    X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"

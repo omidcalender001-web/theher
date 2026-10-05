@@ -4,7 +4,7 @@
    • RTL-safe dual-layer magnetic & velocity-morphing cursor (#cursor + #cursor-dot)
    • Language-aware SplitText engine (reverts & re-splits cleanly on EN ↔ FA)
    • Interactive S06 Growth Engine vector convergence, S07 Signal Graph,
-     S10 Expandable Collaboration Pathways, and S11 Partnership Brief Drawer
+     S10 Expandable Collaboration Pathways, and the S11 portfolio preview
    • Score: plays NATURALLY on down-scroll; time-rewind SFX + seek on up-scroll.
    ============================================================ */
 import { gsap } from 'gsap';
@@ -41,7 +41,7 @@ function initSplits() {
   const rtl = isRTL();
   const splitMode = rtl ? 'words,lines' : 'chars,lines';
   gsap.utils.toArray('.display').forEach((el) => {
-    if (el.closest('.entry') || el.closest('.drawer')) return;
+    if (el.closest('.entry')) return;
     const split = new SplitText(el, { type: splitMode, linesClass: 'split-line' });
     activeSplits.push(split);
     const targets = rtl ? split.words : split.chars;
@@ -858,76 +858,6 @@ modelCards.forEach((card, i) => {
   });
 });
 
-/* ---------------- S11 Partnership Dialogue Drawer ---------------- */
-const drawer = document.getElementById('contact-drawer');
-const drawerForm = document.getElementById('drawer-form');
-const drawerResult = document.getElementById('drawer-result');
-const drawerSummary = document.getElementById('drawer-summary');
-let selectedModelIdx = 0;
-let selectedLayerIdx = 0;
-
-function openDrawer() {
-  if (!drawer) return;
-  drawer.classList.add('is-open');
-  drawer.setAttribute('aria-hidden', 'false');
-}
-function closeDrawer() {
-  if (!drawer) return;
-  drawer.classList.remove('is-open');
-  drawer.setAttribute('aria-hidden', 'true');
-}
-document.querySelectorAll('[data-open-drawer]').forEach((btn) => {
-  btn.addEventListener('click', openDrawer);
-});
-document.querySelectorAll('[data-close-drawer]').forEach((btn) => {
-  btn.addEventListener('click', closeDrawer);
-});
-window.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && drawer?.classList.contains('is-open')) closeDrawer();
-});
-
-document.querySelectorAll('[data-drawer-model]').forEach((pill) => {
-  pill.addEventListener('click', () => {
-    selectedModelIdx = Number(pill.dataset.drawerModel || 0);
-    document.querySelectorAll('[data-drawer-model]').forEach((p, i) =>
-      p.classList.toggle('is-selected', i === selectedModelIdx)
-    );
-  });
-});
-document.querySelectorAll('[data-drawer-layer]').forEach((pill) => {
-  pill.addEventListener('click', () => {
-    selectedLayerIdx = Number(pill.dataset.drawerLayer || 0);
-    document.querySelectorAll('[data-drawer-layer]').forEach((p, i) =>
-      p.classList.toggle('is-selected', i === selectedLayerIdx)
-    );
-  });
-});
-
-if (drawerForm) {
-  drawerForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const dict = store[lang];
-    const modelObj = dict.s10.models[selectedModelIdx] || dict.s10.models[0];
-    const layerObj = dict.s6.layers[selectedLayerIdx] || dict.s6.layers[0];
-    const note = document.getElementById('drawer-note')?.value?.trim() || '—';
-    const lines = lang === 'fa'
-      ? [
-          `THE HER × OMID — خلاصه‌ی همکاری`,
-          `مدل همکاری: ${modelObj.title} (${modelObj.formula})`,
-          `تمرکز اصلی: ${layerObj.title} — ${layerObj.line}`,
-          `توضیحات: ${note}`
-        ]
-      : [
-          `THE HER × OMID — PARTNERSHIP BRIEF`,
-          `Pathway: ${modelObj.title} (${modelObj.formula})`,
-          `Primary Focus: ${layerObj.title} — ${layerObj.line}`,
-          `Context: ${note}`
-        ];
-    if (drawerSummary) drawerSummary.textContent = lines.join('\n');
-    if (drawerResult) drawerResult.hidden = false;
-  });
-}
-
 /* ---------------- film chapters + cuts ---------------- */
 const CHAPTERS = [
   ['s01', 'chapters.s01'], ['s02', 'chapters.s02'], ['s03', 'chapters.s03'],
@@ -1100,12 +1030,12 @@ if (!prefersReduced) {
   }
 
   const toPersianDigits = (str) => String(str).replace(/\d/g, (d) => '۰۱۲۳۴۵۶۷۸۹'[d]);
+  // Keep these values in sync with the published case-study figures on omidadli.site.
   const numberSpecs = [
-    { target: 5, decimals: 0, format: (v, l) => (l === 'fa' ? `بیش از ${toPersianDigits(v)} سال` : `${v}+ years`) },
-    { target: 50, decimals: 0, format: (v, l) => (l === 'fa' ? `+${toPersianDigits(v)}٪` : `+${v}%`) },
-    { target: 30, decimals: 0, format: (v, l) => (l === 'fa' ? `−${toPersianDigits(v)}٪` : `−${v}%`) },
-    { target: 3.5, decimals: 1, format: (v, l) => (l === 'fa' ? `${toPersianDigits(v).replace('.', '٫')}٪` : `${v}%`) },
-    { target: 15, decimals: 0, format: (v, l) => (l === 'fa' ? toPersianDigits(v) : String(v)) }
+    { target: 2.9, decimals: 1, format: (v, l) => (l === 'fa' ? `${toPersianDigits(v).replace('.', '٫')} برابر` : `${v}×`) },
+    { target: 25, decimals: 0, format: (v, l) => (l === 'fa' ? `تا ${toPersianDigits(v)}٪` : `Up to ${v}%`) },
+    { target: 30, decimals: 0, format: (v, l) => (l === 'fa' ? `تا ${toPersianDigits(v)}٪` : `Up to ${v}%`) },
+    { target: 2, decimals: 0, format: (v, l) => (l === 'fa' ? `تا ${toPersianDigits(v)} برابر` : `Up to ${v}×`) }
   ];
 
   gsap.fromTo('#s09 .number',
