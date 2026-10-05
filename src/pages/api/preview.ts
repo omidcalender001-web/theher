@@ -7,10 +7,27 @@ export const ALL: APIRoute = async ({ request, url }) => {
 
   // Handle proxied API/asset requests from inside the preview iframe
   if (proxyPath) {
-    const targetUrl = new URL(proxyPath, TARGET_ORIGIN).toString();
+    // Keep this a single-origin preview proxy, not a user-controlled open proxy.
+    let targetUrl: URL;
+    try {
+      targetUrl = new URL(proxyPath, TARGET_ORIGIN);
+      if (targetUrl.origin !== TARGET_ORIGIN || !['GET', 'HEAD'].includes(request.method)) {
+        return new Response(JSON.stringify({ error: 'Invalid preview request' }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' }
+        });
+      }
+    } catch {
+      return new Response(JSON.stringify({ error: 'Invalid preview URL' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
     try {
       const upstream = await fetch(targetUrl, {
         method: request.method,
+        signal: AbortSignal.timeout(8000),
         headers: {
           'Accept': request.headers.get('accept') || '*/*',
           'User-Agent': 'Mozilla/5.0 (compatible; TheHerOmidPreview/1.0)'
@@ -34,6 +51,7 @@ export const ALL: APIRoute = async ({ request, url }) => {
   // Fetch main HTML document from https://omidadli.site
   try {
     const response = await fetch(TARGET_ORIGIN, {
+      signal: AbortSignal.timeout(8000),
       headers: {
         'Accept': 'text/html,application/xhtml+xml',
         'User-Agent': 'Mozilla/5.0 (compatible; TheHerOmidPreview/1.0)'
@@ -154,9 +172,21 @@ export const ALL: APIRoute = async ({ request, url }) => {
       }
     });
   } catch {
-    return new Response('Preview temporarily unavailable', {
-      status: 502,
-      headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+    // Keep the proposal usable when the upstream host blocks a data-centre IP
+    // or is briefly unavailable. The external portfolio link remains available.
+    const fallback = `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Omid Adli — Portfolio</title><style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#171411;color:#f0ece3;font:16px/1.6 system-ui,sans-serif;text-align:center;padding:2rem}
+main{max-width:32rem}p{color:#c9c1b5}a{display:inline-block;margin-top:1rem;padding:.8rem 1.2rem;border:1px solid #f0ece3;color:inherit;text-decoration:none;text-transform:uppercase;letter-spacing:.08em;font-size:.75rem}
+</style></head><body><main><h1>Omid Adli</h1><p>The live preview is temporarily unavailable. The full portfolio can still be opened directly.</p><a href="${TARGET_ORIGIN}" target="_blank" rel="noopener noreferrer">Open portfolio ↗</a></main></body></html>`;
+    return new Response(fallback, {
+      status: 200,
+      headers: {
+        'Content-Type': 'text/html; charset=utf-8',
+        'Cache-Control': 'no-store',
+        'X-Robots-Tag': 'noindex'
+      }
     });
   }
 };

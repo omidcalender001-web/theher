@@ -1,6 +1,6 @@
 ---
 // S11 — CTA + LIVE PREVIEW of omidadli.site (Mode A iframe desktop / Mode B mobile)
-// + future band (scene 07) before the final invitation + interactive Partnership Brief Drawer
+// + future band (scene 07) before the final invitation
 import en from '../i18n/en.json';
 const t = en;
 const previewUrl = 'https://omidadli.site';
@@ -40,7 +40,9 @@ const previewUrl = 'https://omidadli.site';
           <iframe
             src="/api/preview"
             title="Live preview — omidadli.site"
-            loading="lazy"></iframe>
+            loading="lazy"
+            referrerpolicy="no-referrer"
+            sandbox="allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
         </div>
       </div>
       <div class="preview__note">
@@ -56,21 +58,14 @@ const previewUrl = 'https://omidadli.site';
     </div>
 
     <div class="cta__actions" data-reveal-solo>
-      <button
-        type="button"
-        class="btn btn--primary"
-        data-open-drawer
-        data-magnetic
-        data-cursor="open"
-        data-i18n="s11.button">{t.s11.button}</button>
       <a
-        class="btn btn--secondary"
+        class="btn btn--primary"
         href={previewUrl}
         target="_blank"
         rel="noopener noreferrer"
         data-magnetic
         data-cursor="visit"
-        data-i18n="s11.drawer.visitSite">{t.s11.drawer.visitSite}</a>
+        data-i18n="s11.button">{t.s11.button}</a>
     </div>
 
     <div class="cta__closing">
@@ -79,79 +74,3 @@ const previewUrl = 'https://omidadli.site';
     </div>
   </div>
 </section>
-
-<!-- Bilingual Partnership Dialogue Drawer -->
-<div class="drawer" id="contact-drawer" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="drawer-title">
-  <div class="drawer__backdrop" data-close-drawer></div>
-  <div class="drawer__panel">
-    <div class="drawer__top">
-      <span class="kicker" data-i18n="s11.drawer.kicker">{t.s11.drawer.kicker}</span>
-      <button type="button" class="drawer__close" data-close-drawer data-magnetic data-cursor="open" data-i18n="s11.drawer.close">{t.s11.drawer.close}</button>
-    </div>
-    <h3 class="display drawer__title" id="drawer-title" data-i18n="s11.drawer.title">{t.s11.drawer.title}</h3>
-    <p class="drawer__sub" data-i18n="s11.drawer.subtitle">{t.s11.drawer.subtitle}</p>
-
-    <form class="drawer__form" id="drawer-form" novalidate>
-      <div class="drawer__field">
-        <label class="drawer__label" data-i18n="s11.drawer.modelLabel">{t.s11.drawer.modelLabel}</label>
-        <div class="drawer__pills" role="radiogroup">
-          {t.s10.models.map((m, i) => (
-            <button
-              type="button"
-              class={`drawer__pill ${i === 0 ? 'is-selected' : ''}`}
-              data-drawer-model={i}
-              data-i18n={`s10.models.${i}.title`}>{m.title}</button>
-          ))}
-        </div>
-      </div>
-
-      <div class="drawer__field">
-        <label class="drawer__label" data-i18n="s11.drawer.focusLabel">{t.s11.drawer.focusLabel}</label>
-        <div class="drawer__pills" role="radiogroup">
-          {t.s6.layers.map((l, i) => (
-            <button
-              type="button"
-              class={`drawer__pill ${i === 0 ? 'is-selected' : ''}`}
-              data-drawer-layer={i}
-              data-i18n={`s6.layers.${i}.title`}>{l.title}</button>
-          ))}
-        </div>
-      </div>
-
-      <div class="drawer__field">
-        <label class="drawer__label" for="drawer-note" data-i18n="s11.drawer.noteLabel">{t.s11.drawer.noteLabel}</label>
-        <textarea
-          id="drawer-note"
-          class="drawer__textarea"
-          rows="3"
-          placeholder={t.s11.drawer.notePlaceholder}
-          data-i18n-placeholder="s11.drawer.notePlaceholder"></textarea>
-      </div>
-
-      <div class="drawer__actions">
-        <button type="submit" class="btn btn--primary" data-magnetic data-i18n="s11.drawer.submit">{t.s11.drawer.submit}</button>
-        <a
-          class="btn btn--secondary"
-          href={previewUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-magnetic
-          data-i18n="s11.drawer.visitSite">{t.s11.drawer.visitSite}</a>
-      </div>
-    </form>
-
-    <div class="drawer__result" id="drawer-result" hidden>
-      <h4 class="drawer__result-title" data-i18n="s11.drawer.sentTitle">{t.s11.drawer.sentTitle}</h4>
-      <p class="drawer__result-body" data-i18n="s11.drawer.sentBody">{t.s11.drawer.sentBody}</p>
-      <pre class="drawer__summary" id="drawer-summary"></pre>
-      <div class="drawer__actions">
-        <a
-          class="btn btn--primary"
-          href={previewUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-i18n="s11.drawer.visitSite">{t.s11.drawer.visitSite}</a>
-      </div>
-    </div>
-  </div>
-</div>

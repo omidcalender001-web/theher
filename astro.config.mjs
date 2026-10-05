@@ -1,11 +1,12 @@
 import { defineConfig } from 'astro/config';
-import node from '@astrojs/node';
+import netlify from '@astrojs/netlify';
 
-// TODO (Phase 10): set the final production domain before launch
 export default defineConfig({
   site: 'https://the-her-omid.netlify.app',
   output: 'server',
-  adapter: node({ mode: 'standalone' }),
+  // Netlify packages every server-rendered route (including /api/preview)
+  // as a Netlify Function while static assets continue to use the CDN.
+  adapter: netlify(),
   trailingSlash: 'never',
   devToolbar: { enabled: false },
   server: {

@@ -1,13 +1,13 @@
 # THE HER × OMID
 
-**A cinematic, scroll-driven, bilingual partnership proposal that is itself the first proof of capability.**
+**A bilingual, scroll-driven proposal for a practical digital growth partnership with The Her.**
 
 - **Default language:** English (LTR)
 - **Secondary language:** Persian / فارسی (RTL)
 - **Visual direction:** Editorial Cinematic / Quiet Luxury
 - **Brand balance:** 70% The Her / 30% Omid
-- **Stack:** [Astro](https://astro.build) (static output) · GSAP ScrollTrigger · CSS design tokens
-- **Deployment:** GitHub → Netlify (auto-build on push)
+- **Stack:** [Astro](https://astro.build) SSR · Netlify Functions · GSAP ScrollTrigger · CSS design tokens
+- **Deployment:** GitHub → Netlify (auto-build on push; Node.js 22)
 - **Workflow:** GitHub → Arena Agent + Google AI Studio → Google Flow → Netlify
 
 ---
@@ -65,8 +65,9 @@ See [`docs/decision-gates.md`](docs/decision-gates.md) · Playbook: [`docs/playb
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321
-npm run build    # static output → dist/
+npm run dev      # http://localhost:3000
+npm run lint     # Astro and TypeScript diagnostics
+npm run build    # SSR bundle + Netlify Function → dist/
 ```
 
 ---
