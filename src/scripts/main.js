@@ -1,9 +1,11 @@
 /* ============================================================
-   THE HER × OMID — client runtime (cinematic continuity pass)
-   ONE FILM: pinned scrub scenes · act chapters · dip-to-black
-   cuts · Lenis inertia · SplitText · scroll-synced score with
-   synthesized time-rewind SFX (D3 v2).
-   No analytics (decision D5).
+   THE HER × OMID — client runtime (film pass v3)
+   • Score: plays NATURALLY on down-scroll (never speeds up).
+     Scrolling UP → time-rewind SFX + proportional seek back.
+   • S00: one "start the story" button (score starts on click).
+   • Idle 8s → the film auto-advances (scroll follows the score).
+   • Hero video: damped scrub (no fast-forward feel).
+   No analytics (D5). Reduced-motion respected throughout.
    ============================================================ */
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -11,6 +13,7 @@ import { SplitText } from 'gsap/SplitText';
 import Lenis from 'lenis';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(pointer: fine)').matches;
@@ -23,7 +26,6 @@ const resolve = (dict, path) =>
 
 let lang = document.documentElement.lang === 'fa' ? 'fa' : 'en';
 
-/* chapter indicator state (updated by scroll, re-rendered on lang switch) */
 const chapterEl = document.getElementById('chapter');
 let currentChapterKey = null;
 function renderChapter(instant) {
@@ -60,7 +62,6 @@ function applyLang(l) {
   renderChapter(true);
 }
 
-/* Language switch — preserve narrative position */
 function capturePosition() {
   const sections = [...document.querySelectorAll('[data-section]')];
   const center = window.innerHeight / 2;
@@ -96,7 +97,7 @@ if (langBtn) {
   });
 }
 
-/* ---------------- Lenis smooth scroll ---------------- */
+/* ---------------- Lenis ---------------- */
 let lenis = null;
 if (!prefersReduced) {
   lenis = new Lenis({ duration: 1.15, smoothWheel: true, wheelMultiplier: 0.9 });
@@ -105,6 +106,7 @@ if (!prefersReduced) {
   gsap.ticker.lagSmoothing(0);
 }
 function scrollToY(y, immediate) {
+  y = Math.max(0, y);
   if (lenis) lenis.scrollTo(y, { immediate: !!immediate, duration: immediate ? 0 : 1.2 });
   else window.scrollTo(0, y);
 }
@@ -123,23 +125,18 @@ document.addEventListener('click', (e) => {
 });
 
 /* ============================================================
-   SCORE ENGINE (D3 v2) — continuous, seamless, scroll-synced
-   - plays as ONE uninterrupted piece (no seek-stutter)
-   - forward drift → gentle playbackRate catch-up
-   - back-scroll → time-rewind SFX (synthesized) + duck + seek
-   - idle → the score keeps breathing like a film soundtrack
+   SCORE ENGINE v3
+   - DOWN-SCROLL: score just plays. No speed-up, no seek.
+   - UP-SCROLL: time-rewind SFX (big, felt) + seek to the exact
+     proportional position, then breathe back in.
+   - Huge forward drift (>20s, e.g. anchor jump): soft duck+seek.
    ============================================================ */
 const score = {
-  el: null,
-  sfxCtx: null,
-  on: false,
-  rewinding: false,
-  jumping: false,
-  lastRewindAt: 0,
-  lastJumpAt: 0,
+  el: null, sfxCtx: null, on: false,
+  rewinding: false, resyncing: false,
+  lastRewindAt: 0, lastResyncAt: 0,
   baseVol: 0.85
 };
-
 function ensureScore() {
   if (!score.el) {
     score.el = new Audio('/audio/score.mp3');
@@ -148,7 +145,7 @@ function ensureScore() {
   }
 }
 
-/* Synthesized "time rewind" cue — tape-style pitch descent + air */
+/* Time-rewind cue — LONG and felt: 2s tape descent + sub drop + air */
 function rewindSfx() {
   const AC = window.AudioContext || window.webkitAudioContext;
   if (!AC) return;
@@ -156,34 +153,52 @@ function rewindSfx() {
   const ctx = score.sfxCtx;
   if (ctx.state === 'suspended') ctx.resume();
   const t = ctx.currentTime;
+  const D = 2.0;
 
   const out = ctx.createGain();
-  out.gain.value = 0.9;
+  out.gain.value = 0.95;
   out.connect(ctx.destination);
 
-  /* descending warbling tone (tape rewind) */
-  const o = ctx.createOscillator();
-  o.type = 'sawtooth';
-  o.frequency.setValueAtTime(690, t);
-  o.frequency.exponentialRampToValueAtTime(120, t + 0.75);
-  const vib = ctx.createOscillator();
-  vib.frequency.value = 7.5;
-  const vibG = ctx.createGain();
-  vibG.gain.value = 40;
-  vib.connect(vibG); vibG.connect(o.frequency);
-  const f = ctx.createBiquadFilter();
-  f.type = 'lowpass';
-  f.frequency.setValueAtTime(1500, t);
-  f.frequency.exponentialRampToValueAtTime(260, t + 0.75);
-  const g = ctx.createGain();
-  g.gain.setValueAtTime(0.0001, t);
-  g.gain.exponentialRampToValueAtTime(0.13, t + 0.11);
-  g.gain.exponentialRampToValueAtTime(0.0001, t + 0.8);
-  o.connect(f); f.connect(g); g.connect(out);
-  o.start(t); vib.start(t); o.stop(t + 0.85); vib.stop(t + 0.85);
+  /* main tape descent — two detuned saws for thickness */
+  [0, -9].forEach((detune) => {
+    const o = ctx.createOscillator();
+    o.type = 'sawtooth';
+    o.detune.value = detune;
+    o.frequency.setValueAtTime(820, t);
+    o.frequency.exponentialRampToValueAtTime(85, t + D);
+    const vib = ctx.createOscillator();
+    vib.frequency.setValueAtTime(6.2, t);
+    vib.frequency.exponentialRampToValueAtTime(11, t + D);
+    const vibG = ctx.createGain();
+    vibG.gain.value = 55;
+    vib.connect(vibG); vibG.connect(o.frequency);
+    const f = ctx.createBiquadFilter();
+    f.type = 'lowpass';
+    f.frequency.setValueAtTime(1900, t);
+    f.frequency.exponentialRampToValueAtTime(160, t + D);
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.16, t + 0.16);
+    g.gain.setValueAtTime(0.16, t + D * 0.6);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + D);
+    o.connect(f); f.connect(g); g.connect(out);
+    o.start(t); vib.start(t); o.stop(t + D + 0.05); vib.stop(t + D + 0.05);
+  });
 
-  /* airy filtered noise sweep */
-  const len = Math.floor(ctx.sampleRate * 0.72);
+  /* sub drop — the "time bending" weight */
+  const sub = ctx.createOscillator();
+  sub.type = 'sine';
+  sub.frequency.setValueAtTime(120, t);
+  sub.frequency.exponentialRampToValueAtTime(34, t + D * 0.85);
+  const subG = ctx.createGain();
+  subG.gain.setValueAtTime(0.0001, t);
+  subG.gain.exponentialRampToValueAtTime(0.22, t + 0.12);
+  subG.gain.exponentialRampToValueAtTime(0.0001, t + D);
+  sub.connect(subG); subG.connect(out);
+  sub.start(t); sub.stop(t + D + 0.05);
+
+  /* long air sweep */
+  const len = Math.floor(ctx.sampleRate * D);
   const buf = ctx.createBuffer(1, len, ctx.sampleRate);
   const d = buf.getChannelData(0);
   for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len);
@@ -191,13 +206,13 @@ function rewindSfx() {
   n.buffer = buf;
   const nf = ctx.createBiquadFilter();
   nf.type = 'bandpass';
-  nf.Q.value = 0.8;
-  nf.frequency.setValueAtTime(2300, t);
-  nf.frequency.exponentialRampToValueAtTime(300, t + 0.7);
+  nf.Q.value = 0.7;
+  nf.frequency.setValueAtTime(2800, t);
+  nf.frequency.exponentialRampToValueAtTime(210, t + D * 0.92);
   const ng = ctx.createGain();
   ng.gain.setValueAtTime(0.0001, t);
-  ng.gain.exponentialRampToValueAtTime(0.05, t + 0.09);
-  ng.gain.exponentialRampToValueAtTime(0.0001, t + 0.72);
+  ng.gain.exponentialRampToValueAtTime(0.075, t + 0.1);
+  ng.gain.exponentialRampToValueAtTime(0.0001, t + D * 0.96);
   n.connect(nf); nf.connect(ng); ng.connect(out);
   n.start(t);
 }
@@ -208,87 +223,64 @@ function scrollProgress() {
   return max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
 }
 
-/* Backward re-sync: duck the score, play the rewind cue, seek, breathe back in */
+/* Backward re-sync: SFX starts, score ducks, seeks at the SFX's emotional
+   midpoint, breathes back in. SFX length scales with the rewind distance. */
 function rewindScoreTo(target) {
   const el = score.el;
+  const dist = Math.abs(el.currentTime - target);
   score.rewinding = true;
   score.lastRewindAt = performance.now();
   rewindSfx();
   gsap.to(el, {
-    volume: 0.04, duration: 0.22, ease: 'power2.in',
+    volume: 0.03, duration: 0.3, ease: 'power2.in',
     onComplete() {
       el.currentTime = Math.max(0, Math.min(target, el.duration - 0.05));
-      el.playbackRate = 1;
       if (score.on) el.play().catch(() => {});
       gsap.to(el, {
-        volume: score.baseVol, duration: 0.85, ease: 'power2.out',
+        volume: score.baseVol, duration: 1.1, ease: 'power2.out',
         onComplete() { score.rewinding = false; }
       });
     }
   });
+  return dist;
 }
 
-/* Forward jump re-sync (big skips only): quick duck + seek */
-function jumpScoreTo(target) {
+/* Soft forward resync (rare — big jumps only) */
+function resyncScoreTo(target) {
   const el = score.el;
-  score.jumping = true;
-  score.lastJumpAt = performance.now();
+  score.resyncing = true;
+  score.lastResyncAt = performance.now();
   gsap.to(el, {
-    volume: 0.08, duration: 0.18, ease: 'power2.in',
+    volume: 0.07, duration: 0.2, ease: 'power2.in',
     onComplete() {
       el.currentTime = Math.max(0, Math.min(target, el.duration - 0.05));
-      el.playbackRate = 1;
       gsap.to(el, {
-        volume: score.baseVol, duration: 0.7, ease: 'power2.out',
-        onComplete() { score.jumping = false; }
+        volume: score.baseVol, duration: 0.8, ease: 'power2.out',
+        onComplete() { score.resyncing = false; }
       });
     }
   });
 }
 
-/* Master frame loop: progress line + score sync */
-const progressEl = document.getElementById('progress-line');
-let lastScrollY = window.scrollY;
-function frameTick() {
-  const y = window.scrollY;
-  const velocity = y - lastScrollY;
-  lastScrollY = y;
+/* ---------------- auto-film: idle 8s → the story advances itself ---------------- */
+const film = {
+  started: false,        // entry dismissed
+  auto: false,           // currently auto-playing
+  speed: 0,              // eased-in 0→1
+  clock: 0,              // virtual timeline when silent (seconds)
+  lastInteract: 0
+};
+const IDLE_MS = 8000;
+const FILM_DURATION = 170; // score length (3:00 ≈ 180) — pace to score minus intro
 
-  const p = scrollProgress();
-  if (progressEl) progressEl.style.transform = `scaleX(${p})`;
-
-  const el = score.el;
-  if (el && el.duration && isFinite(el.duration)) {
-    const target = p * el.duration;
-    if (!score.on) {
-      /* silent playhead tracking */
-      if (!score.rewinding) el.currentTime = target;
-    } else if (!score.rewinding && !score.jumping) {
-      const drift = target - el.currentTime;
-      const now = performance.now();
-      const goingUp = velocity < -1;
-      const goingDown = velocity > 1;
-
-      if (goingUp && drift < -0.8 && now - score.lastRewindAt > 1300) {
-        /* user scrolled back in time */
-        rewindScoreTo(target);
-      } else if (drift > 8 && now - score.lastJumpAt > 1500) {
-        /* big forward skip */
-        jumpScoreTo(target);
-      } else if (drift > 1.2 && goingDown) {
-        el.playbackRate = Math.min(1.45, 1 + drift * 0.09);
-      } else if (drift > 0.5) {
-        el.playbackRate = 1.05;
-      } else {
-        el.playbackRate = 1;
-      }
-    }
-  }
-  requestAnimationFrame(frameTick);
+function noteInteraction() {
+  film.lastInteract = performance.now();
+  if (film.auto) { film.auto = false; film.speed = 0; }
 }
-requestAnimationFrame(frameTick);
+['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach((ev) =>
+  window.addEventListener(ev, noteInteraction, { passive: true }));
 
-/* ---------------- entry overlay (S00) ---------------- */
+/* ---------------- entry overlay (S00) — single start button ---------------- */
 const overlay = document.getElementById('entry');
 const soundToggle = document.getElementById('sound-toggle');
 
@@ -312,7 +304,7 @@ if (soundToggle) {
     else enableSound();
   });
 }
-function dismissEntry(withSound) {
+function dismissEntry() {
   if (overlay) {
     if (prefersReduced) overlay.remove();
     else {
@@ -322,13 +314,15 @@ function dismissEntry(withSound) {
   }
   document.body.classList.remove('locked');
   if (lenis) lenis.start();
-  if (withSound) enableSound();
+  enableSound();                    // start the story = score begins
+  film.started = true;
+  film.clock = scrollProgress() * FILM_DURATION;
+  film.lastInteract = performance.now();
 }
 if (overlay) {
   document.body.classList.add('locked');
   if (lenis) lenis.stop();
-  overlay.querySelector('[data-entry-sound]')?.addEventListener('click', () => dismissEntry(true));
-  overlay.querySelector('[data-entry-silent]')?.addEventListener('click', () => dismissEntry(false));
+  overlay.querySelector('[data-entry-start]')?.addEventListener('click', dismissEntry);
 }
 
 /* ---------------- nav: solid + auto-hide ---------------- */
@@ -357,6 +351,88 @@ const videoIO = new IntersectionObserver(
 );
 document.querySelectorAll('video[data-lazy]:not([data-scrub])').forEach((v) => videoIO.observe(v));
 
+/* ---------------- damped video scrub (hero) ----------------
+   The playhead CHASES the scroll target with cinematic lag —
+   fast flicks become a slow drift, never a fast-forward. */
+const scrubbers = [];
+function makeScrubber(video) {
+  const s = { video, target: 0 };
+  scrubbers.push(s);
+  return s;
+}
+function scrubTick(s) {
+  const v = s.video;
+  if (!v.duration || !isFinite(v.duration)) return;
+  const diff = s.target - v.currentTime;
+  if (Math.abs(diff) > 0.03) v.currentTime = v.currentTime + diff * 0.075;
+}
+
+/* ---------------- master frame loop ---------------- */
+const progressEl = document.getElementById('progress-line');
+let lastY = window.scrollY;
+let prevT = performance.now();
+function frameTick(now) {
+  const dt = Math.min(0.05, (now - prevT) / 1000);
+  prevT = now;
+  const y = window.scrollY;
+  const velocity = y - lastY;
+  lastY = y;
+
+  const p = scrollProgress();
+  if (progressEl) progressEl.style.transform = `scaleX(${p})`;
+
+  /* keep the virtual film clock synced while silent (debug fix) */
+  if (film.started && !score.on) film.clock = p * FILM_DURATION;
+
+  /* auto-film: after 8s idle, the story advances itself */
+  if (
+    film.started && !prefersReduced && !film.auto &&
+    now - film.lastInteract > IDLE_MS && p < 0.995
+  ) {
+    film.auto = true;
+  }
+  if (film.auto) {
+    film.speed = Math.min(1, film.speed + dt * 0.5);           // ease in over ~2s
+    let targetP;
+    if (score.on && score.el && score.el.duration) {
+      targetP = score.el.currentTime / score.el.duration;       // scroll follows the score
+    } else {
+      film.clock += dt * film.speed;
+      targetP = film.clock / FILM_DURATION;                     // virtual timeline
+    }
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - window.innerHeight;
+    const targetY = targetP * max;
+    const nextY = y + (targetY - y) * Math.min(1, dt * 1.6 * film.speed);
+    scrollToY(nextY, true);
+    if (scrollProgress() >= 0.995) { film.auto = false; film.speed = 0; }
+  }
+
+  /* score sync */
+  const el = score.el;
+  if (el && el.duration && isFinite(el.duration)) {
+    const target = p * el.duration;
+    if (!score.on) {
+      if (!score.rewinding) el.currentTime = target;            // silent playhead tracks
+    } else if (!score.rewinding && !score.resyncing) {
+      const drift = target - el.currentTime;
+      const goingUp = velocity < -1;
+      if (goingUp && drift < -0.45 && now - score.lastRewindAt > 1100) {
+        rewindScoreTo(target);                                  // ← time rewind moment
+      } else if (drift > 20 && now - score.lastResyncAt > 2000) {
+        resyncScoreTo(target);                                  // rare big forward jump
+      }
+      /* forward scroll: DO NOTHING — the score plays naturally */
+    }
+  }
+
+  /* damped video scrubs */
+  scrubbers.forEach(scrubTick);
+
+  requestAnimationFrame(frameTick);
+}
+requestAnimationFrame(frameTick);
+
 /* ---------------- S07 diagnostic stepper ---------------- */
 const stepBtns = [...document.querySelectorAll('#s07 .step')];
 const stepPanels = [...document.querySelectorAll('#s07 .step-panel')];
@@ -368,7 +444,7 @@ function setStep(i) {
     b.classList.toggle('is-active', j === i);
     b.classList.toggle('is-done', j < i);
   });
-  stepPanels.forEach((p, j) => p.classList.toggle('is-active', j === i));
+  stepPanels.forEach((pn, j) => pn.classList.toggle('is-active', j === i));
 }
 stepBtns.forEach((b, i) => {
   b.addEventListener('click', () => {
@@ -395,15 +471,13 @@ if (finePointer && !prefersReduced) {
   }
 }
 
-/* ---------------- film chapters ---------------- */
+/* ---------------- film chapters + cuts ---------------- */
 const CHAPTERS = [
   ['s01', 'chapters.s01'], ['s02', 'chapters.s02'], ['s03', 'chapters.s03'],
   ['s04', 'chapters.s04'], ['s05', 'chapters.s05'], ['s06', 'chapters.s06'],
   ['s07', 'chapters.s07'], ['s08', 'chapters.s08'], ['s09', 'chapters.s09'],
   ['s10', 'chapters.s10'], ['s11', 'chapters.s11']
 ];
-
-/* ---------------- dip-to-black (film cuts) ---------------- */
 const dipEl = document.getElementById('film-dip');
 function dip(strength) {
   if (!dipEl || prefersReduced) return;
@@ -417,7 +491,6 @@ function dip(strength) {
 if (!prefersReduced) {
   applyLang(lang);
 
-  /* headline reveals — chars for LTR, words for RTL */
   const splitMode = isRTL() ? 'words,lines' : 'chars,lines';
   gsap.utils.toArray('.display').forEach((el) => {
     if (el.closest('.entry')) return;
@@ -428,7 +501,6 @@ if (!prefersReduced) {
     });
   });
 
-  /* group + solo reveals */
   gsap.utils.toArray('[data-reveal-group]').forEach((group) => {
     const items = group.querySelectorAll('[data-reveal]');
     if (!items.length) return;
@@ -444,24 +516,25 @@ if (!prefersReduced) {
     });
   });
 
-  /* ---- S01 hero: pinned, video scrubbed by scroll ---- */
+  /* ---- S01 hero: pinned, DAMPED scrub (filmic lag, 85% of the clip) ---- */
   const heroVideo = document.querySelector('#s01 video');
   if (heroVideo) heroVideo.pause();
+  const heroScrub = heroVideo ? makeScrubber(heroVideo) : null;
   gsap.timeline({
     scrollTrigger: {
-      trigger: '#s01', start: 'top top', end: '+=160%', pin: true, scrub: true,
+      trigger: '#s01', start: 'top top', end: '+=220%', pin: true, scrub: true,
       anticipatePin: 1,
       onUpdate(self) {
-        if (heroVideo && heroVideo.duration && isFinite(heroVideo.duration)) {
-          heroVideo.currentTime = self.progress * heroVideo.duration;
+        if (heroScrub && heroVideo.duration && isFinite(heroVideo.duration)) {
+          heroScrub.target = self.progress * heroVideo.duration * 0.85;
         }
       }
     }
   })
     .to('#s01 .hero__inner', { yPercent: -16, autoAlpha: 0.15, ease: 'none' }, 0)
-        .to('#s01 .hero__dusk', { opacity: 1, ease: 'none' }, 0);
+    .to('#s01 .hero__dusk', { opacity: 1, ease: 'none' }, 0);
 
-  /* ---- S03: pinned accumulation — the 7 problems build, freeze, dissolve ---- */
+  /* ---- S03: pinned accumulation ---- */
   const s03items = gsap.utils.toArray('#s03 .problem');
   const s03head = document.querySelector('#s03 .problems__head');
   const s03stage = document.querySelector('#s03 .problems__stage');
@@ -473,35 +546,30 @@ if (!prefersReduced) {
         pin: '#s03 .problems__pin', scrub: true, anticipatePin: 1
       }
     });
-    /* headline drifts away as complexity accumulates */
     tl.to(s03head, { autoAlpha: 0, y: -36, ease: 'none', duration: 0.16 }, 0.08);
-    /* problems surface one by one — the growing composition */
     s03items.forEach((it, i) => {
       tl.fromTo(it,
         { autoAlpha: 0, y: 46 },
         { autoAlpha: 1, y: 0, ease: 'power2.out', duration: 0.085 },
         0.14 + i * 0.082);
     });
-    /* freeze, then dissolve into the dark of S04 */
     tl.to(s03stage, { autoAlpha: 0, scale: 0.965, ease: 'none', duration: 0.14 }, 0.85);
     tl.to(s03scrim, { opacity: 1, ease: 'power2.in', duration: 0.18 }, 0.8);
   }
 
-  /* background videos: slow parallax drift */
+  /* ---- background parallax (scaled to avoid edge gaps — debug fix) ---- */
   gsap.utils.toArray('.split__bg, .engine__bg, .models__bg, .band video').forEach((v) => {
-    gsap.fromTo(v, { yPercent: -6 }, {
-      yPercent: 6, ease: 'none',
+    gsap.fromTo(v, { yPercent: -6, scale: 1.14 }, {
+      yPercent: 6, scale: 1.14, ease: 'none',
       scrollTrigger: { trigger: v.parentElement, start: 'top bottom', end: 'bottom top', scrub: true }
     });
   });
 
-  /* S04 question scale-in */
   gsap.from('#s04 .question-line', {
     scale: 0.94, autoAlpha: 0, duration: 1.4, ease: 'power2.out',
     scrollTrigger: { trigger: '#s04', start: 'top 68%' }
   });
 
-  /* S05 panels converge */
   gsap.fromTo('#s05 .panel--her', { xPercent: -9 }, {
     xPercent: 0, ease: 'none',
     scrollTrigger: { trigger: '#s05', start: 'top 75%', end: 'center 40%', scrub: true }
@@ -511,7 +579,6 @@ if (!prefersReduced) {
     scrollTrigger: { trigger: '#s05', start: 'top 75%', end: 'center 40%', scrub: true }
   });
 
-  /* S06 engine layers converge from four corners */
   const spreads = [
     { x: -180, y: -120 }, { x: 180, y: -120 },
     { x: -180, y: 120 }, { x: 180, y: 120 }
@@ -527,7 +594,6 @@ if (!prefersReduced) {
     scrollTrigger: { trigger: '#s06', start: 'center 55%', end: 'center 30%', scrub: true }
   });
 
-  /* S07 stepper driven by scroll */
   const s07 = document.getElementById('s07');
   if (s07 && stepBtns.length) {
     ScrollTrigger.create({
@@ -537,13 +603,11 @@ if (!prefersReduced) {
     setStep(0);
   }
 
-  /* S09 numbers rise */
   gsap.from('#s09 .number', {
     autoAlpha: 0, y: 40, duration: 1.2, ease: 'power3.out', stagger: 0.12,
     scrollTrigger: { trigger: '#s09', start: 'top 78%' }
   });
 
-  /* film chapters — update when each act holds the middle of the screen */
   CHAPTERS.forEach(([id, key]) => {
     const el = document.getElementById(id);
     if (!el) return;
@@ -554,7 +618,6 @@ if (!prefersReduced) {
   });
   setChapter('chapters.s01');
 
-  /* film cuts — dip to black entering/leaving the dark acts */
   ['s04', 's06'].forEach((id) => {
     const el = document.getElementById(id);
     if (!el) return;
@@ -564,8 +627,12 @@ if (!prefersReduced) {
       onEnterBack: () => dip(0.35)
     });
   });
+
+  /* re-measure after webfonts load (SplitText accuracy — debug fix) */
+  if (document.fonts?.ready) {
+    document.fonts.ready.then(() => ScrollTrigger.refresh());
+  }
 } else {
-  /* reduced motion: everything static & readable */
   applyLang(lang);
   setStep(0);
   setChapter('chapters.s01');

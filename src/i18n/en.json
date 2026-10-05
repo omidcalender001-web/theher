@@ -27,9 +27,8 @@
   },
   "entry": {
     "kicker": "THE HER × OMID",
-    "line": "Scroll to begin",
-    "withSound": "Begin with sound",
-    "withoutSound": "Continue in silence"
+    "line": "A partnership story, told like a film.",
+    "start": "START THE STORY"
   },
   "sound": {
     "on": "Sound on",
