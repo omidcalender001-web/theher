@@ -1,0 +1,35 @@
+---
+// S07 — PROOF OF THINKING — "We need more sales." 7-step diagnostic (scroll + tap)
+import en from '../i18n/en.json';
+const t = en;
+---
+<section class="stepper" id="s07" data-section aria-label="Proof of thinking">
+  <div class="stepper__track">
+    <div class="stepper__sticky">
+      <div class="stepper__head">
+        <p class="kicker" data-i18n="s7.kicker">{t.s7.kicker}</p>
+        <h2 class="display" style="font-size:var(--text-title);margin-block-start:1rem" data-i18n="s7.headline">{t.s7.headline}</h2>
+        <p style="color:var(--color-text-muted);font-size:0.92rem;margin-block-start:.6rem" data-i18n="s7.subheadline">{t.s7.subheadline}</p>
+      </div>
+      <div class="stepper__list" role="tablist" aria-label="Diagnostic steps">
+        {t.s7.diagnostic.map((d, i) => (
+          <button class="step" type="button" role="tab">
+            <span class="step__num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="step__title" data-i18n={`s7.diagnostic.${i}.title`}>{d.title}</span>
+          </button>
+        ))}
+      </div>
+      <div class="step-panels" aria-live="polite">
+        {t.s7.diagnostic.map((d, i) => (
+          <div class="step-panel" role="tabpanel">
+            <h3 class="step-panel__q" data-i18n={`s7.diagnostic.${i}.question`}>{d.question}</h3>
+            <p style="color:var(--color-text-muted);max-inline-size:34rem" data-i18n="s7.body">{t.s7.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+  <div class="stepper__punch container">
+    <h3 class="display keyline" data-i18n="s7.keyLine">{t.s7.keyLine}</h3>
+  </div>
+</section>

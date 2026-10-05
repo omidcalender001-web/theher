@@ -1,0 +1,72 @@
+---
+// S11 — CTA + LIVE PREVIEW of omidadli.site (Mode A iframe desktop / Mode B mobile)
+// + future band (scene 07) before the final invitation
+import en from '../i18n/en.json';
+const t = en;
+const previewUrl = 'https://omidadli.site';
+---
+<section class="band" data-section aria-label="The future">
+  <video data-lazy muted loop playsinline preload="metadata" poster="/images/posters/scene-07-future-poster.jpg" aria-hidden="true">
+    <source src="/video/scene-07-future.mp4" type="video/mp4" />
+  </video>
+  <div class="container">
+    <p class="kicker" style="justify-content:center;color:var(--color-on-dark-muted)" data-i18n="s11.kicker">{t.s11.kicker}</p>
+    <h2 class="display" style="color:var(--color-warm-white)" data-i18n="s11.headline">{t.s11.headline}</h2>
+  </div>
+</section>
+
+<section class="section cta" id="s11" data-section aria-label="Call to action">
+  <div class="container" style="display:grid;gap:2.4rem;justify-items:center;text-align:center">
+    <div style="display:grid;gap:1.2rem;justify-items:center" data-reveal-group>
+      <p data-reveal style="color:var(--color-text-muted);max-inline-size:36rem" data-i18n="s11.subheadline">{t.s11.subheadline}</p>
+      <p data-reveal style="color:var(--color-text-muted);max-inline-size:38rem" data-i18n="s11.body">{t.s11.body}</p>
+    </div>
+
+    <div class="preview" data-reveal-solo>
+      <p class="kicker" style="margin-block-end:1rem" data-i18n="s11.preview.kicker">{t.s11.preview.kicker}</p>
+      <div class="browser">
+        <div class="browser__bar">
+          <span class="browser__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="browser__url">{t.s11.preview.url}</span>
+        </div>
+        <div class="browser__body">
+          <iframe
+            src={previewUrl}
+            title="Live preview — omidadli.site"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="browser__fallback">
+            <p style="margin:0" data-i18n="s11.preview.subtitle">{t.s11.preview.subtitle}</p>
+          </div>
+        </div>
+      </div>
+      <div class="preview__note">
+        <span data-i18n="s11.preview.note">{t.s11.preview.note}</span>
+        <a
+          class="link-underline"
+          href={previewUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-track="cta_click"
+          data-track-params='{"target":"new_tab"}'
+          data-i18n="s11.preview.openNewTab">{t.s11.preview.openNewTab}</a>
+      </div>
+    </div>
+
+    <div class="cta__actions" data-reveal-solo>
+      <a
+        class="btn btn--primary"
+        href={previewUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-track="cta_click"
+        data-track-params='{"target":"primary"}'
+        data-i18n="s11.button">{t.s11.button}</a>
+    </div>
+
+    <div class="cta__closing">
+      <p class="display" data-i18n="s11.closing.lockup">{t.s11.closing.lockup}</p>
+      <p class="keyline" style="color:var(--color-text-muted)" data-i18n="s11.closing.line">{t.s11.closing.line}</p>
+    </div>
+  </div>
+</section>

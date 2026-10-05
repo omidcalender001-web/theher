@@ -42,13 +42,34 @@
     "subheadline": "Growth rarely starts with the same question twice.",
     "body": "One business needs demand. Another needs conversion. Another needs a stronger digital experience. The right response begins by understanding the problem before choosing the solution.",
     "problems": [
-      { "title": "More sales", "line": "Turning existing demand into revenue." },
-      { "title": "More leads", "line": "Reaching the right people at the right moment." },
-      { "title": "Better conversion", "line": "Helping more visitors take the next step." },
-      { "title": "A better website", "line": "Turning digital presence into business infrastructure." },
-      { "title": "Better data", "line": "Making decisions from signals, not assumptions." },
-      { "title": "AI & automation", "line": "Removing repetitive work and creating leverage." },
-      { "title": "A digital product", "line": "Turning expertise into a scalable experience." }
+      {
+        "title": "More sales",
+        "line": "Turning existing demand into revenue."
+      },
+      {
+        "title": "More leads",
+        "line": "Reaching the right people at the right moment."
+      },
+      {
+        "title": "Better conversion",
+        "line": "Helping more visitors take the next step."
+      },
+      {
+        "title": "A better website",
+        "line": "Turning digital presence into business infrastructure."
+      },
+      {
+        "title": "Better data",
+        "line": "Making decisions from signals, not assumptions."
+      },
+      {
+        "title": "AI & automation",
+        "line": "Removing repetitive work and creating leverage."
+      },
+      {
+        "title": "A digital product",
+        "line": "Turning expertise into a scalable experience."
+      }
     ],
     "button": "EXPLORE THE POSSIBILITIES"
   },
@@ -64,8 +85,14 @@
     "headline": "The Her understands the woman. Omid focuses on the system.",
     "subheadline": "One partnership. Two complementary perspectives.",
     "body": "The Her brings the human understanding: ambition, identity, business and vision. Omid brings the systems perspective: growth, data, marketing, digital experience and AI.",
-    "theHer": { "label": "THE WOMAN", "tags": "Vision · Identity · Ambition · Business" },
-    "omid": { "label": "THE SYSTEM", "tags": "Growth · Data · Marketing · Experience · AI" },
+    "theHer": {
+      "label": "THE WOMAN",
+      "tags": "Vision · Identity · Ambition · Business"
+    },
+    "omid": {
+      "label": "THE SYSTEM",
+      "tags": "Growth · Data · Marketing · Experience · AI"
+    },
     "button": "SEE HOW IT CONNECTS"
   },
   "s6": {
@@ -74,10 +101,22 @@
     "subheadline": "Connected disciplines create a stronger growth system.",
     "body": "Data reveals what is happening. Marketing creates demand. Experience turns attention into action. AI creates leverage. Connected together, they become one engine built around the business problem.",
     "layers": [
-      { "title": "DATA", "line": "Data reveals what is happening." },
-      { "title": "MARKETING", "line": "Marketing creates demand." },
-      { "title": "EXPERIENCE", "line": "Experience turns attention into action." },
-      { "title": "AI", "line": "AI creates leverage." }
+      {
+        "title": "DATA",
+        "line": "Data reveals what is happening."
+      },
+      {
+        "title": "MARKETING",
+        "line": "Marketing creates demand."
+      },
+      {
+        "title": "EXPERIENCE",
+        "line": "Experience turns attention into action."
+      },
+      {
+        "title": "AI",
+        "line": "AI creates leverage."
+      }
     ],
     "convergence": "One growth engine.",
     "button": "BUILD THE ENGINE"
@@ -88,18 +127,40 @@
     "subheadline": "Before adding traffic, understand where the system breaks.",
     "body": "A request is rarely the diagnosis. We trace the journey from attention to revenue, identify the constraint, then design the response around it.",
     "diagnostic": [
-      { "title": "Traffic", "question": "Are the right people arriving?" },
-      { "title": "Offer", "question": "Is the value clear and relevant?" },
-      { "title": "Trust", "question": "Is there enough confidence to act?" },
-      { "title": "Experience", "question": "Is the journey simple and persuasive?" },
-      { "title": "Conversion", "question": "Where do people stop?" },
-      { "title": "Follow-up", "question": "What happens after interest?" },
-      { "title": "Data", "question": "Can we see what is actually working?" }
+      {
+        "title": "Traffic",
+        "question": "Are the right people arriving?"
+      },
+      {
+        "title": "Offer",
+        "question": "Is the value clear and relevant?"
+      },
+      {
+        "title": "Trust",
+        "question": "Is there enough confidence to act?"
+      },
+      {
+        "title": "Experience",
+        "question": "Is the journey simple and persuasive?"
+      },
+      {
+        "title": "Conversion",
+        "question": "Where do people stop?"
+      },
+      {
+        "title": "Follow-up",
+        "question": "What happens after interest?"
+      },
+      {
+        "title": "Data",
+        "question": "Can we see what is actually working?"
+      }
     ],
     "keyLine": "THE PROBLEM DEFINES THE SOLUTION.",
     "button": "SEE THE THINKING"
   },
   "s8": {
+    "kicker": "THREE HYPOTHESES",
     "cases": [
       {
         "kicker": "HYPOTHETICAL CLIENT SCENARIO",
@@ -136,11 +197,26 @@
     "subheadline": "Experience across performance, acquisition, conversion, data and digital.",
     "body": "A track record built across different growth environments — from acquisition and SEO to conversion, analytics and campaign optimization.",
     "numbers": [
-      { "value": "5+ years", "label": "Growth & Performance" },
-      { "value": "+50%", "label": "Organic Traffic" },
-      { "value": "−30%", "label": "Retargeting CPA" },
-      { "value": "3.5%", "label": "Average Campaign CTR" },
-      { "value": "15", "label": "Competitive Keywords to First Page" }
+      {
+        "value": "5+ years",
+        "label": "Growth & Performance"
+      },
+      {
+        "value": "+50%",
+        "label": "Organic Traffic"
+      },
+      {
+        "value": "−30%",
+        "label": "Retargeting CPA"
+      },
+      {
+        "value": "3.5%",
+        "label": "Average Campaign CTR"
+      },
+      {
+        "value": "15",
+        "label": "Competitive Keywords to First Page"
+      }
     ],
     "button": "SEE THE EXPERIENCE"
   },

@@ -43,7 +43,8 @@
 
 ## Status
 
-**Phase 04 (Storyboard) + Phase 05 (Art Direction)** ✅ finalized — ⬜ awaiting **Gate 04 approval**, then Phase 06 (Flow videos + Lyria score).
+**Phase 07 — Interactive Prototype** 🔶 **LIVE** (all sections S00–S11, EN⇄FA switch, scroll-synced score, stepper, engine, preview box) — awaiting **Gate 05 review**.
+**Assets in:** all 7 Flow scene videos (`public/video/`) + posters · placeholder score (pending Lyria). **Gates 01–04 passed.**
 **Gates 01–03 passed.** Visual system locked: observed The Her palette (7 hex) · Cormorant Garamond + Jost + Vazirmatn · digits follow language (FA ۱۲۳ / EN 123) · RTL & mobile rules final · `src/styles/global.css` synced.
 **Locked decisions:** CTA = live preview of omidadli.site · bilingual from day one · scroll-synced score (AI Studio → Lyria).
 See [`docs/decision-gates.md`](docs/decision-gates.md) · Playbook: [`docs/playbook-fa.md`](docs/playbook-fa.md).

@@ -1,0 +1,26 @@
+---
+// S03 — ACT III · THE PROBLEM — 7 problems over scene 03 (low opacity)
+import en from '../i18n/en.json';
+const t = en;
+---
+<section class="section problems" id="s03" data-section aria-label="Different businesses. Different problems.">
+  <video class="problems__bg" data-lazy muted loop playsinline preload="metadata" poster="/images/posters/scene-03-complexity-poster.jpg" aria-hidden="true">
+    <source src="/video/scene-03-complexity.mp4" type="video/mp4" />
+  </video>
+  <div class="container">
+    <div class="section-head" data-reveal-group>
+      <p class="kicker" data-reveal data-i18n="s3.kicker">{t.s3.kicker}</p>
+      <h2 class="display" data-reveal data-i18n="s3.headline">{t.s3.headline}</h2>
+      <p data-reveal style="color:var(--color-text-muted)" data-i18n="s3.subheadline">{t.s3.subheadline}</p>
+    </div>
+    <div class="problems__list" data-reveal-group>
+      {t.s3.problems.map((p, i) => (
+        <div class="problem" data-reveal>
+          <span class="mosaic__num">{String(i + 1).padStart(2, '0')}</span>
+          <span class="problem__title" data-i18n={`s3.problems.${i}.title`}>{p.title}</span>
+          <span class="problem__line" data-i18n={`s3.problems.${i}.line`}>{p.line}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -44,3 +44,10 @@ ffmpeg -i scene-01-vision.mp4 -ss 00:00:03 -vframes 1 -q:v 4 scene-01-vision-pos
 - Only render/load the video when the scene approaches the viewport
   (IntersectionObserver) — never autoplay the whole set on load
 - If `prefers-reduced-motion` → show poster only
+
+## STATUS (2026-10-04)
+
+- All **7 final Flow scene videos delivered** (client-produced) → web copies live in `public/video/scene-01…07.mp4` (each ≤ 3.2 MB ✓)
+- Posters generated → `public/images/posters/scene-XX-*-poster.jpg`
+- Master zip (Flow originals) → `assets/video/source/the-her-scenes-master.zip`
+- Score: placeholder warm drone at `public/audio/score-placeholder.mp3` — **replace with the Lyria track** (`score.mp3`) in Phase 06/09

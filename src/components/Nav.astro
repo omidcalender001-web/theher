@@ -1,0 +1,19 @@
+---
+// Minimal nav: brand · sound toggle · language switch · CTA
+import en from '../i18n/en.json';
+const t = en;
+---
+<nav class="nav" id="nav" aria-label="Main">
+  <a class="nav__brand" href="#s01">THE HER × OMID</a>
+  <div class="nav__actions">
+    <button class="nav__btn nav__sound" id="sound-toggle" aria-pressed="false" aria-label="Sound">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M2 6v4h3l4 3V3L5 6H2z" fill="currentColor"/>
+        <path class="bar" d="M11 5.5c1.2 1.4 1.2 3.6 0 5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+      <span data-i18n="sound.on">Sound on</span>
+    </button>
+    <button class="nav__btn" id="lang-switch" data-i18n="nav.languageSwitch">{t.nav.languageSwitch}</button>
+    <a class="nav__btn nav__cta" href="#s11" data-nav-cta data-i18n="nav.cta">{t.nav.cta}</a>
+  </div>
+</nav>

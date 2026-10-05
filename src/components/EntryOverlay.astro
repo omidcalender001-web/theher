@@ -1,0 +1,15 @@
+---
+// S00 — entry moment: unlocks the scroll-synced score (browser gesture requirement)
+import en from '../i18n/en.json';
+const t = en;
+---
+<div class="entry" id="entry" role="dialog" aria-label="Begin">
+  <div class="entry__inner">
+    <p class="entry__lockup" data-i18n="entry.kicker">{t.entry.kicker}</p>
+    <p class="entry__line" data-i18n="entry.line">{t.entry.line}</p>
+    <div class="entry__choices">
+      <button class="entry__btn entry__btn--primary" data-entry-sound data-i18n="entry.withSound">{t.entry.withSound}</button>
+      <button class="entry__btn" data-entry-silent data-i18n="entry.withoutSound">{t.entry.withoutSound}</button>
+    </div>
+  </div>
+</div>

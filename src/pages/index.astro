@@ -1,26 +1,39 @@
 ---
-// THE HER × OMID — Page skeleton (Phase 08 implements the real experience)
-// Section map locked by docs/proposal-architecture.md (S00–S11).
-// Copy source of truth: content/en/copy.md + content/fa/copy.md → applied in src/i18n/{en,fa}.json
+// THE HER × OMID — Phase 07 interactive prototype
+// Section order locked by docs/proposal-architecture.md (S00–S11)
 import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import EntryOverlay from '../components/EntryOverlay.astro';
+import Hero from '../components/Hero.astro';
+import Business from '../components/Business.astro';
+import Problems from '../components/Problems.astro';
+import Question from '../components/Question.astro';
+import Partnership from '../components/Partnership.astro';
+import Engine from '../components/Engine.astro';
+import Stepper from '../components/Stepper.astro';
+import Cases from '../components/Cases.astro';
+import Numbers from '../components/Numbers.astro';
+import Models from '../components/Models.astro';
+import Cta from '../components/Cta.astro';
+import Footer from '../components/Footer.astro';
 import en from '../i18n/en.json';
-import fa from '../i18n/fa.json';
-
-const lang = 'en'; // Phase 08: dynamic (?lang=fa → RTL), scroll position preserved
-const t = lang === 'fa' ? fa : en;
 ---
 
-<Layout lang={lang}>
-  <!-- S00 · ENTRY — Scroll to begin / Begin with sound / silence (unlocks scroll-synced score) — t.entry -->
-  <!-- S01 · THE WOMAN — A WORLD OF BUSINESS WOMEN. — t.s1 · video scene-01 -->
-  <!-- S02 · THE BUSINESS — Behind every ambitious woman, a different business — t.s2 · video scene-02 -->
-  <!-- S03 · THE PROBLEM — 7 problems w/ lines — t.s3.problems · video scene-03 -->
-  <!-- S04 · THE QUESTION — tension peak on dark — t.s4 -->
-  <!-- S05 · THE PARTNERSHIP — split: THE WOMAN / THE SYSTEM — t.s5 · video scene-04 -->
-  <!-- S06 · GROWTH ENGINE — 4 layers converge → one engine — t.s6.layers · video scene-05 -->
-  <!-- S07 · PROOF OF THINKING — "We need more sales." 7-step diagnostic — t.s7.diagnostic ⭐ -->
-  <!-- S08 · HYPOTHETICAL CASES 01–03 (labeled: t.s8.cases[].kicker) -->
-  <!-- S09 · PROOF, IN NUMBERS — t.s9.numbers -->
-  <!-- S10 · THE PARTNERSHIP — value + 3 models (DIRECT / CLIENT / WHITE LABEL) — t.s10.models -->
-  <!-- S11 · CTA + LIVE PREVIEW of omidadli.site (iframe Mode A / video Mode B) — t.s11.preview + closing -->
+<Layout title={en.meta.title} description={en.meta.description}>
+  <EntryOverlay />
+  <Nav />
+  <main>
+    <Hero />
+    <Business />
+    <Problems />
+    <Question />
+    <Partnership />
+    <Engine />
+    <Stepper />
+    <Cases />
+    <Numbers />
+    <Models />
+    <Cta />
+  </main>
+  <Footer />
 </Layout>

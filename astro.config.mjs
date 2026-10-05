@@ -4,6 +4,13 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://the-her-omid.netlify.app',
   trailingSlash: 'never',
+  devToolbar: { enabled: false },
+  vite: {
+    server: {
+      host: true,
+      allowedHosts: true
+    }
+  },
   build: {
     inlineStylesheets: 'auto'
   }

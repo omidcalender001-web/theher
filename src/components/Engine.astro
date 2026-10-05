@@ -1,0 +1,28 @@
+---
+// S06 — ACT VI · GROWTH ENGINE — 4 layers converge over scene 05
+import en from '../i18n/en.json';
+const t = en;
+---
+<section class="section engine scene--dark" id="s06" data-section aria-label="One growth engine">
+  <video class="engine__bg" data-lazy muted loop playsinline preload="metadata" poster="/images/posters/scene-05-engine-poster.jpg" aria-hidden="true">
+    <source src="/video/scene-05-engine.mp4" type="video/mp4" />
+  </video>
+  <div class="container engine__stage">
+    <div class="section-head" style="margin-block-end:0;text-align:center;justify-items:center" data-reveal-group>
+      <p class="kicker" style="justify-content:center" data-reveal data-i18n="s6.kicker">{t.s6.kicker}</p>
+      <h2 class="display" data-reveal data-i18n="s6.headline">{t.s6.headline}</h2>
+      <p data-reveal style="color:var(--color-on-dark-muted)" data-i18n="s6.subheadline">{t.s6.subheadline}</p>
+    </div>
+    <div class="engine__layers">
+      {t.s6.layers.map((l, i) => (
+        <button class="engine-layer" type="button">
+          <span class="engine-layer__title" data-i18n={`s6.layers.${i}.title`}>{l.title}</span>
+          <span class="engine-layer__line" data-i18n={`s6.layers.${i}.line`}>{l.line}</span>
+        </button>
+      ))}
+    </div>
+    <div class="engine__converge" aria-hidden="true"></div>
+    <p class="engine__lockup" data-i18n="s6.convergence">{t.s6.convergence}</p>
+    <p style="color:var(--color-on-dark-muted);max-inline-size:36rem;text-align:center" data-i18n="s6.body">{t.s6.body}</p>
+  </div>
+</section>
