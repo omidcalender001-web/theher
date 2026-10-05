@@ -8,9 +8,9 @@
 | 01 | Brand & Opportunity Fit | Phase 02 (Architecture) | ✅ 2026-10-04 | Product decision (client) | 2026-10-04 |
 | 02 | Narrative Approval | Phase 04 (Storyboard) | ✅ 2026-10-04 (implicit — client proceeded to Phase 03 copy production) | Client (via execution) | 2026-10-04 |
 | 03 | Copy Approval | Phase 06 (Asset production) | ✅ 2026-10-04 (client-authored final bilingual copy delivered & applied to i18n; EN numbers normalized to Latin digits) | Client-authored copy | 2026-10-04 |
-| 04 | Visual Approval | Phase 07/08 (Prototype / Build) | ⬜ | | |
-| 05 | Prototype Approval | Phase 08 (Production build) | 🔶 built 2026-10-04 — awaiting client review (live preview) | Arena Agent (Phase 07 prototype) | 2026-10-04 |
-| 06 | Launch Approval | Phase 10 (Netlify deployment) | ⬜ | | |
+| 04 | Visual Approval | Phase 07/08 (Prototype / Build) | ✅ 2026-10-05 (visual system in production use; client iterating on feel) | Client (via feedback rounds) | 2026-10-05 |
+| 05 | Prototype Approval | Phase 08 (Production build) | ✅ 2026-10-05 (client directed move to QA — prototype evolved into production candidate) | Client | 2026-10-05 |
+| 06 | Launch Approval | Phase 10 (Netlify deployment) | 🔶 QA passed (code/content/design) — device checks H1–H6 pending on production URL | See qa/qa-report.md | 2026-10-05 |
 
 ## Gate details
 

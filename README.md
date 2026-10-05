@@ -43,8 +43,10 @@
 
 ## Status
 
-**Phase 07 — Interactive Prototype** 🔶 **LIVE** (all sections S00–S11, EN⇄FA switch, scroll-synced score, stepper, engine, preview box) — awaiting **Gate 05 review**.
-**Assets in:** all 7 Flow scene videos (`public/video/`) + posters · placeholder score (pending Lyria). **Gates 01–04 passed.**
+**Phase 09 — QA** ✅ complete ([`qa/qa-report.md`](qa/qa-report.md)) — production candidate.
+9 automated bug-fixes in final audit (mobile S03 overflow, a11y SSR, netlify cache paths, robots, reduced-motion video, svh fallbacks…).
+**Gates 01–05 passed** · Gate 06 (launch) pending device checks on production URL.
+**Next: Phase 10 — Netlify deployment.**
 **Gates 01–03 passed.** Visual system locked: observed The Her palette (7 hex) · Cormorant Garamond + Jost + Vazirmatn · digits follow language (FA ۱۲۳ / EN 123) · RTL & mobile rules final · `src/styles/global.css` synced.
 **Locked decisions:** CTA = live preview of omidadli.site · bilingual from day one · scroll-synced score (AI Studio → Lyria).
 See [`docs/decision-gates.md`](docs/decision-gates.md) · Playbook: [`docs/playbook-fa.md`](docs/playbook-fa.md).

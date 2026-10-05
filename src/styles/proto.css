@@ -113,6 +113,7 @@ html[dir="rtl"] .entry__btn { letter-spacing: 0; text-transform: none; }
 .hero {
   position: relative;
   min-block-size: 100svh;
+  min-block-size: 100vh;
   display: grid;
   align-items: end;
   color: var(--color-on-dark);
@@ -167,6 +168,7 @@ html[dir="rtl"] .mosaic__title { font-family: var(--font-fa); }
 .problems__pin {
   position: relative;
   min-block-size: 100svh;
+  min-block-size: 100vh;
   display: grid;
   align-items: center;
   overflow: hidden;
@@ -277,6 +279,7 @@ html[dir="rtl"] .engine__lockup { font-family: var(--font-fa); text-transform: n
   position: sticky;
   inset-block-start: 0;
   block-size: 100svh;
+  block-size: 100vh;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
   grid-template-areas: "head panels" "list panels";
@@ -573,3 +576,18 @@ html[dir="rtl"] .chapter { letter-spacing: 0; text-transform: none; font-size: 0
 .models__bg-wrap { position: absolute; inset: 0; }
 .models__bg { inline-size: 100%; block-size: 100%; object-fit: cover; opacity: 0.14; }
 #s10 .container { position: relative; }
+
+
+/* ---------- Mobile compaction (S03 pinned scene must fit 100svh) ---------- */
+@media (max-width: 767px) {
+  .problems__stage { padding-block: 3.5rem 3rem; }
+  .problems__head .display { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+  .problems__head { margin-block-end: 1.4rem; }
+  .problem { padding-block: 0.55rem; grid-template-columns: 1.6rem 1fr; }
+  .problem__title { font-size: 1.05rem; }
+  .problem__line { font-size: 0.78rem; grid-column: 2; }
+  .engine__layers { grid-template-columns: 1fr 1fr; }
+  .engine-layer { padding: 1rem; }
+  .engine-layer__title { font-size: 1.05rem; }
+  .step-panel__q { font-size: 1.25rem; }
+}

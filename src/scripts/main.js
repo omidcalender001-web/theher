@@ -58,8 +58,14 @@ function applyLang(l) {
     const v = resolve(store[l], el.dataset.i18n);
     if (typeof v === 'string') el.textContent = v;
   });
+  const meta = store[l].meta;
+  if (meta) {
+    document.title = meta.title;
+    document.querySelector('meta[name="description"]')?.setAttribute('content', meta.description);
+  }
   localStorage.setItem('lang', l);
   renderChapter(true);
+  setSoundUI();
 }
 
 function capturePosition() {
@@ -342,7 +348,8 @@ function navTick() {
 }
 requestAnimationFrame(navTick);
 
-/* ---------------- lazy ambient videos ---------------- */
+/* ---------------- lazy ambient videos ----------------
+   Reduced motion → posters only (no autoplaying motion). */
 const videoIO = new IntersectionObserver(
   (entries) => entries.forEach((e) => {
     const v = e.target;
@@ -351,7 +358,11 @@ const videoIO = new IntersectionObserver(
   }),
   { threshold: 0.2 }
 );
-document.querySelectorAll('video[data-lazy]:not([data-scrub])').forEach((v) => videoIO.observe(v));
+if (!prefersReduced) {
+  document.querySelectorAll('video[data-lazy]:not([data-scrub])').forEach((v) => videoIO.observe(v));
+} else {
+  document.querySelectorAll('video[data-lazy]').forEach((v) => { v.pause(); v.removeAttribute('autoplay'); });
+}
 
 /* ---------------- damped video scrub (hero) ----------------
    The playhead CHASES the scroll target with cinematic lag —
@@ -536,27 +547,40 @@ if (!prefersReduced) {
     .to('#s01 .hero__inner', { yPercent: -16, autoAlpha: 0.15, ease: 'none' }, 0)
     .to('#s01 .hero__dusk', { opacity: 1, ease: 'none' }, 0);
 
-  /* ---- S03: pinned accumulation ---- */
+  /* ---- S03: pinned accumulation (desktop) / staggered reveals (mobile) ---- */
   const s03items = gsap.utils.toArray('#s03 .problem');
   const s03head = document.querySelector('#s03 .problems__head');
   const s03stage = document.querySelector('#s03 .problems__stage');
   const s03scrim = document.querySelector('#s03 .problems__scrim');
   if (s03items.length) {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#s03', start: 'top top', end: '+=340%',
-        pin: '#s03 .problems__pin', scrub: true, anticipatePin: 1
-      }
+    const mm = gsap.matchMedia();
+    mm.add('(min-width: 768px)', () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#s03', start: 'top top', end: '+=340%',
+          pin: '#s03 .problems__pin', scrub: true, anticipatePin: 1
+        }
+      });
+      tl.to(s03head, { autoAlpha: 0, y: -36, ease: 'none', duration: 0.16 }, 0.08);
+      s03items.forEach((it, i) => {
+        tl.fromTo(it,
+          { autoAlpha: 0, y: 46 },
+          { autoAlpha: 1, y: 0, ease: 'power2.out', duration: 0.085 },
+          0.14 + i * 0.082);
+      });
+      tl.to(s03stage, { autoAlpha: 0, scale: 0.965, ease: 'none', duration: 0.14 }, 0.85);
+      tl.to(s03scrim, { opacity: 1, ease: 'power2.in', duration: 0.18 }, 0.8);
     });
-    tl.to(s03head, { autoAlpha: 0, y: -36, ease: 'none', duration: 0.16 }, 0.08);
-    s03items.forEach((it, i) => {
-      tl.fromTo(it,
-        { autoAlpha: 0, y: 46 },
-        { autoAlpha: 1, y: 0, ease: 'power2.out', duration: 0.085 },
-        0.14 + i * 0.082);
+    mm.add('(max-width: 767px)', () => {
+      gsap.from(s03items, {
+        autoAlpha: 0, y: 30, duration: 0.9, ease: 'power3.out', stagger: 0.09,
+        scrollTrigger: { trigger: '#s03 .problems__list', start: 'top 82%' }
+      });
+      gsap.to(s03scrim, {
+        opacity: 1, ease: 'power2.in',
+        scrollTrigger: { trigger: '#s04', start: 'top 85%', end: 'top 45%', scrub: true }
+      });
     });
-    tl.to(s03stage, { autoAlpha: 0, scale: 0.965, ease: 'none', duration: 0.14 }, 0.85);
-    tl.to(s03scrim, { opacity: 1, ease: 'power2.in', duration: 0.18 }, 0.8);
   }
 
   /* ---- background parallax (scaled to avoid edge gaps — debug fix) ---- */
