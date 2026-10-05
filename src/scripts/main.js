@@ -297,6 +297,8 @@ function setSoundUI() {
     soundToggle.classList.toggle('is-off', !score.on);
     soundToggle.setAttribute('aria-pressed', String(score.on));
   }
+  const soundLabel = document.getElementById('sound-label');
+  if (soundLabel) soundLabel.textContent = resolve(store[lang], score.on ? 'sound.on' : 'sound.off');
 }
 if (soundToggle) {
   soundToggle.addEventListener('click', () => {

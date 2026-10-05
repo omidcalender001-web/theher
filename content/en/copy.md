@@ -1,3 +1,5 @@
+> **EDITORIAL PASS v1.1 (2026-10-05):** dedupe & polish — s1 body, s3 kicker (THE PROBLEMS), s4 subheadline, s6 body, s9 body. Applied to content + i18n in sync.
+
 > **STATUS: LOCKED 2026-10-04 (Gate 03 passed)** — applied verbatim to `src/i18n/en.json`.
 > Note: numbers normalized to Latin digits (5+, +50%, −30%, 3.5%, 15) in the applied JSON.
 
@@ -14,7 +16,7 @@ Subheadline
 Every woman builds a business in her own way.
 
 Body
-The Her understands the woman behind the business. This partnership is about understanding what sits behind it — the systems, decisions, experiences and opportunities that can move it forward.
+The Her understands the woman behind the business. This partnership is about what sits behind it — the systems, decisions, experiences and opportunities that can move it forward.
 
 Button
 ENTER THE WORLD
@@ -22,7 +24,7 @@ ENTER THE WORLD
 2. Behind every ambitious woman, there is a different business
 
 Kicker
-BEHIND THE BUSINESS
+WHAT SHE IS BUILDING
 
 Headline
 Behind every ambitious woman, there is a different business.
@@ -39,7 +41,7 @@ SEE THE DIFFERENCE
 3. Different businesses. Different problems.
 
 Kicker
-THE REAL QUESTION
+THE PROBLEMS
 
 Headline
 Different businesses. Different problems.
@@ -72,7 +74,7 @@ Headline
 So why should they all receive the same solution?
 
 Subheadline
-The problem should define the solution.
+No two businesses get stuck in the same place.
 
 Body
 There is no universal growth playbook. Sometimes the answer is marketing. Sometimes it is experience, data, technology, or a new digital product. The work starts with finding what actually matters.
@@ -108,7 +110,7 @@ SEE HOW IT CONNECTS
 6. Growth engine — DATA + MARKETING + EXPERIENCE + AI → one engine
 
 Kicker
-ONE GROWTH ENGINE
+THE FOUR LAYERS
 
 Headline
 DATA + MARKETING + EXPERIENCE + AI
@@ -117,7 +119,7 @@ Subheadline
 Connected disciplines create a stronger growth system.
 
 Body
-Data reveals what is happening. Marketing creates demand. Experience turns attention into action. AI creates leverage. Connected together, they become one engine built around the business problem.
+Alone, each discipline helps. Connected, they compound into one engine — built around the problem this business actually has.
 
 Button
 BUILD THE ENGINE
@@ -234,7 +236,7 @@ Subheadline
 Experience across performance, acquisition, conversion, data and digital.
 
 Body
-A track record built across different growth environments — from acquisition and SEO to conversion, analytics and campaign optimization.
+A track record across different growth environments — from acquisition and SEO to conversion, analytics and campaign optimization.
 
 Numbers
 

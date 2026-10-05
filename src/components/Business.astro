@@ -2,12 +2,6 @@
 // S02 — ACT II · THE BUSINESS — mosaic of different businesses (typographic, storyboard scene 2)
 import en from '../i18n/en.json';
 const t = en;
-const cells = [
-  { num: '01', title: 'Journal Planning', line: 'Year design · business goals · lifestyle goals' },
-  { num: '02', title: 'Brand & Product', line: 'From page to brand · follower growth' },
-  { num: '03', title: 'Website & Shop', line: 'Digital presence as business infrastructure' },
-  { num: '04', title: 'Data & Dashboards', line: 'Decisions from signals, not assumptions' }
-];
 ---
 <section class="section" id="s02" data-section aria-label="Behind every ambitious woman, a different business">
   <div class="container">
@@ -18,11 +12,11 @@ const cells = [
       <p data-reveal data-i18n="s2.body" style="color:var(--color-text-muted);max-inline-size:38rem">{t.s2.body}</p>
     </div>
     <div class="mosaic" data-reveal-group>
-      {cells.map((c) => (
+      {t.s2.mosaic.map((c, i) => (
         <div class="mosaic__cell" data-reveal>
           <span class="mosaic__num">{c.num}</span>
-          <span class="mosaic__title">{c.title}</span>
-          <span class="mosaic__line">{c.line}</span>
+          <span class="mosaic__title" data-i18n={`s2.mosaic.${i}.title`}>{c.title}</span>
+          <span class="mosaic__line" data-i18n={`s2.mosaic.${i}.line`}>{c.line}</span>
         </div>
       ))}
     </div>

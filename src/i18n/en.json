@@ -7,15 +7,15 @@
   "chapters": {
     "s01": "ACT I — THE WOMAN",
     "s02": "ACT II — THE BUSINESS",
-    "s03": "ACT III — THE PROBLEM",
+    "s03": "ACT III — THE COMPLEXITY",
     "s04": "ACT IV — THE QUESTION",
     "s05": "ACT V — THE PARTNERSHIP",
     "s06": "ACT VI — THE GROWTH ENGINE",
-    "s07": "PROOF OF THINKING",
-    "s08": "THREE HYPOTHESES",
+    "s07": "THE DIAGNOSIS",
+    "s08": "CASE 01 — 03",
     "s09": "EVIDENCE",
-    "s10": "THE PARTNERSHIP",
-    "s11": "THE NEXT CHAPTER"
+    "s10": "COLLABORATION MODELS",
+    "s11": "FINALE"
   },
   "meta": {
     "title": "THE HER × OMID — A partnership built around possibilities",
@@ -38,18 +38,40 @@
     "kicker": "THE HER × OMID",
     "headline": "A WORLD OF BUSINESS WOMEN.",
     "subheadline": "Every woman builds a business in her own way.",
-    "body": "The Her understands the woman behind the business. This partnership is about understanding what sits behind it — the systems, decisions, experiences and opportunities that can move it forward.",
+    "body": "The Her understands the woman behind the business. This partnership is about what sits behind it — the systems, decisions, experiences and opportunities that can move it forward.",
     "button": "ENTER THE WORLD"
   },
   "s2": {
-    "kicker": "BEHIND THE BUSINESS",
+    "kicker": "WHAT SHE IS BUILDING",
     "headline": "Behind every ambitious woman, there is a different business.",
     "subheadline": "Different ambitions create different businesses.",
     "body": "A founder may be building a brand, scaling sales, launching a product, or creating a business that gives her more freedom. The ambition may be shared. The system never is.",
-    "button": "SEE THE DIFFERENCE"
+    "button": "SEE THE DIFFERENCE",
+    "mosaic": [
+      {
+        "num": "01",
+        "title": "Journal Planning",
+        "line": "Year design · business goals · lifestyle goals"
+      },
+      {
+        "num": "02",
+        "title": "Brand & Product",
+        "line": "From page to brand · follower growth"
+      },
+      {
+        "num": "03",
+        "title": "Website & Shop",
+        "line": "The first impression — always on"
+      },
+      {
+        "num": "04",
+        "title": "Data & Dashboards",
+        "line": "The numbers behind every decision"
+      }
+    ]
   },
   "s3": {
-    "kicker": "THE REAL QUESTION",
+    "kicker": "THE PROBLEMS",
     "headline": "Different businesses. Different problems.",
     "subheadline": "Growth rarely starts with the same question twice.",
     "body": "One business needs demand. Another needs conversion. Another needs a stronger digital experience. The right response begins by understanding the problem before choosing the solution.",
@@ -88,7 +110,7 @@
   "s4": {
     "kicker": "NO FIXED FORMULA",
     "headline": "So why should they all receive the same solution?",
-    "subheadline": "The problem should define the solution.",
+    "subheadline": "No two businesses get stuck in the same place.",
     "body": "There is no universal growth playbook. Sometimes the answer is marketing. Sometimes it is experience, data, technology, or a new digital product. The work starts with finding what actually matters.",
     "button": "FIND THE RIGHT PATH"
   },
@@ -108,10 +130,10 @@
     "button": "SEE HOW IT CONNECTS"
   },
   "s6": {
-    "kicker": "ONE GROWTH ENGINE",
+    "kicker": "THE FOUR LAYERS",
     "headline": "DATA + MARKETING + EXPERIENCE + AI",
     "subheadline": "Connected disciplines create a stronger growth system.",
-    "body": "Data reveals what is happening. Marketing creates demand. Experience turns attention into action. AI creates leverage. Connected together, they become one engine built around the business problem.",
+    "body": "Alone, each discipline helps. Connected, they compound into one engine — built around the problem this business actually has.",
     "layers": [
       {
         "title": "DATA",
@@ -127,7 +149,7 @@
       },
       {
         "title": "AI",
-        "line": "AI creates leverage."
+        "line": "AI multiplies leverage."
       }
     ],
     "convergence": "One growth engine.",
@@ -172,7 +194,7 @@
     "button": "SEE THE THINKING"
   },
   "s8": {
-    "kicker": "THREE HYPOTHESES",
+    "kicker": "THREE SCENARIOS",
     "cases": [
       {
         "kicker": "HYPOTHETICAL CLIENT SCENARIO",
@@ -201,13 +223,17 @@
         "keyLine": "AI should not replace the business. It should make the business more capable.",
         "button": "EXPLORE THE APPROACH"
       }
-    ]
+    ],
+    "labels": {
+      "diagnosis": "DIAGNOSIS",
+      "response": "RESPONSE"
+    }
   },
   "s9": {
     "kicker": "PROOF, IN NUMBERS",
     "headline": "Built through years of growth work.",
     "subheadline": "Experience across performance, acquisition, conversion, data and digital.",
-    "body": "A track record built across different growth environments — from acquisition and SEO to conversion, analytics and campaign optimization.",
+    "body": "A track record across different growth environments — from acquisition and SEO to conversion, analytics and campaign optimization.",
     "numbers": [
       {
         "value": "5+ years",
