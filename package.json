@@ -1,0 +1,17 @@
+{
+  "name": "the-her-omid",
+  "version": "0.1.0",
+  "description": "THE HER × OMID — cinematic bilingual (EN/FA-RTL) editorial proposal landing page",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "astro check"
+  },
+  "dependencies": {
+    "astro": "^4.16.0",
+    "gsap": "^3.12.5"
+  }
+}

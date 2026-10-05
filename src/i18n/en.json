@@ -1,0 +1,122 @@
+{
+  "_meta": {
+    "lang": "en",
+    "dir": "ltr",
+    "note": "Source of truth copy (Phase 03 locks final). Keep keys in sync with fa.json."
+  },
+  "meta": {
+    "title": "THE HER × OMID — A partnership built around possibilities",
+    "description": "The Her understands the woman behind the business. Omid focuses on the system behind the business."
+  },
+  "nav": {
+    "languageSwitch": "فارسی",
+    "cta": "Start a conversation"
+  },
+  "act1": {
+    "kicker": "ACT I — THE WOMAN",
+    "headline": "A world of business women."
+  },
+  "act2": {
+    "kicker": "ACT II — THE BUSINESS",
+    "headline": "Behind every ambitious woman, there is a different business."
+  },
+  "act3": {
+    "kicker": "ACT III — THE PROBLEM",
+    "headline": "Different businesses. Different problems.",
+    "items": [
+      "More sales",
+      "More leads",
+      "Better conversion",
+      "A better website",
+      "Better data",
+      "AI & automation",
+      "A digital product"
+    ]
+  },
+  "act4": {
+    "kicker": "ACT IV — THE QUESTION",
+    "headline": "So why should they all receive the same solution?"
+  },
+  "act5": {
+    "kicker": "ACT V — THE PARTNERSHIP",
+    "theHer": "The Her understands the woman behind the business.",
+    "omid": "I focus on the system behind the business."
+  },
+  "act6": {
+    "kicker": "ACT VI — THE GROWTH ENGINE",
+    "layers": {
+      "data": { "title": "DATA", "line": "Understand what is happening." },
+      "marketing": { "title": "MARKETING", "line": "Create demand and acquire customers." },
+      "experience": { "title": "EXPERIENCE", "line": "Turn attention into action." },
+      "ai": { "title": "AI", "line": "Make the system smarter and more scalable." }
+    },
+    "convergence": "One growth engine."
+  },
+  "proofOfThinking": {
+    "kicker": "PROOF OF THINKING",
+    "clientSays": "We need more sales.",
+    "diagnostic": [
+      "Is it traffic?",
+      "Is it the offer?",
+      "Is it trust?",
+      "Is it the experience?",
+      "Is it conversion?",
+      "Is it follow-up?",
+      "What does the data say?"
+    ],
+    "punchline": "The problem defines the solution."
+  },
+  "cases": {
+    "label": "Hypothetical client scenario",
+    "case1": {
+      "quote": "We have traffic. But not enough sales.",
+      "response": ["Funnel analysis", "Tracking & attribution", "Landing page optimization", "CRO", "Messaging", "Testing"],
+      "keyLine": "Growth doesn't always need more traffic. Sometimes it needs a better system."
+    },
+    "case2": {
+      "quote": "Our business is growing. But our digital presence isn't.",
+      "response": ["Strategy", "UX", "UI", "Development", "Measurement"],
+      "keyLine": "A website shouldn't just represent the business. It should move the business forward."
+    },
+    "case3": {
+      "quote": "We're growing. But everything still depends on people.",
+      "response": ["AI workflows", "Automation", "CRM / data connections", "Intelligent reporting", "Workflow redesign"],
+      "keyLine": "AI shouldn't replace the business. It should make the business more capable."
+    }
+  },
+  "proof": {
+    "kicker": "PROOF OF WORK",
+    "numbers": [
+      { "value": "5+", "label": "years in growth teams" },
+      { "value": "+50%", "label": "organic traffic" },
+      { "value": "-30%", "label": "retargeting CPA" },
+      { "value": "3.5%", "label": "average campaign CTR" },
+      { "value": "15", "label": "competitive keywords → first page" }
+    ]
+  },
+  "partnership": {
+    "kicker": "PARTNERSHIP VALUE",
+    "headline": "What if The Her could offer more — without becoming more?",
+    "theHer": "Understands the woman, business, brand and strategic context.",
+    "omid": "Supports digital, growth, data, AI and product execution.",
+    "together": "Create a broader capability for clients.",
+    "supportLine": "A trusted growth partner behind the scenes.",
+    "models": {
+      "kicker": "COLLABORATION MODELS",
+      "model1": { "title": "Direct", "line": "The Her ↔ Omid — for The Her's own growth initiatives." },
+      "model2": { "title": "Client Project", "line": "The Her + Omid + Client — Omid owns a digital/growth workstream." },
+      "model3": { "title": "White Label", "line": "The Her owns the relationship. Omid stays behind the scenes." }
+    }
+  },
+  "cta": {
+    "headline": "Let's explore what we could build together.",
+    "button": "Start a conversation",
+    "closing": {
+      "lockup": "THE HER × OMID",
+      "line": "A partnership built around possibilities."
+    }
+  },
+  "footer": {
+    "tagline": "Different businesses. Different problems. One partner. Many possibilities."
+  }
+}

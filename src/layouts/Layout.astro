@@ -1,0 +1,46 @@
+---
+// THE HER × OMID — Master Layout
+// Phase 05 will lock fonts; Phase 08 wires the language switch & GSAP.
+import '../styles/global.css';
+
+interface Props {
+  lang?: 'en' | 'fa';
+  title?: string;
+  description?: string;
+}
+
+const {
+  lang = 'en',
+  title = 'THE HER × OMID — A partnership built around possibilities',
+  description = 'The Her understands the woman behind the business. I focus on the system behind the business.'
+} = Astro.props;
+
+const dir = lang === 'fa' ? 'rtl' : 'ltr';
+---
+
+<!doctype html>
+<html lang={lang} dir={dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#1C1714" />
+
+    <!-- Open Graph (add public/og-image.jpg in Phase 06) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- TODO Phase 05: self-hosted fonts (WOFF2, subset) -->
+    <!-- TODO Phase 09: analytics (GA4 / Plausible) -->
+  </head>
+  <body>
+    <slot />
+
+    <!-- TODO Phase 08: GSAP + ScrollTrigger (respect prefers-reduced-motion) -->
+    <!-- TODO Phase 08: language switch preserving scroll position -->
+  </body>
+</html>

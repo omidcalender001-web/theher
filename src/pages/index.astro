@@ -1,0 +1,24 @@
+---
+// THE HER × OMID — Page skeleton (Phase 08 will implement the real experience)
+// Section order is locked by docs/proposal-architecture.md — do not reorder.
+import Layout from '../layouts/Layout.astro';
+import en from '../i18n/en.json';
+import fa from '../i18n/fa.json';
+
+const lang = 'en'; // Phase 08: make dynamic (?lang=fa → RTL)
+const t = lang === 'fa' ? fa : en;
+---
+
+<Layout lang={lang}>
+  <!-- 01 · ACT I — THE WOMAN · Scene: A world of business women (The Her's world first) -->
+  <!-- 02 · ACT II — THE BUSINESS · Behind every ambitious woman, a different business -->
+  <!-- 03 · ACT III — THE PROBLEM · Different businesses. Different problems. -->
+  <!-- 04 · ACT IV — THE QUESTION · So why should they all receive the same solution? -->
+  <!-- 05 · ACT V — THE PARTNERSHIP · The Her / Omid split-screen moment -->
+  <!-- 06 · ACT VI — THE GROWTH ENGINE · DATA + MARKETING + EXPERIENCE + AI → one engine -->
+  <!-- 07 · PROOF OF THINKING · "We need more sales." diagnostic interaction -->
+  <!-- 08 · HYPOTHETICAL CASES 01–03 (labeled!) -->
+  <!-- 09 · PROOF OF WORK · evidence, not a CV dump -->
+  <!-- 10 · PARTNERSHIP VALUE + COLLABORATION MODELS 01–03 -->
+  <!-- 11 · CTA · Let's explore what we could build together. -->
+</Layout>

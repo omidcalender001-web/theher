@@ -1,0 +1,5 @@
+# THE HER × OMID
+User-agent: *
+Allow: /
+
+Sitemap: https://the-her-omid.netlify.app/sitemap.xml

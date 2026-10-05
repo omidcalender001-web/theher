@@ -1,0 +1,97 @@
+/* ============================================================
+   THE HER × OMID — Design tokens & global styles
+   Direction: Editorial Cinematic / Quiet Luxury
+   NOTE: values are v0 proposals — Phase 05 (Art Direction) locks them.
+   ============================================================ */
+
+:root {
+  /* ---- Palette (quiet luxury) ---- */
+  --color-ivory: #F6F1E9;        /* warm ivory — primary background */
+  --color-champagne: #E9DFCE;    /* champagne / beige — soft surfaces */
+  --color-taupe: #A99383;        /* warm taupe — secondary text, lines */
+  --color-espresso: #3B2E27;     /* dark chocolate — headings on light */
+  --color-soft-black: #1C1714;   /* soft black — dark scenes, footer */
+  --color-accent: #B08D57;       /* provisional metallic accent */
+
+  /* ---- Typography ---- */
+  /* EN display: editorial serif (candidate: Cormorant Garamond / Marcellus) */
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  /* EN body: quiet sans, light weights (candidate: Inter / Jost) */
+  --font-body: "Inter", "Helvetica Neue", sans-serif;
+  /* FA: open-source Persian typeface, must pair with quiet-luxury tone */
+  --font-fa-display: "Vazirmatn", Tahoma, sans-serif;
+  --font-fa-body: "Vazirmatn", Tahoma, sans-serif;
+
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --tracking-wide: 0.18em;       /* generous letter spacing for uppercase */
+
+  --text-display-xl: clamp(2.75rem, 7vw, 6rem);
+  --text-display: clamp(2rem, 5vw, 4rem);
+  --text-body: 1.0625rem;
+  --text-caption: 0.8125rem;
+
+  /* ---- Space & rhythm (high whitespace) ---- */
+  --space-section: clamp(6rem, 14vh, 12rem);
+  --space-gutter: clamp(1.25rem, 5vw, 6rem);
+  --radius-none: 0;              /* editorial = sharp corners */
+
+  /* ---- Motion (slow · intentional · cinematic) ---- */
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-slow: 1200ms;
+  --duration-medium: 700ms;
+}
+
+/* Direction-aware font stacks */
+html[dir="ltr"] body { font-family: var(--font-body); }
+html[dir="rtl"] body { font-family: var(--font-fa-body); }
+html[dir="ltr"] .display { font-family: var(--font-display); }
+html[dir="rtl"] .display { font-family: var(--font-fa-display); }
+
+/* ---- Base ---- */
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-ivory);
+  color: var(--color-espresso);
+  font-size: var(--text-body);
+  line-height: 1.7;
+  text-rendering: optimizeLegibility;
+}
+
+/* Editorial headline language */
+.display {
+  font-weight: var(--font-weight-light);
+  line-height: 1.08;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+html[dir="rtl"] .display {
+  text-transform: none;          /* Persian has no uppercase */
+  letter-spacing: 0;             /* Persian needs normal tracking */
+}
+
+/* Logical properties everywhere → RTL for free */
+.section { padding-block: var(--space-section); padding-inline: var(--space-gutter); }
+
+/* ---- Media: lazy + stable ---- */
+video, img { max-width: 100%; height: auto; display: block; }
+video { object-fit: cover; }
+
+/* ---- Accessibility: reduced motion fallback (handoff Phase 08) ---- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+::selection { background: var(--color-champagne); color: var(--color-soft-black); }
