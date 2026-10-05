@@ -1,3 +1,16 @@
+# MASTER STORYBOARD — FINAL v1.0
+
+> **Phase 04 deliverable** — authored by client via AI Studio, 2026-10-04 (source of truth for all scenes).
+
+## Integration notes (editor — read first)
+
+- **Mapping to architecture (S00–S11):** Scene 1→S01 · Scene 2→S02 · Scene 3→S03+S04 (the Question is Scene 3's transition) · Scene 4→S05 · Scene 5→S06 · Scene 6→S10 · Scene 7→S11. Sections **S00 (entry), S07 (Proof of Thinking), S08 (Cases), S09 (Numbers)** are typographic/interactive sections governed directly by [`proposal-architecture.md`](proposal-architecture.md) — intentionally not cinematic scenes.
+- **Audio:** the per-scene audio notes below describe the *character of one continuous score at each scroll position* — implemented as the single scroll-synced Lyria track (decision D3, spec: architecture §4): subtle/room-tone feel early → second tonal layer at the partnership → thin near-silence at the Question → resolve to a single warm sustained tone at the CTA. One track, one timeline.
+- **Asset model:** scenes lean editorial/typographic — Flow video is an *ingredient* (Scene 1/7 ambience, textures), not a requirement for every scene. Visual system & motion values: [`art-direction.md`](art-direction.md).
+- Production prompts: [`prompts/flow/scene-prompts.md`](../prompts/flow/scene-prompts.md) (to be aligned to this storyboard's imagery direction in Phase 06).
+
+---
+
 Scene 1 — The Vision
 
 Scene: The Vision — Act I: A world of business women
